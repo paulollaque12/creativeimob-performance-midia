@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&display=swap">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-10-15b · taylor -->
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-10-15c · seletor no mensal -->
 <style>
 /* Layout: cabeçalho grafite com filtros; seções em sequência (resumo → funil → evolução → indicadores → detalhes), cada uma com título e frase de contexto antes do bloco. */
 :root{
@@ -274,6 +274,11 @@ section{display:flex;flex-direction:column;gap:14px;min-width:0}
 .mk-cer span{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.01em;line-height:1.1}
 .mk-cer span b{display:block;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
 .wrapseg{flex-wrap:wrap}
+.mctl{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center}
+.mcli button{display:inline-flex;align-items:center;gap:7px}
+.mcli button .cdot{opacity:.35}
+.mcli button[aria-pressed=true] .cdot{opacity:1}
+.mcli button:disabled{cursor:default;opacity:.45}
 .tog{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);cursor:pointer}
 .tog input{accent-color:var(--gold)}
 table.mon th:first-child,table.mon td:first-child{min-width:220px}
@@ -447,8 +452,9 @@ td.dim{color:var(--muted)}
   </section>
 
   <section id="c-mes">
-    <div class="sh"><div><h2>Evolução mensal por imobiliária</h2><p class="bi">Todos os meses de 2026. As barras mostram o investimento de cada imobiliária (eixo da esquerda) e as linhas, o custo escolhido ao lado (eixo da direita). Segue o filtro de imobiliária, não o de datas.</p></div>
-      <div class="seg" role="group" aria-label="Custo nas linhas" id="cmline"><button type="button" data-m="cpl" aria-pressed="true">CPL</button><button type="button" data-m="cpm" aria-pressed="false">CPM</button><button type="button" data-m="cpc" aria-pressed="false">CPC</button><button type="button" data-m="ctr" aria-pressed="false">CTR</button></div></div>
+    <div class="sh"><div><h2>Evolução mensal por imobiliária</h2><p class="bi">Todos os meses de 2026. Escolha ao lado quais imobiliárias comparar (uma ou mais) e o custo das linhas. As barras mostram o investimento (eixo da esquerda) e as linhas, o custo (eixo da direita), com os valores escritos quando há até duas imobiliárias. Segue o filtro de imobiliária, não o de datas.</p></div>
+      <div class="mctl"><div class="seg mcli" role="group" aria-label="Imobiliárias no gráfico" id="cmcli"></div>
+      <div class="seg" role="group" aria-label="Custo nas linhas" id="cmline"><button type="button" data-m="cpl" aria-pressed="true">CPL</button><button type="button" data-m="cpm" aria-pressed="false">CPM</button><button type="button" data-m="cpc" aria-pressed="false">CPC</button><button type="button" data-m="ctr" aria-pressed="false">CTR</button></div></div></div>
     <div class="card pad"><div class="chart" id="cMonth"></div></div>
   </section>
 
@@ -490,7 +496,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="15/10/2026 18:34";
+const SNAP_AT="15/10/2026 18:37";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -639,7 +645,7 @@ function combo(el,opt){
     s+=`<path d="${d}" fill="none" stroke="var(--surface)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${Ln.color}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"${Ln.dash?' stroke-dasharray="5 4"':""}/>`;
     Ln.v.forEach((v,i)=>{if(v==null)return;s+=`<circle cx="${cx(i)}" cy="${sy2(v)}" r="${n<=16?3.5:2.5}" fill="${Ln.color}" stroke="var(--surface)" stroke-width="1.5"/>`})});
   /* valores das linhas: todos quando cabem; em períodos longos, um a cada N pontos (sempre o último). Com 2+ linhas, a de cima rotula acima e a de baixo, abaixo */
-  Ls.forEach((Ln,li)=>{const lf=Ln.lab||Ln.fmt,ev2=Math.max(1,Math.ceil(46/step)),lastI=Ln.v.map((v,i)=>v!=null?i:-1).filter(i=>i>=0).pop();
+  if(Ls.length<=2)Ls.forEach((Ln,li)=>{const lf=Ln.lab||Ln.fmt,ev2=Math.max(1,Math.ceil(46/step)),lastI=Ln.v.map((v,i)=>v!=null?i:-1).filter(i=>i>=0).pop();
     Ln.v.forEach((v,i)=>{if(v==null||(i%ev2&&i!==lastI))return;const y=sy2(v);let below;
       if(Ls.length>1){const o=Ls[1-li]?.v[i];below=o!=null?v<o:li===1}else{const prv=Ln.v[i-1],nxt=Ln.v[i+1];const peak=(prv==null||v>=prv)&&(nxt==null||v>=nxt);below=(prv==null||v<=prv)&&(nxt==null||v<=nxt)&&!peak}
       const ly=below&&y+16<top+ph-(opt.barLabels?24:4)?y+16:Math.max(top+9,y-9);
@@ -928,7 +934,7 @@ function buildMC(){
       r.push([x[0],ci,id,x[4],x[5],x[6],x[7],x[8],x[9],x[10]])}});
   MC={r,ads,last:Math.max(...r.map(x=>x[0])),first:Math.min(...r.map(x=>x[0]))};
 }
-const S2={cli:-1,dim:"fmt",mline:"cpl",sortK:"inv",sortD:-1,min:true};
+const S2={cli:-1,dim:"fmt",mline:"cpl",sortK:"inv",sortD:-1,min:true,mcli:new Set(["sh","nsp"])};
 function crows(a,b,cli){const o=[];for(const x of MC.r){if(x[0]<a||x[0]>b)continue;if(cli>=0&&x[1]!==cli)continue;o.push(x)}return o}
 function csum(rows){const t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0};for(const x of rows){t.inv+=x[3];t.imp+=x[4];t.lclk+=x[5];t.clk+=x[6];t.form+=x[7];t.msg+=x[8];t.leads+=x[9]}t.inv/=100;return derive(t)}
 function cgroup(rows,fn){const m=new Map();for(const x of rows){const k=fn(x);let t=m.get(k);if(!t){t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0,cl:new Set()};m.set(k,t)}t.inv+=x[3];t.imp+=x[4];t.lclk+=x[5];t.clk+=x[6];t.form+=x[7];t.msg+=x[8];t.leads+=x[9];t.cl.add(x[1])}
@@ -973,7 +979,9 @@ function cClients(a,b,pa,pb){
   $("#cCli tfoot").innerHTML=`<tr><td>Total</td><td>${brl(all.inv)}</td><td>${int(all.imp)}</td><td>${brl(all.cpm)}</td><td>${int(all.lclk)}</td><td>${brl(all.cpc)}</td><td>${pct(all.ctr)}</td><td>${int(all.leads)}</td><td>${brl(all.cpl)}</td><td>${pct(all.conv)}</td></tr>`;
 }
 function cMonth(){
-  const el=$("#cMonth"),ks=S2.cli<0?CKEYS:[CKEYS[S2.cli]];
+  const el=$("#cMonth"),ks=S2.cli<0?CKEYS.filter(k=>S2.mcli.has(k)):[CKEYS[S2.cli]];
+  /* botões de imobiliária do gráfico: escolha livre (pelo menos uma); com o filtro de imobiliária ativo, fica só ela */
+  $("#cmcli").innerHTML=CKEYS.map((k,ci)=>`<button type="button" data-k="${k}" aria-pressed="${ks.includes(k)}"${S2.cli>=0?" disabled":""}><i class="cdot ${k}"></i>${CNAME[k]}</button>`).join("");
   const mm=new Map();for(const x of MC.r){if(S2.cli>=0&&x[1]!==S2.cli)continue;const d=dObj(x[0]),k=d.getUTCFullYear()*12+d.getUTCMonth();let t=mm.get(k);if(!t){t=CKEYS.map(()=>({inv:0,imp:0,lclk:0,leads:0}));mm.set(k,t)}const u=t[x[1]];u.inv+=x[3]/100;u.imp+=x[4];u.lclk+=x[5];u.leads+=x[9]}
   const keys=[...mm.keys()].sort((a,b)=>a-b);if(!keys.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
   const lab=keys.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2));
@@ -1049,6 +1057,7 @@ function renderCer(){
   $("#cFoot").textContent=`Dados até ${dmyy(MC.last)} · `+CKEYS.map(k=>CNAME[k]+": "+(MODELS[k]?.live?"planilha lida em "+MODELS[k].at:"atualizado em "+SNAP_AT)).join(" · ");
 }
 function cerCharts(){if(MC){cMonth();const cur=crows(S.d1,S.d2,S2.cli);cScatter(cur,csum(cur))}}
+$("#cmcli").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.disabled)return;const k=b.dataset.k;if(S2.mcli.has(k)){if(S2.mcli.size>1)S2.mcli.delete(k)}else S2.mcli.add(k);cMonth()});
 document.querySelectorAll("#cmline button").forEach(b=>b.addEventListener("click",()=>{S2.mline=b.dataset.m;document.querySelectorAll("#cmline button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));cMonth()}));
 document.querySelectorAll("#cdim button").forEach(b=>b.addEventListener("click",()=>{S2.dim=b.dataset.d;document.querySelectorAll("#cdim button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))}));
 $("#cMin").addEventListener("change",e=>{S2.min=e.target.checked;const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))});
