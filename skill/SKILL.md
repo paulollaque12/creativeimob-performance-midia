@@ -1,0 +1,154 @@
+---
+name: creativeimob-dashboard-performance
+description: Painel de mídia paga (Meta Ads) da CreativeImob: Cérebro + SH Prime, Nova SP, Lopes Prime e Taylor, com artefato e site no GitHub Pages. Use ao criar, ajustar, validar, atualizar ou publicar o painel, os Insights, ou ao adicionar um cliente.
+---
+
+# Painel de Performance de Mídia · CreativeImob (Cérebro + clientes)
+
+## Quem é quem
+- **CreativeImob**: assessoria de growth marketing para o mercado imobiliário (Vila Leopoldina, SP). Usuário: **Paulo** (paulo@creativeimob.com), equipe **Data & BI**. Escreve em português do Brasil (às vezes em espanhol: responder no idioma da mensagem). Frases curtas e diretas.
+- **Abas do painel**, da esquerda para a direita: **Cérebro** (CreativeImob, compilado) | SH Prime | Nova SP | Lopes Prime | Taylor.
+  - **SH Prime**: imobiliária/incorporadora em SP (Perdizes, Santana, Jardins/Itaim, Vila Romana, Horto Florestal, Pacaembu, Higienópolis, Casa Verde, Vila Monumento). Campanhas de carteira por bairro ("terceiros"), imóvel específico (venda-apto/casa com código), lançamentos (Eztec, WDS Essência Perdizes, Simão 717), captação de corretores e de proprietários, catálogo.
+  - **Nova SP** (Nova São Paulo): zona sul de SP (Saúde, Campo Belo, Vila Clementino, Vila Mariana, Moema, Indianópolis, Vila Mascote...). Lojas MO (Moema), BI e JA (siglas não confirmadas). Campanhas de imóvel específico com código, corretora e valor no nome (`video_bi42912_jd-da-saude_1.5mi_maria_01-07`).
+  - **Lopes Prime**: Jardins, Moema e alto padrão (Fasano, Horiz, Leon, Cidade Jardim). Captação de corretores (lojas Jardins e Moema) e de gerentes de vendas, imóveis de terceiros, locação, imóveis específicos com código (`fasano_1002697`, `reo161143`).
+  - **Taylor Imóveis**: alto padrão (Alto da Boa Vista, Zona Sul, Itaim Bibi, Jardins, Paraíso, Cerqueira César, Jardim Europa). Venda e locação de imóveis de terceiros.
+- **Origem** (10/10/2026): replicar o Looker Studio "SH Prime · Dashboard de Performance" (PDF enviado pelo usuário) em HTML, "mais bonito, elegante, sofisticado, respeitando as cores do cliente, de um jeito muito sênior, com descrições antes dos blocos", no mesmo padrão do painel da Gralha (skill `gralha-dashboard-migracao`). Depois: só 2026 e eixos Y1/Y2 (14/10), margem igual à Gralha (14/10), valores nas linhas (14/10), Insights (14/10), Nova SP com abas de cliente (14/10), Cérebro (14/10), repositório público sem senha (14/10), Lopes Prime e Taylor (15/10), seletor de imobiliárias no mensal do Cérebro (15/10).
+- Antes do painel: o usuário perguntou por conexão com Google Ads e Meta Ads. Sugeridos Supermetrics, Windsor.ai e Adspirer (descartados: pagos). MCP próprio: Google tem o oficial `googleads/google-ads-mcp` (só leitura, local, exige developer token aprovado); Meta não tem oficial. O usuário disse "esquece o meta" (para conectores) e escolheu o caminho do BigQuery Data Transfer para o Google Ads (ver Pendências).
+
+## Onde está tudo (estado em 15/10/2026)
+- **Artefato do Claude** (privado do Paulo; lê as planilhas ao vivo): https://claude.ai/artifact/DNCvDPf6qVCwjwLzrYBYTs · título `Cérebro CreativeImob` · ícone `chart` · versão 10 · comentário de versão no topo `<!-- v2026-10-15c · seletor no mensal -->` (mudar a cada publicação; publicar idêntico é recusado). Capabilities: `{mcp:{servers:[{server:"Google Sheets",tools:["get_values"]}]}}` (omitir no redeploy mantém). Em outra conversa: `Artifact read` com o `url` e publicar passando `url`. Quem abrir o artefato precisa ter o conector Google Sheets e acesso às planilhas.
+- **Repositório** (público): https://github.com/paulollaque12/creativeimob-performance-midia (branch `main`). **Site sem senha** (decisão do usuário em 14/10/2026): https://paulollaque12.github.io/creativeimob-performance-midia/ (GitHub Pages em `main` + `/docs`, ativado pelo usuário em Settings → Pages). `noindex,nofollow` + `robots.txt`. No site não há leitura ao vivo: mostra a cópia gerada no último build ("Atualizado em …").
+  - `fonte/template.html` (~236 KB): código único do painel (HTML+CSS+JS) com marcadores `/*__DATA_SH__*/null`, `/*__DATA_NSP__*/null`, `/*__DATA_LP__*/null`, `/*__DATA_TY__*/null` e `/*__AT__*/`. **É a fonte de verdade**; o artefato e o site são gerados dele.
+  - `tools/montar.py`: lê as respostas do conector, aplica as regras e gera `docs/index.html` (com esqueleto `<html>`; `<title>` e `<link>` das fontes vão para o `<head>`; inclui `[hidden]{display:none!important}`) e, com `--artefato caminho.html`, a versão do artefato (sem esqueleto).
+  - `docs/` (index.html ~900 KB, robots.txt, .nojekyll), `README.md`, `ATUALIZAR.md` (rotina), `CONTEXTO.md` (regras e decisões), `skill/SKILL.md` (cópia desta skill).
+  - Commits com `git -c user.name="Claude" -c user.email="noreply@anthropic.com"`, terminando com `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` e a linha `Claude-Session` do system-reminder.
+- **Acesso ao repo no sandbox**: `mcp__claude-code-remote__add_repo` (owner `paulollaque12`, repo `creativeimob-performance-midia`, access `push`), `git clone --depth 1 … /home/claude/creativeimob-performance-midia` (timeout longo), depois `register_repo_root`. A API de Pages (`gh api …/pages`) é bloqueada pelo proxy e `*.github.io` não é alcançável. Para confirmar que publicou: `gh api repos/paulollaque12/creativeimob-performance-midia/deployments` e `…/actions/runs` ("pages build and deployment" `success` com o sha do último commit = no ar). Cache do GitHub: recarregar com Ctrl+Shift+R.
+- Arquivos de trabalho da sessão (efêmeros): `/home/claude/shprime/sh-prime-meta.html` (arquivo publicado no artefato), `/tmp/claude-0/src/{sh,nsp,lp,tay}.json` (respostas do conector), máscaras de logo em `/tmp/claude-0/*.png`.
+
+## Fontes de dados (conector Google Sheets, `get_values`)
+| Chave | Cliente | Planilha | Range | Cabeçalho | Dados desde |
+|---|---|---|---|---|---|
+| `sh` | SH Prime | [BaseData] SH Prime - Meta · `1tSgEdMFQKXgaRf-LxNuDTUfHIM3pTlhiJ-NF15bBSps` | `Meta!A1:Q40000` | português | 2024 (usa só 2026) |
+| `nsp` | Nova SP | [BaseData] Nova São Paulo - Meta · `1cbrG6udFXUzYvpxEVb6m0ru8A0oD_DUgeEMn5ZsRpUo` | `Meta!A1:Q40000` | português | 06/2024 |
+| `lp` | Lopes Prime | [BaseData] Lopes Prime - Meta · `16eTUPB8t0bBBroTn3kQyVqq6SrRsajPMK0DMwkILG6Y` | `Meta!A1:Q40000` | português | 2024 |
+| `ty` | Taylor | [TAYLOR] report semanal · `1iNZ5W8qUInPaw87_hG-nLwlB1pNubzW32PsfUi0qnTM` | `'[BASE] meta'!A1:R40000` (gid 1405034923) | **inglês** | 27/04/2026 |
+- Abas legadas a ignorar: SH (Meta-25, Cópia de Meta-25, Meta-24); Nova SP (Pacing = consolidado mensal não usado, Meta-25-2, Meta-25, Meta-24); Lopes (Meta-25, Meta-24, Meta-23, Meta-22); Taylor (dezenas de REPORT/PACING mensais, Report, Pacing, Diário de bordo). A Taylor tem **[BASE] google PRE**, **[BASE] google POS** e **[POS] google Conv.** (Google Ads), ainda não usadas.
+- Colunas localizadas **pelo nome do cabeçalho** (PT ou EN): Data/Date, Campaign/Campaign Name, Ad Group/Adset Name, Ad Name, Investimento/Spend (Cost, Amount Spent), Impressões/Impressions, Cliques/Clicks, Link Cliques/Action Link Clicks, Formulario/Formulário, Mensagem, Leads. Atenção: "Mensagens" (conversas) ≠ "Mensagem" (lead de WhatsApp); "Action Leads" ≠ "Leads". PT: A..Q (Data, ID Campaign, Campaign, ID Ad Group, Ad Group, ID Ad, Ad Name, Investimento, Impressões, Cliques, Link Cliques, Leads Meta, Leads Site, Mensagens, Formulario, Mensagem, Leads). EN (Taylor): A..R (…, Action Leads, Action Messaging Conversations Started, Action Lead Grouped, Action FB Pixel Lead, Formulario, Mensagem, Leads).
+- Uma linha por dia por anúncio. Números em texto pt-BR ("1.036", "12,65"): tirar pontos, trocar vírgula por ponto. **Regra do usuário: só 2026** (data >= 2026-01-01), na cópia e na leitura ao vivo.
+- **Leads = Formulario + Mensagem** (conferido nas quatro). Leads Site sempre 0.
+- O resultado do conector é grande e vai para arquivo em `/root/.claude/projects/.../tool-results/`: copiar para `/tmp/claude-0/src/` e processar com Python; nunca colar no contexto. Conector ausente: carregar com ToolSearch `select:mcp__Google_Sheets__get_values`; se não existir, sugerir Google Sheets (directoryUuid `2002bd7b-2b05-4653-bb9e-401718270906`). O navegador do app não tem login Google; WebFetch não lê planilha privada.
+- Formato compacto embutido por cliente: `{c:[campanhas], g:[conjuntos], a:[anúncios], r:[[dia desde 2024-01-01 UTC, iC, iG, iA, invest_centavos, impressões, cliques_link, cliques, formulário, whatsapp, leads]]}`.
+- Totais 2026 até 14/10/2026: SH 4.843 linhas, 23 campanhas, R$ 77.011,68, 3.242 leads · Nova SP 7.847 linhas, 37 campanhas, R$ 63.670,55, 2.421 leads · Lopes 5.994 linhas, 26 campanhas, R$ 87.222,78, 3.832 leads (só formulário) · Taylor 1.938 linhas, 13 campanhas, R$ 35.878,69, 647 leads (544 formulário, 103 WhatsApp). Nova SP e Lopes com WhatsApp zerado em out/2026 (avisado ao usuário).
+
+## Métricas (validadas com o PDF do Looker da SH Prime)
+- Investimento e impressões = soma. **Cliques = Link Cliques** (o card "Cliques" do Looker é Link Cliques). CTR = cliques ÷ impressões. CPM = invest ÷ impressões × 1000. CPC = invest ÷ cliques. **CPL = custo por conversão** ("CPCov" do usuário) = invest ÷ leads. Tx. conv. = leads ÷ impressões. Clique → lead = leads ÷ cliques.
+- **Comparação**: período dentro de um mês → mesmos dias do mês anterior (01–09/10 vs 01–09/09; dia limitado ao fim do mês); cruzando meses → período anterior de mesmo tamanho. Foi assim que as variações do PDF bateram. Variação = (atual−anterior)/anterior; anterior 0 = "sem base". Custos (CPL, CPC, CPM): queda verde. Chip de Investimento neutro (cinza).
+- Validação SH 01–09/10/2026 (todas as campanhas): R$ 1.724,90 (−22,6%), 60.966 impressões, 3.271 cliques, 70 leads (+4,5%), Formulário 57 (−14,9%), WhatsApp 13, CPL R$ 24,64 (−25,9%), CTR 5,37% (−25,4%), CPM R$ 28,29 (+29,6%), CPC R$ 0,53 (+73,7%), Tx. conv. 0,11% (+74,9%) = PDF. Nova SP, Lopes e Taylor **não validados** contra Looker (pedir PDF).
+- Datas padrão: dia 1 do mês até ontem (D-1); no dia 1, o mês anterior inteiro. Dias após o último registro da base ficam vazios (null), não zero.
+
+## Design (decisões do usuário; não reverter)
+- **Layout igual ao da Gralha**: coluna central `max-width:1080px; margin:0 auto; padding:36px 20px 56px` (celular 22px 14px 40px). O usuário recusou o layout de ponta a ponta ("não vejo a margem elegante dos lados").
+- **Cabeçalho escuro arredondado (18px)** dentro da coluna (o usuário gostou do "bloco meio preto": dá personalidade). **Abas acima dele** (`.ctabs`: Cérebro, separador, clientes; a aba ativa usa a cor do cabeçalho; ícone da marca em cada aba).
+- **Cada bloco: título + frase cinza (`.bi`)** dizendo o que é e como ler (eixos, comparação), sem repetir datas longas.
+- **Gráficos combinados: barras no eixo Y1 (esquerda) e linhas no Y2 (direita)** com grade comum (4 divisões, escalas "nice" independentes). Pedido explícito; substitui a regra genérica de "nunca eixo duplo"; não voltar para painéis separados. Legenda com "eixo esq."/"eixo dir.".
+- **Valores das linhas escritos** (pedido): acima do ponto (abaixo quando é vale e há espaço), com halo (`paint-order:stroke`); em períodos longos um a cada `ceil(46/step)` pontos, sempre o último; com 2 linhas, a de cima rotula acima e a de baixo abaixo, na cor de cada uma; com 3+ linhas os valores ficam só no tooltip. Formatos: CPL/CPM "R$ 41", CPC "R$ 0,92", CTR "4,0%", leads inteiro. Investimento do mensal escrito na **base da barra** ("R$ 7,7 mil", cor `--on-acc`); rótulo de linha nunca entra nessa faixa.
+- Hover: faixa do dia/mês, ponto ampliado e tooltip com todas as séries + extra.
+- Tipografia: Red Hat Display (títulos, números) + Red Hat Text (Google Fonts, com fallback). Números tabulares. Modo claro/escuro (botão; localStorage `shp-theme`). Verde `--good #2C7F51`, vermelho `--bad #B9402B`.
+- **Temas por cliente** em `:root[data-client="…"]` (bloco claro + `@media (prefers-color-scheme:dark){:root[data-client="…"]:not([data-theme="light"])}` + `:root[data-client="…"][data-theme="dark"]`). Tokens: `--bg --surface --surface-2 --ink --ink-2 --muted --line --line-2 --gold` (cor das barras/destaques) `--gold-soft --gold-ink --graph` (cabeçalho) `--graph-ink --on-acc` (texto sobre a cor) `--fs3` (última etapa do funil) `--tipbg --s2` (linha) `--s2-soft --shadow`.
+  - **SH Prime** (padrão em `:root`): ouro `#E3A400` + grafite `#2A2926`, fundo `#F2F1EC`, linha `#3B3935`; escuro ouro `#F0B414`, linha `#D8D3C8`. Logo: "SH" + pino SVG ouro.
+  - **Nova SP**: barras azul-céu `#0098D8` (logo `#009ADA`), cabeçalho marinho `#22264F` (logo `#2E325F`), linha marinho, fundo frio `#F1F3F7`; escuro barras `#22ACE6`, cabeçalho `#1E2248`. Logo: casinha redesenhada em SVG (viewBox `84 210 170 156`; telhado claro no cabeçalho, `currentColor` na aba) + "NOVA São Paulo".
+  - **Lopes Prime**: preto e branco (barras `#141414`, cabeçalho `#0B0B0B`, linha `#8C8C8C`, fundo `#F1F1F1`; escuro barras `#EDEDED`). Chip de período ativo branco com texto preto. Logo extraído da imagem enviada (coração + "Lopes PRIME") como máscara CSS (`.mk-lp` 118×38, `.lph` na aba).
+  - **Taylor**: verde-inglês (barras `#1E5A43`, cabeçalho `#0E2C22` = fundo do logo) + **latão** `#A9844C` na linha, fundo marfim `#F2F1EC`; escuro barras `#3E9A75`, linha `#D4B47E`, cabeçalho `#15382B`. Chip ativo marfim `#EDE6D6` com texto verde. Logo: brasão + "TAYLOR IMÓVEIS" extraídos da imagem como máscaras (`.tyc`, `.tyw`, `.tyh`).
+  - **Cérebro** (CreativeImob): grafite `#2B2B2B` + vermelho `#E2231A` (escuro `#FF3B30`, cabeçalho `#262626`), fundo `#F3F3F2`. Logo: anel aberto + quadrado vermelho em SVG (viewBox 0 0 100 100) + "Cérebro CREATIVEIMOB".
+  - **Cores de entidade** (Cérebro): `--c-sh #E3A400 / --c-sh2 #8F6400`, `--c-nsp #0098D8 / #2E325F`, `--c-lp #1F1F1F / #7A7A7A`, `--c-ty #1E5A43 / #B08D57`; escuro `#F0B414/#F7D27A`, `#22ACE6/#A9C8FF`, `#E8E8E8/#9E9E9E`, `#3E9A75/#D4B47E`. Cor segue a imobiliária (`.cdot.<k>`).
+- Logos a partir de imagem: PIL → luminância vira alpha (fundo escuro descartado; no Lopes só dentro do círculo), recorte pelo bbox, PNG base64 em `mask: url(...) center/contain no-repeat` com `background: currentColor` (funciona claro e escuro).
+
+## Página de cliente (ordem dos blocos)
+1. **Insights** (Wins "o que melhorou" / Lows "o que pede atenção", 3 cada).
+2. **Resumo do período**: 6 big numbers numa fila (Investimento, Impressões, Cliques no link, Leads, Custo por lead, CTR) com chip de variação e "anterior X"; faixa CPM, CPC, Clique → lead, Tx. conv.; rótulo "Comparação: dd/mm/aaaa a dd/mm/aaaa (mesmos dias do mês anterior)". 6→3→2 colunas.
+3. **Funil de conversão**: Impressões (`--gold`) → CTR → Cliques no link (`--gold-soft`) → Clique→lead → Leads (`--fs3`), variação em cada etapa e Tx. conv. total; ao lado "Origem dos leads" (barra 100% Formulário × WhatsApp) e mini cards Custo por lead e Investimento por dia.
+4. **Evolução mensal** (meses de 2026; segue só o filtro de campanha): barras de investimento + linha escolhida (Leads | Custo por lead | CTR).
+5. **Evolução diária**: investimento em barras + leads em linha.
+6. **Indicadores diários** (2 colunas): Impressões + CPM; Cliques no link + CPC; Formulário (barras); WhatsApp (barras); **Leads totais + Custo por lead** (largura total).
+7. **Detalhes por campanha, conjunto e anúncio**: tabela com seletor Campanha/Conjunto/Anúncio, busca, ordenação ao clicar na coluna (1º clique maior→menor; texto A–Z; seta ↓/↑), barrinha de investimento, total. Colunas: Nome, Investimento, Impressões, CPM, Cliques, CPC, CTR, Formulário, WhatsApp, Leads, CPL, Tx. conv.
+8. Rodapé: fonte e "Dados até dd/mm/aaaa · atualizado em / planilha lida em".
+- Cabeçalho: título "Performance de mídia · Meta Ads", De/Até, Campanha (ordenada por investimento no período; "(sem veiculação no período)"), tema, chips (Mês atual, Últimos 7 dias, Últimos 30 dias, Mês anterior, Ano até ontem), status da fonte.
+
+### Insights do cliente (`renderInsights(cur,prv,c,p)`)
+- Score = peso × magnitude; 3 por bloco; um item por tipo. Totais vs comparação (ignora |Δ|<8%): Leads 5 (|Δ|≥3), CPL 5 (queda = win), Clique→lead 3,2, CTR 2,6, CPC 2,2 (queda = win), Cliques 2, CPM 1,6 (queda = win), Formulário/WhatsApp 2,4 (|Δ|≥3); magnitude até 200%.
+- Eficiência (peso 4,5): verba −10% com leads estáveis/subindo → Win "Mais leads com menos verba"; verba +10% com leads ≤ +2% → Low "Verba subiu sem trazer mais leads".
+- Campanhas: menor CPL (≥5 leads, ≥15% abaixo da média) → Win; maior CPL (>30% acima e ≥5% da verba) → Low; verba ≥ max(R$ 50, 4%) sem lead → Low; que mais ganhou (≥+3) → Win; que mais perdeu (≤−3) → Low.
+- Anúncios: maior CTR (≥1.000 impressões, ≥1,4× o da conta) → Win; que mais trouxe leads (≥25% do total) → Win.
+- Dias: ≥2 dias com verba ≥ R$ 20 e zero lead → Low; melhor dia (≥3 leads e ≥1,8× a média) → Win.
+- Sem comparação (ex.: janeiro; Taylor antes de maio): só regras do período e aviso ao lado do título.
+- `pretty()`: tira `^creativeimob_[a-z0-9-]+_` e `meta_social_`; `_` vira " · ".
+
+## Aba Cérebro (compilado das imobiliárias; aba padrão ao abrir)
+- Filtro **Imobiliária** (Todas, SH Prime, Nova SP, Lopes Prime, Taylor; `#cli`, valores −1..3) no lugar de Campanha. Lê as 4 planilhas ao vivo.
+- Blocos:
+  1. **Leituras do Cérebro** (Wins "o que traz resultado" / Lows "onde a verba rende menos").
+  2. **Consolidado do período**: Investimento, Conversões (leads), Custo por conversão, CPM, CPC, CTR + faixa Impressões, Cliques no link, Tx. conv., Formulário · WhatsApp.
+  3. **Imobiliária contra imobiliária**: tabela (investimento com barra e % da verba na cor do cliente, impressões, CPM, cliques, CPC, CTR, leads, CPL com selo vs anterior, Tx. conv., total). Usa todas, independente do filtro.
+  4. **Evolução mensal por imobiliária**: barras de investimento por imobiliária + linhas CPL | CPM | CPC | CTR por imobiliária (cor `--c-<k>2`). **Botões para escolher as imobiliárias** (`#cmcli`; padrão SH Prime + Nova SP; mínimo uma; travados quando o filtro do topo está numa só). Pedido do usuário porque com 4 ficava ilegível.
+  5. **O que traz o quê**: monitor da taxonomia com leituras Formato, Apresentação, Tipo de campanha, Público, Bairro, Faixa de valor, Tipo de imóvel, Venda ou locação; colunas Investimento (+fatia), Leads, CPL com barrinha divergente vs média (verde abaixo, vermelho acima), CPM, CPC, CTR, Tx. conv.; bolinhas das imobiliárias presentes; ordenável; "Ocultar itens com menos de R$ 100"; rodapé "Média do período".
+  6. **Bairros: onde o lead sai mais barato**: dispersão investimento × CPL × leads (bolha), cor por imobiliária, eixo X em raiz quadrada, Y limitado a 3× o CPL médio (seta e valor para fora da escala), rótulos sem colisão, CPL médio tracejado, legendas de quadrante, bairros sem lead listados abaixo, tooltip.
+  7. **Criativos**: 8 mais eficientes (≥5 leads, menor CPL) e 8 mais caros para o retorno (≥ R$ 150), com etiquetas de formato, bairro, apresentação e público.
+- **Leituras do Cérebro** (`cInsights`): por dimensão (pesos fmt 3,2, pub 3, tipo 3, bairro 3,4, faixa 2,4, apres 2,6, imovel 1,6, neg 1,8): melhor valor (≥5 leads, CPL < 85% da média) → Win; pior (CPL > 130% e ≥4% da verba) → Low; valor sem conversão com ≥ max(R$ 150, 3% da verba) → Low; apresentação compara "Com apresentador(a)" × "Só o imóvel" (≥5 leads cada, diferença ≥10%) → Win; CPL consolidado vs anterior (|Δ| ≥ 8%, peso 5). Um item por dimensão. Ignora "Não identificado", "Sem bairro no nome", "Sem valor no nome", "Não informado", "Não é vídeo", "Vídeo sem indicação", "Outros". Quando o valor é de uma só imobiliária, o nome dela aparece junto.
+
+### Taxonomia lida dos nomes (`norm` = minúsculas, sem acento, espaço → hífen)
+- **Bairro** (procura no anúncio, depois conjunto, depois campanha; lista do mais longo para o mais curto; fronteira de não-letra): Vila Nova Conceição, Brooklin Paulista, Jardim da Saúde (jd-da-saude), Bosque da Saúde, Jardim da Glória (jd-da-gloria), Jardim Paulista (jd-paulista), Jardins / Itaim, Jardins, Planalto Paulista, Chácara Inglesa (ch-inglesa), Vila Clementino, Vila Mascote, Vila Guarani, Vila Gumercindo (vila-glumercindo), Vila Mariana, Vila Olímpia, Vila Romana, Vila Monumento, Horto Florestal, Barro Branco, São Judas, Mirandópolis, Indianópolis (indianapolis), Aclimação, Campo Belo, Higienópolis, Pacaembu, Perdizes, Santana, Moema, Saúde, Riviera, Jardim Europa, Cidade Jardim, Jardim Luzitânia, Paraíso, Brooklin, Lapa, Itaim Bibi, Alto da Boa Vista, Cerqueira César, Zona Sul (região). "Essência Perdizes" → Perdizes. Sem match → "Sem bairro no nome".
+- **Formato** (anúncio): carrossel → Carrossel; vídeo + animado → Vídeo animado; slideshow sem vídeo → Slideshow; vídeo → Vídeo; post do instagram → Post impulsionado; campanha de catálogo ou anúncio "Apartamentos"/"aptos_loja" → Catálogo dinâmico; estatico/kv/fachada/piscina/salão/apartamento/r$/m²/parque → Imagem estática; senão Não identificado.
+- **Apresentação** (só vídeos): com-apresentador, apresentand, apresentado, corretora-<nome> → Com apresentador(a); sem-apresentador, somente-imovel, apenas-take, _takes → Só o imóvel; senão Vídeo sem indicação; não vídeo → Não é vídeo.
+- **Tipo de campanha**: engajamento → Engajamento; catalogo → Catálogo; lancamento/wds/eztec/empreendimentos → Lançamentos e empreendimentos; captacao-proprietario/avalie-seu-imovel → Captação de proprietários; corretores → Captação de corretores; gerente → Captação de gerentes; loja-/institucional → Lojas e institucional; venda-apto/casa, formulario_video(s)_, código de 6–7 dígitos ou reoNNNNNN → Imóvel específico; terceiros → Carteira por bairro; senão Outros.
+- **Público** (conjunto, nesta ordem): remarketing/repescagem/rmkt/engaj/trhuplay → Remarketing e engajamento; lookalike → Lookalike; corretores → Corretores; advantage → Advantage+ (IA da Meta); NNkm → Raio geográfico; open/no-segment/sem-interesses → Aberto (sem segmentação); semelhantes/1% → Lookalike; investidores/investimento/cargos → Interesses: investidores e cargos; sugestao-ia → Interesses: sugestão da IA; life-events → Interesses: momentos de vida; life-styles → Interesses: estilo de vida; alto-valor → Interesses: alto valor; gerencia/lideranca → Interesses: gestão e liderança; servicos-financeiros → Interesses: serviços financeiros; locacao → Interesses: locação; imoveis → Interesses: imóveis; catalogo/apartamentos → Catálogo; personalidade → Público personalizado; post do instagram → Impulsionamento; interesses → Interesses (outros).
+- **Faixa de valor** ("1.5mi", "750mil", "r$4.9mi_"): Até R$ 800 mil | R$ 800 mil a 1,5 mi | R$ 1,5 a 3 mi | Acima de R$ 3 mi | Sem valor no nome.
+- **Tipo de imóvel**: apto/aptos/apartamento(s) → Apartamento; casa/sobrado → Casa; senão Não informado. **Venda ou locação**: locacao/aluguel → Locação; venda(s) → Venda; senão Não informado.
+- Nomes sem padrão ("Criativo 1", "[Formulário Personalizado]…", "[Id:…] …", "Default name") caem em "Não identificado"/"Sem bairro no nome"; recomendado ao usuário padronizar.
+
+### Leituras já apresentadas ao usuário
+- SH 01–13/10: Lows com 2 campanhas que gastaram R$ 1.200,92 (29,5% da verba) sem lead e verba +24,4% com leads +1,0%.
+- Cérebro 01–13/10 (SH + Nova SP): R$ 8.411,57, 266 leads, CPL R$ 31,62 (+15,3%); vídeo animado (Nova SP) com o lead mais barato (R$ 25,38); captação de proprietários (SH) R$ 12,68; público "raio geográfico" (lançamentos Essência/Eztec da SH) R$ 1.200,92 sem lead; catálogo da loja Moema sem lead; bairros abaixo da média: Saúde, Campo Belo, Vila Clementino, Santana, Horto Florestal; acima: Vila Romana (R$ 258), Higienópolis.
+- Bairros por campanha em 2026: SH Perdizes R$ 23.351 / 804 leads, Santana R$ 17.494 / 1.113, Jardins/Itaim R$ 17.408 / 838; Nova SP lojas BI/MO/JA ~R$ 30 mil (quase metade da verba), Vila Clementino o melhor CPL (R$ 16,34), Chácara Inglesa o pior (R$ 91,84).
+- Lopes 01–14/10: R$ 3.662,04, 105 leads (−23,9%), CPL R$ 34,88 (+19,0%); captação de corretores loja Jardins CPL R$ 14,14; gerente de vendas R$ 85,26.
+- Taylor 01–14/10: R$ 2.279,03, 31 leads, CPL R$ 73,52 (−6,9%), CPM +135%, CPC +124%; venda Alto da Boa Vista a mais eficiente (R$ 48,87); locação a que mais perdeu leads.
+
+## Código: pontos-chave do template
+- `CLIENTS` (sh, nsp, lp, ty, cer) com `name`, `mark` (HTML da marca), `src` (rodapé), `sheet` ({spreadsheetId, range}), `snap`. `CKEYS=["sh","nsp","lp","ty"]`, `CNAME`, `ccol(k)=--c-<k>`, `ccol2(k)=--c-<k>2`. `MODELS[k]={m,at,live,err}`.
+- `fromSheet(values)`: colunas pelo cabeçalho (PT/EN), só 2026, erro "cabeçalho inesperado" se faltar coluna. `fromSnap`. `setModel` (visão de cliente; `M` global). `buildMC()` monta o modelo combinado `[dia, iCliente, idAnúncio, inv, imp, lclk, clk, form, msg, leads]` + `ads[{ci,k,camp,grp,ad,t:{fmt,apres,tipo,pub,bairro,faixa,imovel,neg}}]`.
+- Estado: `S={d1,d2,camp,level,sortK,sortD,q,preset}`; `S2={cli,dim,mline,sortK,sortD,min,mcli:Set}`; `monthLine` (mensal do cliente).
+- `showClient(c,push)`: troca `data-client`, marca, `#hTitle`/`#hSub`, mostra `#mainClient` ou `#mainCer`, `#fCamp`/`#fCli`; hash `#cer #sh #nsp #lp #ty`; localStorage `cimob-client`; padrão `cer`; setas ←/→ trocam abas.
+- Leitura ao vivo: `claude.use("mcp")` → `watchTool("Google Sheets","get_values",sheet,handler,{cache:{staleTime:300000,gcTime:3600000}})`, um por cliente visível (o Cérebro observa os 4); mensagens por código de erro (needs_reauth, server_not_connected, not_in_manifest, approval_required, server_unavailable, tool_error); erro de autorização volta para a cópia. `statusFor(keys)`: "Ao vivo · planilha lida em …" / "Atualizado em …" / mensagem de erro.
+- `combo(el,opt)`: `bars[]` (eixo esq.), `lines[]` ou `line` (eixo dir., escala comum), `barLabels`, `tipTitle`, `tipExtra`, `h`, `lw`. `rerender()` e `redraw()` despacham para cliente ou Cérebro (datas, chips, tema, resize via ResizeObserver em `.page`).
+- Cérebro: `cInsights`, `cTiles`, `cClients`, `cMonth`, `cMonitor`, `cScatter`, `cCreatives`, `renderCer`, `cerCharts`.
+
+## Armadilhas já resolvidas (não repetir)
+- Fora do artefato o atributo `hidden` precisa de `[hidden]{display:none!important}` no CSS (o esqueleto do artefato traz; arquivo local e site não).
+- No gráfico de bairros usar `querySelector("svg.scat")` (a legenda tem outro `svg`).
+- Seletor de nível da tabela: `.tbar .seg button` (antes pegava o `#mline` e quebrava `S.level`).
+- Nova SP escuro: cabeçalho `#1E2248` (o `#0A0C18` sumia no fundo). Chip de período ativo: overrides para Lopes (branco) e Taylor (marfim), porque `--gold` some no cabeçalho escuro.
+- O antigo `.mark svg{width:16px}` encolhia os logos: removido; cada marca tem classe própria (`.mk-sh`, `.mk-nsp`, `.mk-lp`, `.mk-ty`, `.mk-cer`).
+- Tabelas largas: primeira coluna 240–380px, `overflow-wrap:anywhere`, `<wbr>` após `_` e `-`; tabela rola dentro do card.
+- Totais das outras imobiliárias conferidos iguais depois de trocar índices fixos por nomes de cabeçalho.
+
+## Como trabalhar
+1. Ler as 4 planilhas com o conector (ranges da tabela) e copiar os arquivos para `/tmp/claude-0/src/{sh,nsp,lp,tay}.json`.
+2. Usar o repo (clonar se preciso) e editar **só** `fonte/template.html` (e `tools/montar.py` se mudar fonte/cliente).
+3. `python3 tools/montar.py --sh …/sh.json --nsp …/nsp.json --lp …/lp.json --ty …/tay.json --ate <ontem> --artefato /home/claude/shprime/sh-prime-meta.html` (falha se o cabeçalho mudar, se não houver 2026 ou se alguma base não chegar até ontem; imprime linhas, última data, campanhas, investimento e leads por cliente).
+4. `node --check` no `<script>` extraído; Playwright (Chromium em `/opt/pw-browsers`; bloquear `**/fonts.*/**`; abrir `file:///…/docs/index.html#cer|#sh|#nsp|#lp|#ty`; 1360 claro e escuro + 400; `scrollWidth` sem rolagem; `pageerror` vazio); olhar o print uma vez.
+5. Publicar o artefato com o MESMO `file_path` (ou `url` em outra conversa), mudando o comentário de versão; commit + push (`fonte/`, `tools/`, `docs/`, docs); conferir o deploy via `gh api …/deployments`.
+6. **Novo cliente**: chave curta; tokens de tema (3 blocos) + `--c-<k>`/`--c-<k>2` (no `:root` claro e nos dois escuros) + `.cdot.<k>`; override do chip ativo se a cor das barras não contrastar com o cabeçalho; marca (SVG ou máscara da imagem enviada); aba em `.ctabs`; `<option>` em `#cli`; entrada em `CLIENTS` com `/*__DATA_<K>__*/null`; `CKEYS`/`CNAME`; `CLIENTES` em `montar.py`; novos bairros/padrões na taxonomia; README, ATUALIZAR e CONTEXTO.
+7. Responder curto: o que mudou, números de conferência, pendências.
+
+## Pendências e próximos passos
+- **Rotina diária** (tarefa agendada, como na Gralha) ainda NÃO criada (oferecida; o usuário não respondeu). Seguir `ATUALIZAR.md`: ler 4 planilhas, montar com `--ate` ontem, commit só de `docs/index.html` com "Atualiza dados até DD/MM/AAAA", push na `main`; em falha, parar sem publicar. Conferir se o conector Google Sheets funciona em execução agendada.
+- **Google Ads**: o sandbox não alcança `googleads.googleapis.com` e a API exige developer token. Caminhos: (a) **BigQuery Data Transfer Service** (gratuito, sem developer token; passos passados: ativar a BigQuery Data Transfer API no projeto com faturamento, BigQuery Admin + acesso ao Google Ads/MCC, dataset `google_ads` na MESMA região dos existentes, transferência diária com Customer ID de 10 dígitos sem hífen (MCC traz as contas filhas), janela de atualização 7 dias (máx. 30), autorizar e fazer backfill (Mais → Agendar preenchimento); tabelas `ads_<Recurso>_<customerId>` como `ads_CampaignBasicStats_…`, custo `metrics_cost_micros` ÷ 1.000.000, data `segments_date`); (b) MCP oficial do Google rodando localmente (só leitura, exige token); (c) abas `[BASE] google PRE/POS` e `[POS] google Conv.` da planilha da Taylor (oferecido olhar). O PDF do Looker tinha ícones Overview / Google Ads / Meta / GA4.
+- Seletor de imobiliárias também no gráfico de bairros (oferecido).
+- Bloco "Leads" do PDF (Bairro, "Qual imóvel você tem interesse?") sem fonte nas planilhas.
+- Validar Nova SP, Lopes e Taylor contra o Looker; confirmar siglas BI e JA da Nova SP; aba "Pacing" da Nova SP não usada; padronizar nomes sem taxonomia.
+
+## Regras que valem sempre
+- Só agregados; nunca dados pessoais de leads. Nomes de corretores aparecem nos nomes de anúncio (aceito).
+- Site público por decisão do usuário: qualquer pessoa com o link vê investimento e resultados.
+- Separar o verificado do suposto. Não pedir senha nem pedir ao usuário que rode o que Claude pode fazer.
+- Pedidos de design do usuário prevalecem sobre regras genéricas de visualização (eixo duplo, rótulos nas linhas).
+- Ao salvar contexto: atualizar ESTA skill (não criar outra) e a cópia `skill/SKILL.md` do repositório.
