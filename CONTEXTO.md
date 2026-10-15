@@ -1,7 +1,7 @@
 # Contexto do projeto
 
 ## Origem
-Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de performance do Looker Studio da SH Prime em HTML, "mais bonito, elegante, sofisticado, respeitando as cores do cliente, de um jeito sênior, com descrições antes dos blocos", no mesmo padrão do painel da Gralha. Depois vieram a Nova São Paulo (14/10) e a aba Cérebro, que compila as imobiliárias.
+Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de performance do Looker Studio da SH Prime em HTML, "mais bonito, elegante, sofisticado, respeitando as cores do cliente, de um jeito sênior, com descrições antes dos blocos", no mesmo padrão do painel da Gralha. Depois vieram a Nova São Paulo (14/10), a aba Cérebro (14/10) e a Lopes Prime (15/10), que compila as imobiliárias.
 
 ## Dados (aba Meta das planilhas [BaseData])
 - Colunas A..Q: Data, ID Campaign, Campaign, ID Ad Group, Ad Group, ID Ad, Ad Name, Investimento, Impressões, Cliques, Link Cliques, Leads Meta, Leads Site, Mensagens, Formulario, Mensagem, Leads.
@@ -14,7 +14,7 @@ Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de
 
 ## Design
 - Coluna central de 1080 px (igual à Gralha), cabeçalho escuro arredondado, frase cinza antes de cada bloco, modo claro/escuro.
-- Abas: Cérebro (grafite + vermelho CreativeImob), SH Prime (ouro + grafite), Nova SP (azul-marinho + azul-céu do logo).
+- Abas: Cérebro (grafite + vermelho CreativeImob), SH Prime (ouro + grafite), Nova SP (azul-marinho + azul-céu do logo), Lopes Prime (preto e branco; logo extraído da imagem enviada e usado como máscara CSS).
 - Gráficos combinados com eixo Y1 (barras) e Y2 (linhas), valores das linhas sempre visíveis.
 
 ## Cérebro: taxonomia lida dos nomes

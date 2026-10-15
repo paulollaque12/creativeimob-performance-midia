@@ -2,7 +2,7 @@
 """Monta docs/index.html a partir do template e das planilhas [BaseData] (aba Meta).
 
 Uso:
-  python3 tools/montar.py --sh <json_sh> --nsp <json_nsp> [--ate AAAA-MM-DD]
+  python3 tools/montar.py --sh <json_sh> --nsp <json_nsp> --lp <json_lp> [--ate AAAA-MM-DD] [--artefato caminho.html]
 
 Cada <json_*> é a resposta do conector Google Sheets (get_values, range Meta!A1:Q40000):
 {"range": "...", "values": [[cabecalho...], [linha...], ...]}
@@ -58,21 +58,24 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sh", required=True)
     ap.add_argument("--nsp", required=True)
+    ap.add_argument("--lp", required=True)
+    ap.add_argument("--artefato", help="também grava a versão para o artefato do Claude (sem o esqueleto <html>)")
     ap.add_argument("--ate", help="data mínima esperada do último dia (AAAA-MM-DD); falha se alguma base estiver atrás")
     a = ap.parse_args()
     sh, u1 = compactar(a.sh, "SH Prime")
     nsp, u2 = compactar(a.nsp, "Nova SP")
+    lp, u3 = compactar(a.lp, "Lopes Prime")
     if a.ate:
         alvo = dt.date.fromisoformat(a.ate)
-        if u1 < alvo or u2 < alvo:
-            sys.exit(f"Base atrasada: SH Prime até {u1}, Nova SP até {u2}, esperado {alvo}. Nada foi publicado.")
+        if min(u1, u2, u3) < alvo:
+            sys.exit(f"Base atrasada: SH Prime até {u1}, Nova SP até {u2}, Lopes Prime até {u3}, esperado {alvo}. Nada foi publicado.")
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     t = open(os.path.join(RAIZ, "fonte", "template.html"), encoding="utf-8").read()
-    for marca in ("/*__DATA_SH__*/null", "/*__DATA_NSP__*/null", "/*__AT__*/"):
+    for marca in ("/*__DATA_SH__*/null", "/*__DATA_NSP__*/null", "/*__DATA_LP__*/null", "/*__AT__*/"):
         if marca not in t:
             sys.exit(f"template sem o marcador {marca}")
     js = lambda d: json.dumps(d, separators=(",", ":"), ensure_ascii=False)
-    t = t.replace("/*__DATA_SH__*/null", js(sh)).replace("/*__DATA_NSP__*/null", js(nsp)).replace("/*__AT__*/", agora)
+    t = t.replace("/*__DATA_SH__*/null", js(sh)).replace("/*__DATA_NSP__*/null", js(nsp)).replace("/*__DATA_LP__*/null", js(lp)).replace("/*__AT__*/", agora)
     # versão pública: documento completo (GitHub Pages não acrescenta o esqueleto do artefato)
     import re
     cabeca = "".join(re.findall(r"<title>.*?</title>\n?|<link [^>]*>\n?", t[:4000]))
@@ -82,6 +85,9 @@ def main():
               '<meta name="robots" content="noindex,nofollow">' + cabeca +
               '<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>'
               '</head><body>' + corpo + '</body></html>')
+    if a.artefato:
+        open(a.artefato, "w", encoding="utf-8").write(t)
+        print(f"artefato gravado em {a.artefato}")
     out = os.path.join(RAIZ, "docs", "index.html")
     open(out, "w", encoding="utf-8").write(pagina)
     print(f"docs/index.html gerado ({len(pagina)/1024:.0f} KB) · atualizado em {agora}")
