@@ -1,9 +1,10 @@
 # Contexto do projeto
 
 ## Origem
-Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de performance do Looker Studio da SH Prime em HTML, "mais bonito, elegante, sofisticado, respeitando as cores do cliente, de um jeito sênior, com descrições antes dos blocos", no mesmo padrão do painel da Gralha. Depois vieram a Nova São Paulo (14/10), a aba Cérebro (14/10) e a Lopes Prime (15/10), que compila as imobiliárias.
+Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de performance do Looker Studio da SH Prime em HTML, "mais bonito, elegante, sofisticado, respeitando as cores do cliente, de um jeito sênior, com descrições antes dos blocos", no mesmo padrão do painel da Gralha. Depois vieram a Nova São Paulo (14/10), a aba Cérebro (14/10) a Lopes Prime (15/10) e a Taylor (15/10), que compila as imobiliárias.
 
-## Dados (aba Meta das planilhas [BaseData])
+## Dados (aba Meta das planilhas [BaseData]; na Taylor, aba [BASE] meta da planilha [TAYLOR] report semanal)
+- As colunas são localizadas pelo nome do cabeçalho, em português ou em inglês (a Taylor usa Date, Campaign Name, Adset Name, Spend..., Action Link Clicks).
 - Colunas A..Q: Data, ID Campaign, Campaign, ID Ad Group, Ad Group, ID Ad, Ad Name, Investimento, Impressões, Cliques, Link Cliques, Leads Meta, Leads Site, Mensagens, Formulario, Mensagem, Leads.
 - Uma linha por dia por anúncio. Números em texto pt-BR. **Só 2026.**
 - Leads = Formulario + Mensagem (WhatsApp = coluna P "Mensagem", não a N "Mensagens").
@@ -14,11 +15,11 @@ Pedido de Paulo (Data & BI, CreativeImob) em 10/10/2026: replicar o dashboard de
 
 ## Design
 - Coluna central de 1080 px (igual à Gralha), cabeçalho escuro arredondado, frase cinza antes de cada bloco, modo claro/escuro.
-- Abas: Cérebro (grafite + vermelho CreativeImob), SH Prime (ouro + grafite), Nova SP (azul-marinho + azul-céu do logo), Lopes Prime (preto e branco; logo extraído da imagem enviada e usado como máscara CSS).
+- Abas: Cérebro (grafite + vermelho CreativeImob), SH Prime (ouro + grafite), Nova SP (azul-marinho + azul-céu do logo), Lopes Prime (preto e branco; logo extraído da imagem enviada e usado como máscara CSS), Taylor (verde-inglês do logo + latão; brasão e "TAYLOR IMÓVEIS" extraídos da imagem enviada).
 - Gráficos combinados com eixo Y1 (barras) e Y2 (linhas), valores das linhas sempre visíveis.
 
 ## Cérebro: taxonomia lida dos nomes
-Formato (vídeo animado, vídeo, carrossel, imagem estática, catálogo, post), apresentação do vídeo (com apresentador ou só o imóvel), tipo de campanha, público (Advantage+, aberto, interesses, remarketing, raio geográfico...), bairro (lista normalizada), faixa de valor (lida de "1.5mi", "750mil") e tipo de imóvel. As regras estão em `fonte/template.html`, seção "CÉREBRO".
+Formato (vídeo animado, vídeo, carrossel, imagem estática, catálogo, post), apresentação do vídeo (com apresentador ou só o imóvel), tipo de campanha, público (Advantage+, aberto, interesses, remarketing, raio geográfico...), bairro (lista normalizada), faixa de valor (lida de "1.5mi", "750mil") tipo de imóvel e venda ou locação. As regras estão em `fonte/template.html`, seção "CÉREBRO".
 
 ## Publicação
 - Site sem senha (decisão do usuário em 14/10/2026), com `noindex` e `robots.txt` para não aparecer em buscadores. Qualquer pessoa com o link vê os números.
