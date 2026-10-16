@@ -1,5 +1,7 @@
 # Rotina de atualização
 
+Roda sozinha todo dia às 07:51 (America/Sao_Paulo) pela tarefa agendada "Atualizar painel de mídia CreativeImob" (trig_018dybxSCkNo5bxAbZ7F7Exq).
+
 Objetivo: deixar `docs/index.html` com os dados até ontem (D-1) e publicar. Em qualquer falha, **parar sem publicar**.
 
 1. Clonar o repositório (`git clone --depth 1 https://github.com/paulollaque12/creativeimob-performance-midia`).
