@@ -1,5 +1,5 @@
 <title>Cérebro CreativeImob</title>
-<!-- v2026-10-15c · seletor no mensal -->
+<!-- v2026-10-24a · anúncios no monitor -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&display=swap">
@@ -273,6 +273,15 @@ section{display:flex;flex-direction:column;gap:14px;min-width:0}
 .mk-cer svg{width:36px;height:36px}
 .mk-cer span{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.01em;line-height:1.1}
 .mk-cer span b{display:block;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+#cMon .exp{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-weight:600;font-size:14px;line-height:1;cursor:pointer;vertical-align:-3px}
+#cMon .exp:hover{border-color:var(--gold);color:var(--gold-ink)}
+#cMon tr.open .exp{background:var(--gold);border-color:var(--gold);color:var(--on-acc)}
+#cMon tr.open td{border-bottom-color:transparent}
+#cMon tr.subr td{background:var(--surface-2);font-size:12.5px;padding-block:7px}
+#cMon tr.subr td:first-child{padding-left:41px}
+#cMon tr.subr .snm{display:flex;align-items:center;gap:7px;color:var(--ink)}
+#cMon tr.subr .scp{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+#cMon tr.subr .shr .bar{height:3px}
 .wrapseg{flex-wrap:wrap}
 .mctl{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center}
 .mcli button{display:inline-flex;align-items:center;gap:7px}
@@ -459,7 +468,7 @@ td.dim{color:var(--muted)}
   </section>
 
   <section id="c-mon">
-    <div class="sh"><div><h2>O que traz o quê</h2><p class="bi">Monitor da taxonomia dos nomes de campanha, conjunto e anúncio. Escolha a leitura: cada linha mostra quanto foi investido, quantas conversões vieram e quanto custou cada uma. A barrinha do CPL compara com a média do período (verde abaixo, vermelho acima).</p></div></div>
+    <div class="sh"><div><h2>O que traz o quê</h2><p class="bi">Monitor da taxonomia dos nomes de campanha, conjunto e anúncio. Escolha a leitura: cada linha mostra quanto foi investido, quantas conversões vieram e quanto custou cada uma. Clique no "+" para ver os anúncios de cada item. A barrinha do CPL compara com a média do período (verde abaixo, vermelho acima).</p></div></div>
     <div class="card">
       <div class="tbar">
         <div class="seg wrapseg" role="group" aria-label="Leitura" id="cdim">
@@ -865,7 +874,7 @@ let rz;new ResizeObserver(()=>{clearTimeout(rz);rz=setTimeout(redraw,120)}).obse
 const CKEYS=["sh","nsp","lp","ty"],CNAME={sh:"SH Prime",nsp:"Nova SP",lp:"Lopes Prime",ty:"Taylor"};
 const ccol=k=>col("--c-"+k),ccol2=k=>col("--c-"+k+"2");
 /* --- taxonomia lida dos nomes --- */
-const BAIRROS=[["vila-nova-conceicao","Vila Nova Conceição"],["brooklin-paulista","Brooklin Paulista"],["jardim-da-saude","Jardim da Saúde"],["jd-da-saude","Jardim da Saúde"],["bosque-da-saude","Bosque da Saúde"],["jardim-da-gloria","Jardim da Glória"],["jd-da-gloria","Jardim da Glória"],["jardim-paulista","Jardim Paulista"],["jardins-itaim","Jardins / Itaim"],["jardins","Jardins"],["planalto-paulista","Planalto Paulista"],["chacara-inglesa","Chácara Inglesa"],["ch-inglesa","Chácara Inglesa"],["vila-clementino","Vila Clementino"],["vila-mascote","Vila Mascote"],["vila-guarani","Vila Guarani"],["vila-gumercindo","Vila Gumercindo"],["vila-glumercindo","Vila Gumercindo"],["vila-mariana","Vila Mariana"],["vila-olimpia","Vila Olímpia"],["vila-romana","Vila Romana"],["vila-monumento","Vila Monumento"],["horto-florestal","Horto Florestal"],["barro-branco","Barro Branco"],["sao-judas","São Judas"],["mirandopolis","Mirandópolis"],["indianopolis","Indianópolis"],["indianapolis","Indianópolis"],["aclimacao","Aclimação"],["campo-belo","Campo Belo"],["higienopolis","Higienópolis"],["pacaembu","Pacaembu"],["perdizes","Perdizes"],["santana","Santana"],["moema","Moema"],["saude","Saúde"],["riviera","Riviera"],["jardim-europa","Jardim Europa"],["cidade-jardim","Cidade Jardim"],["jardim-luzitana","Jardim Luzitânia"],["jd-paulista","Jardim Paulista"],["paraiso","Paraíso"],["brooklin","Brooklin"],["lapa","Lapa"],["itaim","Itaim Bibi"],["alto-da-boa-vista","Alto da Boa Vista"],["cerqueira-cesar","Cerqueira César"],["zona-sul","Zona Sul (região)"]];
+const BAIRROS=[["vila-nova-conceicao","Vila Nova Conceição"],["brooklin-paulista","Brooklin Paulista"],["jardim-da-saude","Jardim da Saúde"],["jd-da-saude","Jardim da Saúde"],["bosque-da-saude","Bosque da Saúde"],["jardim-da-gloria","Jardim da Glória"],["jd-da-gloria","Jardim da Glória"],["jardim-paulista","Jardim Paulista"],["jardins-itaim","Jardins / Itaim"],["jardins","Jardins"],["planalto-paulista","Planalto Paulista"],["chacara-inglesa","Chácara Inglesa"],["ch-inglesa","Chácara Inglesa"],["vila-clementino","Vila Clementino"],["vila-mascote","Vila Mascote"],["vila-guarani","Vila Guarani"],["vila-gumercindo","Vila Gumercindo"],["vila-glumercindo","Vila Gumercindo"],["vila-mariana","Vila Mariana"],["vila-olimpia","Vila Olímpia"],["vila-romana","Vila Romana"],["vila-monumento","Vila Monumento"],["horto-florestal","Horto Florestal"],["barro-branco","Barro Branco"],["sao-judas","São Judas"],["mirandopolis","Mirandópolis"],["indianopolis","Indianópolis"],["indianapolis","Indianópolis"],["aclimacao","Aclimação"],["campo-belo","Campo Belo"],["higienopolis","Higienópolis"],["pacaembu","Pacaembu"],["perdizes","Perdizes"],["santana","Santana"],["moema","Moema"],["saude","Saúde"],["riviera","Riviera"],["jardim-europa","Jardim Europa"],["cidade-jardim","Cidade Jardim"],["jardim-luzitana","Jardim Luzitânia"],["jd-paulista","Jardim Paulista"],["paraiso","Paraíso"],["brooklin","Brooklin"],["lapa","Lapa"],["itaim","Itaim Bibi"],["alto-da-boa-vista","Alto da Boa Vista"],["cerqueira-cesar","Cerqueira César"],["zona-sul","Zona Sul (região)"],["vila-santo-estefano","Vila Santo Estéfano"],["ipiranga","Ipiranga"]];
 const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g,"-");
 const BRX=BAIRROS.map(([k,v])=>[new RegExp("(^|[^a-z])"+k.replace(/-/g,"\\-")+"($|[^a-z])"),v]);
 function bairroOf(...ns){for(const n of ns){const x=norm(n);for(const [r,v] of BRX)if(r.test(x))return v}return"Sem bairro no nome"}
@@ -934,7 +943,7 @@ function buildMC(){
       r.push([x[0],ci,id,x[4],x[5],x[6],x[7],x[8],x[9],x[10]])}});
   MC={r,ads,last:Math.max(...r.map(x=>x[0])),first:Math.min(...r.map(x=>x[0]))};
 }
-const S2={cli:-1,dim:"fmt",mline:"cpl",sortK:"inv",sortD:-1,min:true,mcli:new Set(["sh","nsp"])};
+const S2={cli:-1,dim:"fmt",mline:"cpl",sortK:"inv",sortD:-1,min:true,mcli:new Set(["sh","nsp"]),open:new Set()};
 function crows(a,b,cli){const o=[];for(const x of MC.r){if(x[0]<a||x[0]>b)continue;if(cli>=0&&x[1]!==cli)continue;o.push(x)}return o}
 function csum(rows){const t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0};for(const x of rows){t.inv+=x[3];t.imp+=x[4];t.lclk+=x[5];t.clk+=x[6];t.form+=x[7];t.msg+=x[8];t.leads+=x[9]}t.inv/=100;return derive(t)}
 function cgroup(rows,fn){const m=new Map();for(const x of rows){const k=fn(x);let t=m.get(k);if(!t){t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0,cl:new Set()};m.set(k,t)}t.inv+=x[3];t.imp+=x[4];t.lclk+=x[5];t.clk+=x[6];t.form+=x[7];t.msg+=x[8];t.leads+=x[9];t.cl.add(x[1])}
@@ -1000,7 +1009,14 @@ function cMonitor(cur,c){
   $("#cMon thead").innerHTML="<tr>"+C.map(([kk,l])=>`<th data-k="${kk}" scope="col" aria-sort="${k===kk?(s<0?"descending":"ascending"):"none"}">${l} <span class="ar">${k===kk?(s<0?"↓":"↑"):""}</span></th>`).join("")+"</tr>";
   const dv=v=>{if(v==null||!avg)return"";const r=v/avg-1,w=Math.min(1,Math.abs(r))*50;return`<span class="dv" title="${r<0?"abaixo":"acima"} da média (${brl(avg)})"><i class="${r<0?"g":"b"}" style="${r<0?`right:50%;width:${w}%`:`left:50%;width:${w}%`}"></i></span>`};
   const mx=Math.max(0,...g.map(t=>t.inv));
-  $("#cMon tbody").innerHTML=g.length?g.map(t=>`<tr><td>${esc(t.name)}${dots(t.cl)}</td><td><div class="shr">${brl(t.inv)}<span class="bar" style="width:${mx?Math.max(2,t.inv/mx*100):0}%"></span><span class="hint">${pct(t.inv/tot,1)}</span></div></td><td class="${t.leads?"":"dim"}">${int(t.leads)}</td><td><span class="cpl">${brl(t.cpl)}${dv(t.cpl)}</span></td><td>${brl(t.cpm)}</td><td>${brl(t.cpc)}</td><td>${pct(t.ctr)}</td><td>${pct(t.conv)}</td></tr>`).join(""):`<tr><td colspan="8" class="empty">Nada para mostrar neste filtro.</td></tr>`;
+  /* "+" abre os anúncios (ad names) de cada valor; agrupa por imobiliária + nome do anúncio */
+  const sub=name=>{const m=new Map();for(const x of cur){const a=MC.ads[x[2]];if(a.t[d]!==name)continue;const kk=a.ci+"|"+a.ad;let u=m.get(kk);if(!u){u={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0,a,camps:new Set()};m.set(kk,u)}u.inv+=x[3];u.imp+=x[4];u.lclk+=x[5];u.clk+=x[6];u.form+=x[7];u.msg+=x[8];u.leads+=x[9];u.camps.add(a.camp)}
+    const L=[...m.values()].map(u=>{u.inv/=100;derive(u);return u}).filter(u=>u.inv>0||u.imp>0);
+    L.sort((a,b)=>{if(k==="name")return s*pretty(a.a.ad).localeCompare(pretty(b.a.ad),"pt-BR");const x=a[k],y=b[k];if(x==null&&y==null)return b.inv-a.inv;if(x==null)return 1;if(y==null)return-1;return s*(x-y)});
+    const mx2=Math.max(0,...L.map(u=>u.inv));
+    return L.map(u=>`<tr class="subr"><td><span class="snm"><i class="cdot ${u.a.k}" title="${CNAME[u.a.k]}"></i>${esc(pretty(u.a.ad))}</span><span class="scp" title="${esc([...u.camps].join(" | "))}">${esc(CNAME[u.a.k])} · ${esc(pretty([...u.camps][0]))}${u.camps.size>1?` e mais ${u.camps.size-1}`:""}</span></td><td><div class="shr">${brl(u.inv)}<span class="bar" style="width:${mx2?Math.max(2,u.inv/mx2*100):0}%"></span></div></td><td class="${u.leads?"":"dim"}">${int(u.leads)}</td><td><span class="cpl">${brl(u.cpl)}${dv(u.cpl)}</span></td><td>${brl(u.cpm)}</td><td>${brl(u.cpc)}</td><td>${pct(u.ctr)}</td><td>${pct(u.conv)}</td></tr>`).join("")+(L.length?"":`<tr class="subr"><td colspan="8" class="empty">Nenhum anúncio com veiculação.</td></tr>`)};
+  const nAds=name=>{const s2=new Set();for(const x of cur){const a=MC.ads[x[2]];if(a.t[d]===name)s2.add(a.ci+"|"+a.ad)}return s2.size};
+  $("#cMon tbody").innerHTML=g.length?g.map(t=>{const op=S2.open.has(t.name),na=nAds(t.name);return`<tr class="grp${op?" open":""}"><td><button type="button" class="exp" data-v="${esc(t.name)}" aria-expanded="${op}" aria-label="${op?"Fechar":"Abrir"} os anúncios de ${esc(t.name)}" title="${op?"Fechar":"Ver os"} ${na} anúncios">${op?"−":"+"}</button>${esc(t.name)}${dots(t.cl)} <span class="hint">${na} anúncio${na===1?"":"s"}</span></td><td><div class="shr">${brl(t.inv)}<span class="bar" style="width:${mx?Math.max(2,t.inv/mx*100):0}%"></span><span class="hint">${pct(t.inv/tot,1)}</span></div></td><td class="${t.leads?"":"dim"}">${int(t.leads)}</td><td><span class="cpl">${brl(t.cpl)}${dv(t.cpl)}</span></td><td>${brl(t.cpm)}</td><td>${brl(t.cpc)}</td><td>${pct(t.ctr)}</td><td>${pct(t.conv)}</td></tr>`+(op?sub(t.name):"")}).join(""):`<tr><td colspan="8" class="empty">Nada para mostrar neste filtro.</td></tr>`;
   $("#cMon tfoot").innerHTML=`<tr><td>Média do período · ${g.length} ${g.length===1?"item":"itens"}</td><td>${brl(c.inv)}</td><td>${int(c.leads)}</td><td>${brl(c.cpl)}</td><td>${brl(c.cpm)}</td><td>${brl(c.cpc)}</td><td>${pct(c.ctr)}</td><td>${pct(c.conv)}</td></tr>`;
 }
 /* --- dispersão de bairros --- */
@@ -1059,8 +1075,9 @@ function renderCer(){
 function cerCharts(){if(MC){cMonth();const cur=crows(S.d1,S.d2,S2.cli);cScatter(cur,csum(cur))}}
 $("#cmcli").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.disabled)return;const k=b.dataset.k;if(S2.mcli.has(k)){if(S2.mcli.size>1)S2.mcli.delete(k)}else S2.mcli.add(k);cMonth()});
 document.querySelectorAll("#cmline button").forEach(b=>b.addEventListener("click",()=>{S2.mline=b.dataset.m;document.querySelectorAll("#cmline button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));cMonth()}));
-document.querySelectorAll("#cdim button").forEach(b=>b.addEventListener("click",()=>{S2.dim=b.dataset.d;document.querySelectorAll("#cdim button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))}));
+document.querySelectorAll("#cdim button").forEach(b=>b.addEventListener("click",()=>{S2.dim=b.dataset.d;S2.open.clear();document.querySelectorAll("#cdim button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))}));
 $("#cMin").addEventListener("change",e=>{S2.min=e.target.checked;const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))});
+$("#cMon tbody").addEventListener("click",e=>{const b=e.target.closest("button.exp");if(!b)return;const v=b.dataset.v;if(S2.open.has(v))S2.open.delete(v);else S2.open.add(v);const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))});
 $("#cMon thead").addEventListener("click",e=>{const th=e.target.closest("th");if(!th)return;const k=th.dataset.k;if(S2.sortK===k)S2.sortD*=-1;else{S2.sortK=k;S2.sortD=k==="name"?1:-1}const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))});
 $("#cli").addEventListener("change",e=>{S2.cli=+e.target.value;renderCer()});
 
