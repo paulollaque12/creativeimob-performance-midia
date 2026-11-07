@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&family=Josefin+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-06d · tabela com altura fixa -->
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-06e · Taylor noite dourada -->
 <style>
 /* Layout: cabeçalho grafite com filtros; seções em sequência (resumo → funil → evolução → indicadores → detalhes), cada uma com título e frase de contexto antes do bloco. */
 :root{
@@ -92,14 +92,14 @@
   --shadow:0 1px 1px rgba(7,44,33,.04),0 12px 28px -18px rgba(7,44,33,.22)}
 @media (prefers-color-scheme:dark){:root[data-client="ty"]:not([data-theme="light"]){
   --bg:#05110D; --surface:#0A1B15; --surface-2:#0E231B; --ink:#EEEBE2; --ink-2:#B7BCB4; --muted:#7D857F; --line:#1C3229; --line-2:#152920;
-  --gold:#3C7F64; --gold-soft:#13342A; --gold-ink:#9CCDB6; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#04100C; --fs3:#B5AC77; --tipbg:#0F3A2C;
-  --s2:#C9BF86; --s2-soft:#3B3822; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
+  --gold:#A89E66; --gold-soft:#2B2A1B; --gold-ink:#D3CA94; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#0B1A14; --fs3:#17573F; --tipbg:#0F3A2C;
+  --s2:#E4E1D6; --s2-soft:#33352F; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
   --f-display:"Josefin Sans","Red Hat Display",ui-sans-serif,system-ui,sans-serif; --f-text:"Inter","Red Hat Text",ui-sans-serif,system-ui,sans-serif;
   --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.7)}}
 :root[data-client="ty"][data-theme="dark"]{
   --bg:#05110D; --surface:#0A1B15; --surface-2:#0E231B; --ink:#EEEBE2; --ink-2:#B7BCB4; --muted:#7D857F; --line:#1C3229; --line-2:#152920;
-  --gold:#3C7F64; --gold-soft:#13342A; --gold-ink:#9CCDB6; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#04100C; --fs3:#B5AC77; --tipbg:#0F3A2C;
-  --s2:#C9BF86; --s2-soft:#3B3822; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
+  --gold:#A89E66; --gold-soft:#2B2A1B; --gold-ink:#D3CA94; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#0B1A14; --fs3:#17573F; --tipbg:#0F3A2C;
+  --s2:#E4E1D6; --s2-soft:#33352F; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
   --f-display:"Josefin Sans","Red Hat Display",ui-sans-serif,system-ui,sans-serif; --f-text:"Inter","Red Hat Text",ui-sans-serif,system-ui,sans-serif;
   --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.7)}
 
@@ -156,6 +156,14 @@
 :root[data-client="ty"] .search{border-radius:3px}
 :root[data-client="ty"] thead th{font-family:var(--f-display);font-size:10.5px;letter-spacing:.17em;padding-top:13px;padding-bottom:11px}
 :root[data-client="ty"] td .bar{background:var(--brass);height:2px}
+:root[data-client="ty"] #s-mensal .seg button{font-size:9.5px;padding:1px 12px 0}
+:root[data-client="ty"] .tiles{align-items:stretch}
+:root[data-client="ty"] .tile{justify-content:center;padding:24px 14px 22px}
+:root[data-client="ty"] .tile::before{margin:0 0 6px}
+:root[data-client="ty"] #s-resumo>.sh{display:contents}
+:root[data-client="ty"] #s-resumo>.sh>div{order:0}
+:root[data-client="ty"] #s-resumo>.card{order:1}
+:root[data-client="ty"] #cmpLbl{order:2;margin-top:-4px;font-size:12px;color:var(--muted)}
 :root[data-client="ty"] .foot{border-top-color:var(--brass);border-top-color:color-mix(in srgb,var(--brass) 45%,transparent)}
 /* Taylor · rodada 2: símbolo da Meta, textos sem quebra, números menores, ícones nos big numbers, tabela padronizada */
 :root[data-client="ty"] .brand-txt h1{display:flex;align-items:center;gap:12px}
@@ -609,7 +617,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="06/11/2026 23:37";
+const SNAP_AT="06/11/2026 23:42";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
