@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&family=Josefin+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-06c · Taylor rodada 2 -->
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-06d · tabela com altura fixa -->
 <style>
 /* Layout: cabeçalho grafite com filtros; seções em sequência (resumo → funil → evolução → indicadores → detalhes), cada uma com título e frase de contexto antes do bloco. */
 :root{
@@ -186,6 +186,13 @@
 :root[data-client="ty"] #tbl :is(th,td):is(:nth-child(2),:nth-child(3),:nth-child(5),:nth-child(8),:nth-child(9),:nth-child(10)){width:112px;min-width:112px}
 :root[data-client="ty"] #tbl :is(th,td):is(:nth-child(4),:nth-child(6),:nth-child(7),:nth-child(11),:nth-child(12)){width:92px;min-width:92px}
 :root[data-client="ty"] #tbl td .bar{margin:4px auto 0}
+:root[data-client="ty"] #tbl{border-collapse:separate;border-spacing:0}
+:root[data-client="ty"] .tw:has(>#tbl){height:440px;overflow:auto;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--brass) 55%,transparent) transparent}
+:root[data-client="ty"] #tbl thead th{position:sticky;top:0;z-index:2;border-bottom:1px solid var(--line)}
+:root[data-client="ty"] #tbl thead th:first-child{z-index:4}
+:root[data-client="ty"] #tbl tfoot td{position:sticky;bottom:0;z-index:2;border-top:1px solid var(--line)}
+:root[data-client="ty"] #tbl tfoot td:first-child{z-index:4}
+:root[data-client="ty"] #tbl td:first-child wbr{display:none}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
 @media (max-width:760px){
   :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
@@ -602,7 +609,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="06/11/2026 23:34";
+const SNAP_AT="06/11/2026 23:37";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
