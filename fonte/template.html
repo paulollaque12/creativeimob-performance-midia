@@ -1,16 +1,16 @@
 <title>Cérebro CreativeImob</title>
-<!-- v2026-11-06a · coluna da dimensão travada -->
+<!-- v2026-11-06b · Taylor alto padrão -->
 <link rel="icon" href="favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&family=Josefin+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
 <style>
 /* Layout: cabeçalho grafite com filtros; seções em sequência (resumo → funil → evolução → indicadores → detalhes), cada uma com título e frase de contexto antes do bloco. */
 :root{
   --bg:#F2F1EC; --surface:#FFFFFF; --surface-2:#F8F7F3; --ink:#1C1B19; --ink-2:#55524C; --muted:#8C887F; --line:#E4E1D8; --line-2:#EEECE5;
-  --gold:#E3A400; --gold-soft:#F6E2A6; --gold-ink:#8F6400; --graph:#2A2926; --graph-ink:#F4F2EC; --on-acc:#1C1B19; --fs3:#2A2926; --tipbg:#2A2926; --c-sh:#E3A400; --c-sh2:#8F6400; --c-nsp:#0098D8; --c-nsp2:#2E325F; --c-lp:#1F1F1F; --c-lp2:#7A7A7A; --c-ty:#1E5A43; --c-ty2:#B08D57;
+  --gold:#E3A400; --gold-soft:#F6E2A6; --gold-ink:#8F6400; --graph:#2A2926; --graph-ink:#F4F2EC; --on-acc:#1C1B19; --fs3:#2A2926; --tipbg:#2A2926; --c-sh:#E3A400; --c-sh2:#8F6400; --c-nsp:#0098D8; --c-nsp2:#2E325F; --c-lp:#1F1F1F; --c-lp2:#7A7A7A; --c-ty:#0B3A2C; --c-ty2:#958C58;
   --s2:#3B3935; --s2-soft:#CFCBC2;
   --good:#2C7F51; --good-bg:#E3F1E8; --bad:#B9402B; --bad-bg:#F7E4DF;
   --shadow:0 1px 2px rgba(28,27,25,.04),0 8px 24px -12px rgba(28,27,25,.10);
@@ -20,14 +20,14 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#11110F; --surface:#1A1917; --surface-2:#211F1C; --ink:#F1EEE7; --ink-2:#B9B4AA; --muted:#7F7A70; --line:#2E2C28; --line-2:#262420;
-  --gold:#F0B414; --gold-soft:#4A3B12; --gold-ink:#F3C54F; --graph:#0B0B0A; --graph-ink:#F1EEE7; --on-acc:#1C1B19; --fs3:#2E2C28; --tipbg:#2E2C28; --c-sh:#F0B414; --c-sh2:#F7D27A; --c-nsp:#22ACE6; --c-nsp2:#A9C8FF; --c-lp:#E8E8E8; --c-lp2:#9E9E9E; --c-ty:#3E9A75; --c-ty2:#D4B47E;
+  --gold:#F0B414; --gold-soft:#4A3B12; --gold-ink:#F3C54F; --graph:#0B0B0A; --graph-ink:#F1EEE7; --on-acc:#1C1B19; --fs3:#2E2C28; --tipbg:#2E2C28; --c-sh:#F0B414; --c-sh2:#F7D27A; --c-nsp:#22ACE6; --c-nsp2:#A9C8FF; --c-lp:#E8E8E8; --c-lp2:#9E9E9E; --c-ty:#3C7F64; --c-ty2:#C9BF86;
   --s2:#D8D3C8; --s2-soft:#4A4740;
   --good:#5CC48B; --good-bg:#16301F; --bad:#F27D66; --bad-bg:#3A1C16;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#11110F; --surface:#1A1917; --surface-2:#211F1C; --ink:#F1EEE7; --ink-2:#B9B4AA; --muted:#7F7A70; --line:#2E2C28; --line-2:#262420;
-  --gold:#F0B414; --gold-soft:#4A3B12; --gold-ink:#F3C54F; --graph:#0B0B0A; --graph-ink:#F1EEE7; --on-acc:#1C1B19; --fs3:#2E2C28; --tipbg:#2E2C28; --c-sh:#F0B414; --c-sh2:#F7D27A; --c-nsp:#22ACE6; --c-nsp2:#A9C8FF; --c-lp:#E8E8E8; --c-lp2:#9E9E9E; --c-ty:#3E9A75; --c-ty2:#D4B47E;
+  --gold:#F0B414; --gold-soft:#4A3B12; --gold-ink:#F3C54F; --graph:#0B0B0A; --graph-ink:#F1EEE7; --on-acc:#1C1B19; --fs3:#2E2C28; --tipbg:#2E2C28; --c-sh:#F0B414; --c-sh2:#F7D27A; --c-nsp:#22ACE6; --c-nsp2:#A9C8FF; --c-lp:#E8E8E8; --c-lp2:#9E9E9E; --c-ty:#3C7F64; --c-ty2:#C9BF86;
   --s2:#D8D3C8; --s2-soft:#4A4740;
   --good:#5CC48B; --good-bg:#16301F; --bad:#F27D66; --bad-bg:#3A1C16;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
@@ -83,23 +83,88 @@
   --s2:#8C8C8C; --s2-soft:#444444;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6)}
 :root[data-client="lp"] .chip[aria-pressed=true]{background:#FFFFFF;border-color:#FFFFFF;color:#111111}
-/* Taylor Imóveis: verde-inglês do logo + latão */
+/* Taylor Imóveis: cores do site taylorimoveis.com (verde #072C21, ouro #958C58, cinza #707070), Josefin Sans + Inter, cantos retos */
 :root[data-client="ty"]{
-  --bg:#F2F1EC; --surface:#FFFFFF; --surface-2:#F8F7F3; --ink:#14201B; --ink-2:#4B5751; --muted:#88908B; --line:#E1E2DC; --line-2:#ECEDE7;
-  --gold:#1E5A43; --gold-soft:#D5E6DC; --gold-ink:#0F3B2B; --graph:#0E2C22; --graph-ink:#F3F1EA; --on-acc:#FFFFFF; --fs3:#0E2C22; --tipbg:#0E2C22;
-  --s2:#A9844C; --s2-soft:#E3D5BE;
-  --shadow:0 1px 2px rgba(14,44,34,.05),0 8px 24px -12px rgba(14,44,34,.16)}
+  --bg:#F7F6F2; --surface:#FFFFFF; --surface-2:#FAF9F5; --ink:#0B241C; --ink-2:#4F5A55; --muted:#8A8F8B; --line:#E4E1D6; --line-2:#EFEDE6;
+  --gold:#0B3A2C; --gold-soft:#DCE4DF; --gold-ink:#0B3A2C; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#FFFFFF; --fs3:#958C58; --tipbg:#072C21;
+  --s2:#958C58; --s2-soft:#E8E3CF; --brass:#958C58; --brass-2:#B5AC77; --r:6px;
+  --f-display:"Josefin Sans","Red Hat Display",ui-sans-serif,system-ui,sans-serif; --f-text:"Inter","Red Hat Text",ui-sans-serif,system-ui,sans-serif;
+  --shadow:0 1px 1px rgba(7,44,33,.04),0 12px 28px -18px rgba(7,44,33,.22)}
 @media (prefers-color-scheme:dark){:root[data-client="ty"]:not([data-theme="light"]){
-  --bg:#0A120F; --surface:#111B17; --surface-2:#16231E; --ink:#EEF1EC; --ink-2:#B1BBB5; --muted:#76817B; --line:#24332C; --line-2:#1D2A24;
-  --gold:#3E9A75; --gold-soft:#173A2D; --gold-ink:#8FD3B4; --graph:#15382B; --graph-ink:#F3F1EA; --on-acc:#06140F; --fs3:#1E4A39; --tipbg:#1C4436;
-  --s2:#D4B47E; --s2-soft:#4A3D27;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6)}}
+  --bg:#05110D; --surface:#0A1B15; --surface-2:#0E231B; --ink:#EEEBE2; --ink-2:#B7BCB4; --muted:#7D857F; --line:#1C3229; --line-2:#152920;
+  --gold:#3C7F64; --gold-soft:#13342A; --gold-ink:#9CCDB6; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#04100C; --fs3:#B5AC77; --tipbg:#0F3A2C;
+  --s2:#C9BF86; --s2-soft:#3B3822; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
+  --f-display:"Josefin Sans","Red Hat Display",ui-sans-serif,system-ui,sans-serif; --f-text:"Inter","Red Hat Text",ui-sans-serif,system-ui,sans-serif;
+  --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.7)}}
 :root[data-client="ty"][data-theme="dark"]{
-  --bg:#0A120F; --surface:#111B17; --surface-2:#16231E; --ink:#EEF1EC; --ink-2:#B1BBB5; --muted:#76817B; --line:#24332C; --line-2:#1D2A24;
-  --gold:#3E9A75; --gold-soft:#173A2D; --gold-ink:#8FD3B4; --graph:#15382B; --graph-ink:#F3F1EA; --on-acc:#06140F; --fs3:#1E4A39; --tipbg:#1C4436;
-  --s2:#D4B47E; --s2-soft:#4A3D27;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6)}
-:root[data-client="ty"] .chip[aria-pressed=true]{background:#EDE6D6;border-color:#EDE6D6;color:#0E2C22}
+  --bg:#05110D; --surface:#0A1B15; --surface-2:#0E231B; --ink:#EEEBE2; --ink-2:#B7BCB4; --muted:#7D857F; --line:#1C3229; --line-2:#152920;
+  --gold:#3C7F64; --gold-soft:#13342A; --gold-ink:#9CCDB6; --graph:#072C21; --graph-ink:#F4F1E8; --on-acc:#04100C; --fs3:#B5AC77; --tipbg:#0F3A2C;
+  --s2:#C9BF86; --s2-soft:#3B3822; --brass:#B5AC77; --brass-2:#D3CA94; --r:6px;
+  --f-display:"Josefin Sans","Red Hat Display",ui-sans-serif,system-ui,sans-serif; --f-text:"Inter","Red Hat Text",ui-sans-serif,system-ui,sans-serif;
+  --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.7)}
+
+/* ===== Taylor: acabamento alto padrão (cabeçalho em grade, filtros alinhados, ícones de traço fino) ===== */
+:root[data-client="ty"] body{letter-spacing:-.003em}
+:root[data-client="ty"] .top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"brand brand theme" "rule rule rule" "dates camp camp" "chips chips status";column-gap:12px;row-gap:0;padding:28px 32px 0;border-radius:6px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 140% at 100% 0%,rgba(149,140,88,.13),transparent 55%),var(--graph);box-shadow:var(--shadow),inset 0 0 0 1px rgba(149,140,88,.28)}
+:root[data-client="ty"] .top::after{content:"";position:absolute;inset:7px;border:1px solid rgba(149,140,88,.16);border-radius:3px;pointer-events:none}
+:root[data-client="ty"] .top-in,:root[data-client="ty"] .ctrl,:root[data-client="ty"] .presets,:root[data-client="ty"] .pchips{display:contents}
+:root[data-client="ty"] .brand{grid-area:brand;gap:22px;align-self:center}
+:root[data-client="ty"] .brand-txt{border-left:1px solid rgba(149,140,88,.45);padding-left:22px}
+:root[data-client="ty"] .brand-txt h1{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#F4F1E8;line-height:1.3;padding-top:2px}
+:root[data-client="ty"] .brand-txt p{font-size:12.5px;color:rgba(244,241,232,.58);margin-top:5px}
+:root[data-client="ty"] .top::before{content:"";grid-area:rule;height:1px;margin:24px 0 22px;background:linear-gradient(90deg,rgba(149,140,88,.75),rgba(149,140,88,.18) 60%,transparent)}
+:root[data-client="ty"] #theme{grid-area:theme;align-self:center;justify-self:end;width:40px;height:40px;border-radius:3px;background:transparent;border-color:rgba(149,140,88,.45);color:#D9D2A9}
+:root[data-client="ty"] #theme:hover{background:rgba(149,140,88,.14)}
+:root[data-client="ty"] .fld{height:50px;border-radius:3px;padding:0 16px;gap:10px;background:rgba(255,255,255,.035);border:1px solid rgba(244,241,232,.16);transition:border-color .2s,background .2s}
+:root[data-client="ty"] .fld:hover,:root[data-client="ty"] .fld:focus-within{border-color:rgba(181,172,119,.75);background:rgba(255,255,255,.06)}
+:root[data-client="ty"] .fdate{grid-area:dates}
+:root[data-client="ty"] #fCamp,:root[data-client="ty"] #fCli{grid-area:camp}
+:root[data-client="ty"] .fi{display:block;flex:none;width:17px;height:17px;color:#B5AC77}
+:root[data-client="ty"] .fld label{font-family:var(--f-display);font-weight:600;font-size:10.5px;letter-spacing:.2em;color:#B5AC77;padding-top:2px}
+:root[data-client="ty"] .fld .sep{color:rgba(244,241,232,.35)}
+:root[data-client="ty"] .fld input[type=date]{font-size:13.5px;width:122px;color:#F4F1E8}
+:root[data-client="ty"] .fld select{flex:1;max-width:none;font-size:13.5px;color:#F4F1E8;cursor:pointer}
+:root[data-client="ty"] .fld input[type=date]{position:relative;cursor:pointer}
+:root[data-client="ty"] .fld input[type=date]::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:auto;height:auto;opacity:0;cursor:pointer}
+:root[data-client="ty"] .pchips{display:flex}
+:root[data-client="ty"] .presets>.pchips{grid-area:chips;display:flex;gap:28px;margin-top:20px;border-top:1px solid rgba(244,241,232,.1);overflow-x:auto;scrollbar-width:none}
+:root[data-client="ty"] .chip,:root[data-client="ty"] .chip[aria-pressed=true]{background:transparent;border:0;border-radius:0;padding:17px 0 15px;font-family:var(--f-display);font-weight:600;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:rgba(244,241,232,.55);white-space:nowrap;position:relative;transition:color .2s}
+:root[data-client="ty"] .chip::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:#B5AC77;transform:scaleX(0);transition:transform .25s}
+:root[data-client="ty"] .chip:hover{color:#F4F1E8}
+:root[data-client="ty"] .chip[aria-pressed=true]{color:#F4F1E8}
+:root[data-client="ty"] .chip[aria-pressed=true]::after{transform:scaleX(1)}
+:root[data-client="ty"] .status{grid-area:status;margin:20px 0 0;padding-left:20px;border-top:1px solid rgba(244,241,232,.1);font-size:11.5px;letter-spacing:.02em;color:rgba(244,241,232,.5);white-space:nowrap}
+:root[data-client="ty"] .status .dot{width:6px;height:6px;background:#B5AC77;box-shadow:0 0 0 3px rgba(181,172,119,.18)}
+/* corpo */
+:root[data-client="ty"] main{counter-reset:sec;gap:52px}
+:root[data-client="ty"] main>section>.sh h2::before{counter-increment:sec;content:counter(sec,decimal-leading-zero);display:block;width:max-content;font-size:11px;font-weight:600;letter-spacing:.28em;color:var(--brass);padding:0 0 10px 40px;background:linear-gradient(var(--brass),var(--brass)) 0 6px/28px 1px no-repeat}
+:root[data-client="ty"] .sh h2{font-weight:500;font-size:22px;letter-spacing:.01em;color:var(--ink)}
+:root[data-client="ty"] .bi{font-size:13.5px;color:var(--muted)}
+:root[data-client="ty"] .card{border-color:var(--line)}
+:root[data-client="ty"] .ihd h3,:root[data-client="ty"] .fside h3,:root[data-client="ty"] .kc h3,:root[data-client="ty"] .ctit{font-weight:600;letter-spacing:.04em}
+:root[data-client="ty"] .ii{border-radius:3px}
+:root[data-client="ty"] .tile .k{font-family:var(--f-display);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+:root[data-client="ty"] .strip .k{font-size:12.5px;color:var(--ink-2)}
+:root[data-client="ty"] .tile .v{font-family:var(--f-text);font-weight:400;letter-spacing:-.035em}
+:root[data-client="ty"] .tile.hero .k::before{width:6px;height:6px;border-radius:0;background:var(--brass);transform:rotate(45deg);margin-right:9px;vertical-align:2px}
+:root[data-client="ty"] .tile.hero .v{color:var(--gold-ink)}
+:root[data-client="ty"] .delta,:root[data-client="ty"] .ic{border-radius:3px}
+:root[data-client="ty"] .seg{border-radius:3px;background:transparent;border-color:var(--line)}
+:root[data-client="ty"] .seg button{border-radius:2px;font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px 6px}
+:root[data-client="ty"] .seg button[aria-pressed=true]{background:var(--graph);color:#F4F1E8;box-shadow:none}
+:root[data-client="ty"] .search{border-radius:3px}
+:root[data-client="ty"] thead th{font-family:var(--f-display);font-size:10.5px;letter-spacing:.17em;padding-top:13px;padding-bottom:11px}
+:root[data-client="ty"] td .bar{background:var(--brass);height:2px}
+:root[data-client="ty"] .foot{border-top-color:var(--brass);border-top-color:color-mix(in srgb,var(--brass) 45%,transparent)}
+@media (max-width:760px){
+  :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
+  :root[data-client="ty"] #fCamp,:root[data-client="ty"] #fCli{margin-top:10px}
+  :root[data-client="ty"] .presets>.pchips{gap:22px}
+  :root[data-client="ty"] .status{margin:0;padding:12px 0 16px;border-top:1px solid rgba(244,241,232,.1)}
+  :root[data-client="ty"] .brand{gap:14px}:root[data-client="ty"] .brand-txt{display:none}
+  :root[data-client="ty"] .fdate{gap:8px;padding:0 12px}:root[data-client="ty"] .fld input[type=date]{width:108px;font-size:13px}
+}
 
 [hidden]{display:none!important}
 *{box-sizing:border-box}
@@ -141,6 +206,7 @@ button,input,select{font:inherit;color:inherit}
 .icon-btn:hover{background:rgba(244,242,236,.14)}
 .icon-btn svg{width:16px;height:16px}
 .presets{padding-block:0 20px!important;padding-block:0 16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pchips{display:contents}.fi{display:none}
 .chip{background:transparent;border:1px solid rgba(244,242,236,.18);color:rgba(244,242,236,.8);border-radius:999px;padding:4px 12px;font-size:12.5px;cursor:pointer}
 .chip:hover{border-color:rgba(244,242,236,.4);color:#fff}
 .chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--on-acc);font-weight:600}
@@ -370,18 +436,18 @@ td.dim{color:var(--muted)}
       <div class="brand-txt"><h1 id="hTitle">Performance de mídia · Meta Ads</h1><p id="hSub">Resultados de tráfego pago para monitoramento e otimização</p></div>
     </div>
     <div class="ctrl">
-      <div class="fld"><label for="d1">De</label><input type="date" id="d1"><span class="sep">–</span><label for="d2">Até</label><input type="date" id="d2"></div>
-      <div class="fld" id="fCamp"><label for="camp">Campanha</label><select id="camp"></select></div>
+      <div class="fld fdate"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><label for="d1">De</label><input type="date" id="d1"><span class="sep">–</span><label for="d2">Até</label><input type="date" id="d2"></div>
+      <div class="fld" id="fCamp"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l6 4V6L7 10H4z"/><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5M18.8 7.2a7 7 0 0 1 0 9.6"/></svg><label for="camp">Campanha</label><select id="camp"></select></div>
       <div class="fld" id="fCli" hidden><label for="cli">Imobiliária</label><select id="cli"><option value="-1">Todas</option><option value="0">SH Prime</option><option value="1">Nova SP</option><option value="2">Lopes Prime</option><option value="3">Taylor</option></select></div>
       <button class="icon-btn" id="theme" type="button" aria-label="Alternar tema claro e escuro" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     </div>
   </div>
   <div class="presets" role="group" aria-label="Períodos rápidos">
-    <button class="chip" data-p="mtd" type="button">Mês atual</button>
+    <div class="pchips"><button class="chip" data-p="mtd" type="button">Mês atual</button>
     <button class="chip" data-p="7" type="button">Últimos 7 dias</button>
     <button class="chip" data-p="30" type="button">Últimos 30 dias</button>
     <button class="chip" data-p="lm" type="button">Mês anterior</button>
-    <button class="chip" data-p="ytd" type="button">Ano até ontem</button>
+    <button class="chip" data-p="ytd" type="button">Ano até ontem</button></div>
     <div class="status" id="status" data-s="snap"><span class="dot"></span><span id="statusTxt">Base local</span></div>
   </div>
 </header>

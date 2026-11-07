@@ -74,7 +74,11 @@ def main():
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     montar.solo(agora, dados, "ty", "taylor", "Taylor Imóveis · Performance Meta Ads",
                 fonte="Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)",
-                trocas=[(PLANILHA_TY, ""), ("formulário e WhatsApp", "formulário e site"), ("WhatsApp", "Site")])
+                trocas=[(PLANILHA_TY, ""), ("formulário e WhatsApp", "formulário e site"),
+                        ("as conversas por WhatsApp.", "os leads do site (pixel), como a Meta atribui."),
+                        ("Leads por WhatsApp</h3><p class=\"bi\">Conversas iniciadas pelo botão de mensagem.",
+                         "Leads do site</h3><p class=\"bi\">Cadastros no site atribuídos aos anúncios pelo pixel da Meta."),
+                        ("WhatsApp", "Site")])
 
 
 if __name__ == "__main__":
