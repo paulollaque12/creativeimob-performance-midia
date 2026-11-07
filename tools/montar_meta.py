@@ -78,7 +78,7 @@ def main():
                         ("as conversas por WhatsApp.", "os leads do site (pixel), como a Meta atribui."),
                         ("Leads por WhatsApp</h3><p class=\"bi\">Conversas iniciadas pelo botão de mensagem.",
                          "Leads do site</h3><p class=\"bi\">Cadastros no site atribuídos aos anúncios pelo pixel da Meta."),
-                        ("WhatsApp", "Site")])
+                        ("WhatsApp", "Site"), ('["Tx. conv. (lead ÷ impressão)"', '["Tx. de conversão"')])
 
 
 if __name__ == "__main__":
