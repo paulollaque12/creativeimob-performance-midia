@@ -24,3 +24,10 @@ Formato (vídeo animado, vídeo, carrossel, imagem estática, catálogo, post), 
 ## Publicação
 - Site sem senha (decisão do usuário em 14/10/2026), com `noindex` e `robots.txt` para não aparecer em buscadores. Qualquer pessoa com o link vê os números.
 - No site não há leitura ao vivo: ele mostra a cópia gerada na última atualização. O artefato do Claude lê as planilhas ao vivo pelo conector.
+
+## Página da Taylor direto da Meta (06/11/2026)
+- Pedido do usuário: "um link só com os dados de meta da Taylor no mesmo domínio", "tem que vir diretamente do MCP de Meta".
+- Endereço: https://performance.creativeimob.app/taylor/ · gerada por `tools/montar_meta.py` (usa `montar.solo`): sem abas, sem Cérebro, só os dados da Taylor no código, IDs das planilhas removidos.
+- Fonte: conector oficial Meta Ads, conta 3063928683998040, nível anúncio, por dia. A Meta tem gasto desde 11/04/2026 (a planilha só desde 27/04).
+- Leads = `lead` (formulário + site). Formulário = `onsite_conversion_lead_grouped`. Site = diferença. Sem WhatsApp (o conector não expõe conversas).
+- Conferência na criação (até 05/11/2026): 2.387 linhas, 13 campanhas, R$ 42.160,87, 923 leads (698 formulário, 225 site). Investimento e cliques por mês iguais à planilha de maio a novembro.

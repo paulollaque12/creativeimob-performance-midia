@@ -106,5 +106,42 @@ def main():
     print(f"docs/index.html gerado ({len(pagina)/1024:.0f} KB) · atualizado em {agora}")
 
 
+def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=()):
+    """Página de um cliente só (ex.: docs/taylor/ → performance.creativeimob.app/taylor/):
+    só os dados dele no código, sem abas e sem Cérebro. Usada por tools/montar_meta.py."""
+    js = lambda d: json.dumps(d, separators=(",", ":"), ensure_ascii=False)
+    t = open(os.path.join(RAIZ, "fonte", "template.html"), encoding="utf-8").read()
+    vazio = {"c": [], "g": [], "a": [], "r": []}
+    for kk, _ in CLIENTES:
+        t = t.replace(f"/*__DATA_{kk.upper()}__*/null", js(dados.get(kk) if kk == k else vazio))
+    t = t.replace("/*__AT__*/", agora)
+    # planilhas dos outros clientes fora do código
+    for kk, _ in CLIENTES:
+        if kk != k:
+            t = re.sub(r'(\n  ' + kk + r':\{.*?spreadsheetId:")[^"]*(")', r"\1\2", t, count=1, flags=re.S)
+    t, n1 = re.subn(r'<nav class="ctabs".*?</nav>', '<nav class="ctabs" hidden></nav>', t, count=1, flags=re.S)
+    t, n2 = re.subn(r'let first=\(location\.hash.*?\n', f'let first="{k}";\n', t, count=1)
+    t, n3 = re.subn(r"<title>.*?</title>", f"<title>{titulo}</title>", t, count=1)
+    if not (n1 and n2 and n3):
+        sys.exit(f"[solo {k}] template mudou: abas/boot/título não encontrados")
+    t = re.sub(r'href="(favicon|apple-touch)', r'href="../\1', t)
+    if fonte:
+        t, n4 = re.subn(r'(\n  ' + k + r':\{.*?src:")[^"]*(")', lambda m: m.group(1) + fonte + m.group(2), t, count=1, flags=re.S)
+        if not n4:
+            sys.exit(f"[solo {k}] src do cliente não encontrado")
+    for a_, b_ in trocas:
+        t = t.replace(a_, b_)
+    cabeca = "".join(re.findall(r"<title>.*?</title>\n?|<link [^>]*>\n?", t[:4000]))
+    corpo = re.sub(r"<title>.*?</title>\n?|<link [^>]*>\n?", "", t[:4000]) + t[4000:]
+    pagina = ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+              '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+              '<meta name="robots" content="noindex,nofollow">' + cabeca +
+              '<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>'
+              '</head><body>' + corpo + '</body></html>')
+    os.makedirs(os.path.join(RAIZ, "docs", pasta), exist_ok=True)
+    open(os.path.join(RAIZ, "docs", pasta, "index.html"), "w", encoding="utf-8").write(pagina)
+    print(f"docs/{pasta}/index.html gerado ({len(pagina)/1024:.0f} KB) · só {k}")
+
+
 if __name__ == "__main__":
     main()

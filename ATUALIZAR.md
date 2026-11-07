@@ -18,3 +18,14 @@ Objetivo: deixar `docs/index.html` com os dados até ontem (D-1) e publicar. Em 
 6. Responder em uma linha: última data de cada cliente, investimento e leads do mês, link do site.
 
 Mudanças de layout ou de regra: editar `fonte/template.html` (e republicar o artefato do Claude com o mesmo arquivo), rodar o passo 3 e commitar `fonte/` + `docs/`.
+
+## Página só da Taylor, direto da Meta (performance.creativeimob.app/taylor/)
+Criada em 06/11/2026. Não usa a planilha: lê o conector **Meta Ads** (conta [CI] taylor imóveis 2.0, `3063928683998040`).
+1. `mcp__Meta_Ads__ads_get_ad_entities`, **um mês por chamada** (o período inteiro dá Bad Gateway), de 2026-04-01 até ontem:
+   `level=ad`, `time_increment="1"`, `time_range={"since":…,"until":…}`,
+   `fields=[id,name,campaign_name,adset_name,amount_spent,impressions,clicks,link_click,lead,onsite_conversion_lead_grouped]`,
+   `filtering=[{"field":"impressions","operator":"GREATER_THAN","value":["0"]}]`, `limit=1000`, `reporting_purpose=["metric_lookup"]`, `include_additional_context=false`.
+   Cada resposta vai para arquivo: copiar para `/tmp/meta/AAAA-MM.json`. Se vier `pagination.next_cursor`, buscar a próxima página e salvar como `AAAA-MM-2.json`.
+2. `python3 tools/montar_meta.py --ate <ontem> /tmp/meta/*.json` → gera `docs/taylor/index.html`.
+3. Commit de `docs/taylor/index.html`.
+Regras: Leads = `lead` da Meta (formulário + site/pixel); Formulário = `onsite_conversion_lead_grouped`; Site = diferença (rótulo "Site" no lugar de "WhatsApp"). O conector não traz conversas de WhatsApp, então os leads de WhatsApp da planilha não entram nessa página.
