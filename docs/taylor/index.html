@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Text:wght@400;500;600&family=Josefin+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
-<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-06e · Taylor noite dourada -->
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><!-- v2026-11-07a · comparação abaixo dos Insights -->
 <style>
 /* Layout: cabeçalho grafite com filtros; seções em sequência (resumo → funil → evolução → indicadores → detalhes), cada uma com título e frase de contexto antes do bloco. */
 :root{
@@ -270,6 +270,7 @@ section{display:flex;flex-direction:column;gap:14px;min-width:0}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);min-width:0}
 .pad{padding:20px 22px}
 .hint{font-size:12px;color:var(--muted)}
+.cmpl{margin:-4px 0 0}
 
 /* Insights */
 .igrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
@@ -492,11 +493,12 @@ td.dim{color:var(--muted)}
 
 <main id="mainClient">
   <section id="s-ins">
-    <div class="sh"><div><h2>Insights</h2><p class="bi">Os três principais avanços e os três pontos de atenção do período selecionado, comparado ao mesmo intervalo do mês anterior. Recalculados a cada mudança de data ou campanha.</p></div><span class="hint" id="insNote"></span></div>
+    <div class="sh"><div><h2>Insights</h2><p class="bi">Os três principais avanços e os três pontos de atenção do período selecionado. Recalculados a cada mudança de data ou campanha.</p></div><span class="hint" id="insNote"></span></div>
     <div class="igrid">
       <div class="card pad icol"><div class="ihd w"><span class="dotw"></span><h3>Wins</h3><span class="hint">o que melhorou</span></div><ul id="insW"></ul></div>
       <div class="card pad icol"><div class="ihd l"><span class="dotl"></span><h3>Lows</h3><span class="hint">o que pede atenção</span></div><ul id="insL"></ul></div>
     </div>
+    <p class="hint cmpl" id="insCmp"></p>
   </section>
 
   <section id="s-resumo">
@@ -617,7 +619,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="06/11/2026 23:42";
+const SNAP_AT="07/11/2026 00:03";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -932,7 +934,7 @@ function renderInsights(cur,prv,c,p){
 function renderAll(){
   const cur=rowsIn(S.d1,S.d2,S.camp),[pa,pb,plbl]=prevRange(S.d1,S.d2),prv=rowsIn(pa,pb,S.camp);
   const c=sum(cur),p=sum(prv);c.days=S.d2-S.d1+1;
-  $("#cmpLbl").textContent=`Comparação: ${dmyy(pa)} a ${dmyy(pb)} (${plbl})`;
+  $("#cmpLbl").textContent=`Comparação: ${dmyy(pa)} a ${dmyy(pb)} (${plbl})`;$("#insCmp").textContent=$("#cmpLbl").textContent;
   renderInsights(cur,prv,c,p);renderTiles(c,p);renderFunnel(c,p);renderMonth();renderDay();renderTable(cur);
 }
 function fillCamps(){
