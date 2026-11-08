@@ -212,25 +212,14 @@
 :root[data-client="ty"] #tbl :is(th,td):nth-child(13){width:92px;min-width:92px}
 @media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat button{flex:1;justify-content:center}}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
-/* Taylor · cabeçalho com abas de plataforma (08/11): marca + atualização + tema; abas à esquerda e datas à direita; campanha; períodos */
-@media (min-width:1024px){:root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand status theme" "rule rule rule rule" "plat plat dates dates" "camp camp camp camp" "chips chips chips chips"}}
-@media (min-width:761px){
-  :root[data-client="ty"] .top:has(.plat){grid-template-columns:auto minmax(0,1fr) auto auto}
-  :root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .brand-txt p{white-space:nowrap}
-  :root[data-client="ty"] .plat{justify-self:start;align-self:center;margin:0;border:0;border-radius:0;padding:0;height:auto;gap:34px}
-  :root[data-client="ty"] .plat button{position:relative;padding:14px 0 13px;font-size:11.5px;letter-spacing:.2em;background:transparent!important;border-radius:0}
-  :root[data-client="ty"] .plat button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#B5AC77;transform:scaleX(0);transform-origin:left;transition:transform .25s}
-  :root[data-client="ty"] .plat button[aria-pressed=true]::after{transform:scaleX(1)}
-  :root[data-client="ty"] .top:has(.plat) .status{align-self:center;justify-self:end;margin:0 18px 0 0;padding:0;border-top:0}
-  :root[data-client="ty"] .top:has(.plat) .fdate{justify-self:end;width:430px}
-  :root[data-client="ty"] .top:has(.plat) #fCamp{margin-top:12px}
-}
+/* Taylor · título só com o nome da ferramenta, sempre em uma linha (seletor de plataforma em caixa, à direita) */
+@media (min-width:761px) and (max-width:1279px){:root[data-client="ty"] .presets>.pchips{gap:22px}:root[data-client="ty"] .chip{letter-spacing:.14em}}
 @media (min-width:761px) and (max-width:1023px){
-  :root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand brand theme" "rule rule rule rule" "plat plat status status" "dates camp camp camp" "chips chips chips chips"}
-  :root[data-client="ty"] .top:has(.plat) .fdate{justify-self:stretch;width:auto;margin-top:12px}
-  :root[data-client="ty"] .top:has(.plat) #fCamp{margin-top:12px}
-  :root[data-client="ty"] .top:has(.plat) .status{margin:0}
+  :root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand brand theme" "plat plat plat plat" "rule rule rule rule" "dates dates camp camp" "chips chips chips chips" "status status status status"}
+  :root[data-client="ty"] .top:has(.plat) .plat{justify-self:start;margin:18px 0 0}
+  :root[data-client="ty"] .top:has(.plat) .status{justify-self:start;margin:0;padding:12px 0 16px;border-top:1px solid rgba(244,241,232,.1)}
 }
+@media (min-width:761px){:root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .brand-txt p{white-space:nowrap}:root[data-client="ty"] .brand-txt{min-width:0}:root[data-client="ty"] .brand-txt p{overflow:hidden;text-overflow:ellipsis}}
 @media (max-width:760px){
   :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "plat plat" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
   :root[data-client="ty"] #fCamp,:root[data-client="ty"] #fCli{margin-top:10px}
@@ -815,7 +804,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="08/11/2026 12:42";
+const SNAP_AT="08/11/2026 12:45";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -1789,7 +1778,7 @@ function showOv(){CL="ov";document.documentElement.dataset.client="ty";$("#brand
   $("#mainClient").hidden=true;$("#mainCer").hidden=true;$("#mainGa").hidden=true;$("#mainOv").hidden=false;$("#fCamp").hidden=true;$("#fCli").hidden=true;$("#fGa").hidden=true;
   $("#hTitle").textContent="Visão geral";$("#hSub").textContent="Meta Ads, Google Ads e site no mesmo período";
   if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderOv();st("snap","Atualizado em "+SNAP_AT)}
-const PLT={o:["Visão geral","Meta Ads, Google Ads e site no mesmo período"],m:["Meta Ads","Entrega, custo e leads dos anúncios na Meta"],g:["Google Ads","Entrega, custo e conversões dos anúncios no Google"],a:["Google Analytics 4","De onde vêm as visitas e quem vira contato no site"]};
+const PLT={o:["Visão geral","Meta, Google e site no mesmo período"],m:["Meta Ads","Entrega, custo e leads na Meta"],g:["Google Ads","Entrega, custo e conversões no Google"],a:["GA4","Visitas e contatos no site"]};
 function platTitle(){if(!document.querySelector(".plat")||!PLT[PLAT])return;$("#hTitle").textContent=PLT[PLAT][0];$("#hSub").textContent=PLT[PLAT][1]}
 function setPlat(p){
   if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mgao]$/.test(p))p="m";PLAT=p;
