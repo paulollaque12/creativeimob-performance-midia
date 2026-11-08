@@ -486,6 +486,23 @@ table.gev th:first-child,table.gev td:first-child{min-width:200px}
 .etag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.03em;padding:1px 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);margin-left:4px;white-space:nowrap}
 .etag.k{color:var(--gold-ink);border-color:var(--gold)}
 #mainGa .mini{grid-template-columns:1fr 1fr}
+#mainGa .gfl{display:flex;flex-direction:column;gap:22px}
+.gutm{border-top:1px solid var(--line-2);padding-top:20px;display:flex;flex-direction:column;gap:14px}
+.gutm h3{font-family:var(--f-display);font-weight:600;font-size:15px;margin:0}
+.gutm code,.ub code{font-size:11.5px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:4px;padding:0 5px}
+.ubig{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.ubig .v{font-family:var(--f-display);font-weight:600;font-size:24px}.ubig .s{font-size:12px;color:var(--muted)}
+.ubars{display:grid;gap:8px}.ub{display:grid;grid-template-columns:120px 1fr 44px;align-items:center;gap:10px;font-size:12.5px}.ub b{text-align:right;font-variant-numeric:tabular-nums}
+.ut{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line-2)}.ut i{display:block;height:100%;background:var(--gold)}
+.utop{display:flex;flex-direction:column;gap:6px}.utop .k{font-size:12px;color:var(--ink-2)}.ur{display:grid;grid-template-columns:1fr auto auto;gap:12px;font-size:12.5px;align-items:baseline}.ur>span:first-child{overflow-wrap:anywhere}
+/* tabelas do GA4: coluna da dimensão travada, cabeçalho e total fixos */
+#mainGa .tw{max-height:560px;overflow:auto}
+#mainGa table.mon thead th{position:sticky;top:0;z-index:2}
+#mainGa table.mon tfoot td{position:sticky;bottom:0;z-index:2}
+#mainGa table.mon :is(th,td):first-child{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:inset -1px 0 0 var(--line)}
+#mainGa table.mon thead th:first-child,#mainGa table.mon tfoot td:first-child{z-index:3;background:var(--surface-2)}
+#mainGa table.mon tr.subr td:first-child,#mainGa table.mon tbody tr:hover td:first-child{background:var(--surface-2)}
+@media (max-width:640px){#mainGa table.mon :is(th,td):first-child{min-width:150px;max-width:190px}}
+
 #mainGa .sh{flex-wrap:wrap}#mainGa .sh>div:first-child{flex:1 1 280px}#gacqv{max-width:100%}#gCmpLbl,#gInsCmp{overflow-wrap:anywhere;white-space:normal;min-width:0;max-width:100%}
 @media (max-width:640px){#gacqv button{padding:6px 10px}}
 </style>
@@ -668,7 +685,7 @@ table.gev th:first-child,table.gev td:first-child{min-width:200px}
   <section id="g-fun">
     <div class="sh"><div><h2>Funil do site</h2><p class="bi">Quantas sessões engajaram (mais de 10 segundos, 2 páginas ou uma conversão) e quantas viraram contato. Ao lado, o tipo de contato e o caminho do anúncio da Meta até o site.</p></div></div>
     <div class="fgrid">
-      <div class="card pad"><div class="funnel" id="gFun"></div></div>
+      <div class="card pad gfl"><div class="funnel" id="gFun"></div><div class="gutm" id="gUtm"></div></div>
       <div class="card pad fside" id="gSide"></div>
     </div>
   </section>
@@ -685,7 +702,7 @@ table.gev th:first-child,table.gev td:first-child{min-width:200px}
 
   <section id="g-acq">
     <div class="sh"><div><h2>De onde vêm as visitas</h2><p class="bi">Sessões e contatos por origem. A <b>origem consolidada</b> é a leitura da CreativeImob: junta origem, mídia e campanha para separar anúncio da Meta, perfis da Meta, Google Ads, busca orgânica e direto, mesmo quando a UTM vem fora do padrão. Clique no nome de uma coluna para ordenar.</p></div>
-      <div class="seg wrapseg" role="group" aria-label="Leitura da origem" id="gacqv"><button type="button" data-a="oc" aria-pressed="true">Consolidada</button><button type="button" data-a="ch" aria-pressed="false">Canal GA4</button><button type="button" data-a="sm" aria-pressed="false">Origem / mídia</button><button type="button" data-a="cp" aria-pressed="false">Campanha</button><button type="button" data-a="dv" aria-pressed="false">Dispositivo</button></div></div>
+      <div class="seg wrapseg" role="group" aria-label="Leitura da origem" id="gacqv"><button type="button" data-a="oc" aria-pressed="true">Consolidada</button><button type="button" data-a="ch" aria-pressed="false">Canal GA4</button><button type="button" data-a="sm" aria-pressed="false">Origem / mídia</button><button type="button" data-a="cp" aria-pressed="false">Campanha</button><button type="button" data-a="ac" aria-pressed="false">Conteúdo</button><button type="button" data-a="dv" aria-pressed="false">Dispositivo</button></div></div>
     <div class="card"><div class="tw"><table class="mon gt" id="gAcq"><thead></thead><tbody></tbody><tfoot></tfoot></table></div></div>
   </section>
 
@@ -1296,7 +1313,7 @@ const GA4=/*__GA4__*/null;
 const GSITES=["nsp","lp","ty","sh"];
 const GAM={};let GS=null;
 const S3={site:"nsp",mline:"ct",acq:"oc",open:new Set(),sortK:"ses",sortD:-1,psortK:"ses",psortD:-1};
-const GDN={ch:"sessionDefaultChannelGroup",sm:"sessionSourceMedium",cp:"sessionCampaignName",dv:"deviceCategory",lp:"landingPage",ev:"eventName"};
+const GDN={so:"sessionSource",me:"sessionMedium",ac:"sessionManualAdContent",ch:"sessionDefaultChannelGroup",sm:"sessionSourceMedium",cp:"sessionCampaignName",dv:"deviceCategory",lp:"landingPage",ev:"eventName"};
 function gaTable(raw){
   const dims=(raw.dimensionHeaders||[]).map(h=>h.name);if(dims[0]!=="date")throw new Error("GA4: sem date");
   const vals=dims.slice(1).map(()=>new Map()),r=[];
@@ -1310,8 +1327,8 @@ function gaModel(T){
   const map=(t,want)=>{const pos=want.map(w=>t.k.indexOf(GDN[w]));if(pos.some(p=>p<1))throw new Error("GA4: dimensão ausente");
     const tr=want.map((w,j)=>t.v[pos[j]-1].map(v=>id(w,v))),nd=t.k.length;
     return t.r.map(r=>[r[0],...want.map((w,j)=>tr[j][r[pos[j]]]),...r.slice(nd)])};
-  const g={s:map(T.cube,["ch","sm","cp","dv"]),l:map(T.lp,["lp"]),e:map(T.ev,["ev"]),c:map(T.ct,["ev","ch","sm","cp","dv","lp"])};
-  for(const n of ["ch","sm","cp","dv","lp","ev"])g[n]=(D[n]||{a:[]}).a;
+  const g={s:map(T.cube,["ch","sm","cp","dv"]),l:map(T.lp,["lp"]),e:map(T.ev,["ev"]),c:map(T.ct,["ev","ch","sm","cp","dv","lp","ac"]),u:T.utm?map(T.utm,["so","me","cp","ac"]):[]};
+  for(const n of ["ch","sm","cp","dv","lp","ev","so","me","ac"])g[n]=(D[n]||{a:[]}).a;
   if(!g.s.length)throw new Error("GA4 sem sessões");
   let lo=Infinity,hi=-Infinity;for(const x of g.s){if(x[0]<lo)lo=x[0];if(x[0]>hi)hi=x[0]}g.first=lo;g.last=hi;
   g.ctype=g.ev.map(ctype);
@@ -1354,7 +1371,7 @@ function pageType(p){
 function gTot(a,b){
   const t={ses:0,eng:0,new:0,pv:0,dur:0,ct:0,tp:{f:0,w:0,t:0,p:0}};if(!GS)return gDer(t);
   for(const x of GS.s){if(x[0]<a||x[0]>b)continue;t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.pv+=x[8];t.dur+=x[9]}
-  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;t.ct+=x[7];t.tp[GS.ctype[x[1]]]+=x[7]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;t.ct+=x[8];t.tp[GS.ctype[x[1]]]+=x[8]}
   t.days=Math.max(0,Math.min(b,GS.last)-a+1);return gDer(t)}
 function gDer(t){t.engR=div(t.eng,t.ses);t.ctR=div(t.ct,t.ses);t.tmed=div(t.dur,t.ses);t.pps=div(t.pv,t.ses);t.e2c=div(t.ct,t.eng);return t}
 const gz=()=>({ses:0,eng:0,new:0,pv:0,dur:0,ct:0});
@@ -1364,25 +1381,27 @@ const ACQ={
   ch:{n:"Canal do GA4",s:x=>GS.ch[x[1]],c:x=>GS.ch[x[2]]},
   sm:{n:"Origem / mídia",s:x=>GS.sm[x[2]],c:x=>GS.sm[x[3]]},
   cp:{n:"Campanha (UTM)",s:x=>GS.cp[x[3]],c:x=>GS.cp[x[4]]},
+  ac:{n:"Conteúdo (utm_content)",u:1,s:x=>GS.ac[x[4]],c:x=>GS.ac[x[7]]},
   dv:{n:"Dispositivo",s:x=>({desktop:"Computador",mobile:"Celular",tablet:"Tablet",smarttv:"TV"}[GS.dv[x[4]]]||GS.dv[x[4]]),c:x=>({desktop:"Computador",mobile:"Celular",tablet:"Tablet",smarttv:"TV"}[GS.dv[x[5]]]||GS.dv[x[5]])},
 };
-function gBy(a,b,fs,fc){const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t};
-  for(const x of GS.s){if(x[0]<a||x[0]>b)continue;const t=g(fs(x));t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.pv+=x[8];t.dur+=x[9]}
-  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(fc(x)).ct+=x[7]}
+function gBy(a,b,fs,fc,u){const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t};
+  if(u){for(const x of GS.u){if(x[0]<a||x[0]>b)continue;const t=g(fs(x));t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.dur+=x[8]}}
+  else for(const x of GS.s){if(x[0]<a||x[0]>b)continue;const t=g(fs(x));t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.pv+=x[8];t.dur+=x[9]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(fc(x)).ct+=x[8]}
   for(const t of m.values())gDer(t);return m}
 function gPages(a,b){ // por página: sessões do recorte ≥3/dia + contatos; resto do dia vira "demais páginas"
   const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t},day=new Map();
   for(const x of GS.l){if(x[0]<a||x[0]>b)continue;const t=g(x[1]);t.ses+=x[2];t.eng+=x[3];t.new+=x[4];const d=day.get(x[0])||[0,0,0];d[0]+=x[2];d[1]+=x[3];d[2]+=x[4];day.set(x[0],d)}
-  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(x[6]).ct+=x[7]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(x[6]).ct+=x[8]}
   const rest=gz();const sd=new Map();for(const x of GS.s){if(x[0]<a||x[0]>b)continue;const d=sd.get(x[0])||[0,0,0];d[0]+=x[5];d[1]+=x[6];d[2]+=x[7];sd.set(x[0],d)}
   for(const [d,v] of sd){const l=day.get(d)||[0,0,0];rest.ses+=Math.max(0,v[0]-l[0]);rest.eng+=Math.max(0,v[1]-l[1]);rest.new+=Math.max(0,v[2]-l[2])}
   for(const t of m.values())gDer(t);gDer(rest);return{m,rest}}
 function gDaily(a,b){const n=b-a+1,z=()=>Array(n).fill(0),o={ses:z(),eng:z(),ct:z()};
   for(const x of GS.s){if(x[0]<a||x[0]>b)continue;o.ses[x[0]-a]+=x[5];o.eng[x[0]-a]+=x[6]}
-  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;o.ct[x[0]-a]+=x[7]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;o.ct[x[0]-a]+=x[8]}
   for(const k in o)for(let i=0;i<n;i++)if(a+i>GS.last||a+i<GS.first)o[k][i]=null;return o}
 function gMonthly(){const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t},mk=i=>{const d=dObj(i);return d.getUTCFullYear()*12+d.getUTCMonth()};
-  for(const x of GS.s){const t=g(mk(x[0]));t.ses+=x[5];t.eng+=x[6]}for(const x of GS.c)g(mk(x[0])).ct+=x[7];
+  for(const x of GS.s){const t=g(mk(x[0]));t.ses+=x[5];t.eng+=x[6]}for(const x of GS.c)g(mk(x[0])).ct+=x[8];
   const keys=[...m.keys()].sort((a,b)=>a-b);return{keys,rows:keys.map(k=>gDer(m.get(k)))}}
 function metaIn(a,b){const L=MODELS[S3.site];if(!L||!L.m||!L.m.r)return null;const t={inv:0,lclk:0,leads:0};let any=false;
   for(const x of L.m.r){if(x[0]<a||x[0]>b)continue;any=true;t.inv+=x[4]/100;t.lclk+=x[6];t.leads+=x[10]}return any?t:null}
@@ -1398,7 +1417,7 @@ function renderGa(){
   const stale=GS.last<yesterday-1;
   $("#gAlert").hidden=!stale;
   if(stale)$("#gAlert").innerHTML=`<b>Coleta parada.</b> O GA4 do site ${esc(CNAME[S3.site])} não registra sessões desde <b>${dmyy(GS.last)}</b>. Os números depois dessa data estão vazios, não zerados: verifique a tag do GA4 no site (gtag ou Gerenciador de Tags).`;
-  gInsights(c,p,pa,pb);gTiles(c,p);gFunnel(c,p);gMonth();gDay();gAcq(pa,pb);gPag(pa,pb);gEvents(pa,pb);
+  gInsights(c,p,pa,pb);gTiles(c,p);gFunnel(c,p);gUtm(c);gMonth();gDay();gAcq(pa,pb);gPag(pa,pb);gEvents(pa,pb);
   const L=GAM[S3.site];$("#gFoot").textContent=`Dados até ${dmyy(GS.last)} · ${L.live?"GA4 lido em "+L.at:"atualizado em "+L.at}`;
 }
 function gTiles(c,p){
@@ -1427,6 +1446,21 @@ function gFunnel(c,p){
    <div><div class="k">Contatos dessas sessões</div><div class="v num">${int(mg.ct)}</div><div class="s">${mg.ses?pct(mg.ct/mg.ses)+" das sessões":"–"}</div></div>
    <div><div class="k">Custo por contato no site</div><div class="v num">${mt&&mg.ct?brl(mt.inv/mg.ct):"–"}</div><div class="s">${mt?int(mt.leads)+" leads na própria Meta":"–"}</div></div></div>`;
 }
+/* links parametrizados: utm_source, utm_medium, utm_campaign, utm_content */
+const SYSV=/^\((direct|not set|none|organic|referral|cross-network|ai-assistant|data not available)\)$|^$/;
+function gUtm(c){
+  const o={ses:0,so:0,me:0,cp:0,ac:0,all:0},ct=new Map(),cs=new Map();
+  for(const x of GS.u){if(x[0]<S.d1||x[0]>S.d2)continue;const so=GS.so[x[1]],me=GS.me[x[2]],cp=GS.cp[x[3]],ac=GS.ac[x[4]];
+    if(SYSV.test(cp))continue;o.ses+=x[5];if(!SYSV.test(so))o.so+=x[5];if(!SYSV.test(me)&&!/^(organic|referral|none)$/.test(me))o.me+=x[5];o.cp+=x[5];
+    if(!SYSV.test(ac)){o.ac+=x[5];cs.set(ac,(cs.get(ac)||0)+x[5])}if(!SYSV.test(so)&&!SYSV.test(me)&&!SYSV.test(ac))o.all+=x[5]}
+  for(const x of GS.c){if(x[0]<S.d1||x[0]>S.d2)continue;const ac=GS.ac[x[7]];if(!SYSV.test(ac))ct.set(ac,(ct.get(ac)||0)+x[8])}
+  const P=[["utm_source","so"],["utm_medium","me"],["utm_campaign","cp"],["utm_content","ac"]];
+  const top=[...cs.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5);
+  $("#gUtm").innerHTML=`<div><h3>Links parametrizados (UTM)</h3><p class="bi">Sessões que chegaram por link com <code>utm_campaign</code> e quanto delas traz os outros parâmetros. Sem UTM, o GA4 não liga a visita ao anúncio.</p></div>
+   <div class="ubig"><span class="v num">${int(o.ses)}</span><span class="s">sessões com UTM · ${pct(div(o.ses,c.ses),1)} do site · ${pc0(div(o.all,o.ses))} com os quatro parâmetros</span></div>
+   <div class="ubars">${P.map(([n,k])=>{const r=div(o[k],o.ses);return`<div class="ub"><code>${n}</code><span class="ut"><i style="width:${(r||0)*100}%"></i></span><b>${o.ses?pc0(r):"–"}</b></div>`}).join("")}</div>
+   <div class="utop"><div class="k">Conteúdos que mais trouxeram visitas</div>${top.length?top.map(([n,s])=>`<div class="ur"><span title="${esc(n)}">${wbr(n)}</span><span class="num">${int(s)}</span><span class="num dim">${int(ct.get(n)||0)} cont.</span></div>`).join(""):'<div class="hint">Nenhuma sessão com utm_content no período.</div>'}</div>`;
+}
 function gMonth(){
   const {keys,rows}=gMonthly(),el=$("#gMonth");if(!keys.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
   const lab=keys.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2));
@@ -1446,7 +1480,7 @@ function gHead(cols,k,d){return"<tr>"+cols.map(([key,lbl])=>`<th data-k="${key}"
 const GCOLS=[["name","Nome"],["ses","Sessões"],["dses","Var. sessões"],["new","Novos usuários"],["engR","Engajamento"],["tmed","Tempo médio"],["ct","Contatos"],["ctR","Taxa de contato"]];
 function gRow(t,tot,name,extra=""){const d=dlt(t.ses,t.pses);return`<td>${name}${extra}</td><td><div class="shr">${int(t.ses)}<span class="bar" style="width:${Math.max(2,div(t.ses,tot)*100||0)}%"></span><span class="hint">${pct(div(t.ses,tot),1)}</span></div></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${secs(t.tmed)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`}
 function gAcq(pa,pb){
-  const A=ACQ[S3.acq],cur=gBy(S.d1,S.d2,A.s,A.c),prv=gBy(pa,pb,A.s,A.c),tot=gTot(S.d1,S.d2);
+  const A=ACQ[S3.acq],cur=gBy(S.d1,S.d2,A.s,A.c,A.u),prv=gBy(pa,pb,A.s,A.c,A.u),tot=gTot(S.d1,S.d2);
   let L=[...cur.entries()].map(([name,t])=>({name,...t,pses:(prv.get(name)||{}).ses||0})).filter(t=>t.ses>0||t.ct>0);
   L.forEach(t=>t.dses=t.pses?(t.ses-t.pses)/t.pses:null);gSortRows(L,S3.sortK,S3.sortD);
   const more=L.length>40?L.length-40:0;L=L.slice(0,40);
@@ -1525,10 +1559,10 @@ if(GA4){for(const k of Object.keys(GA4.cfg)){try{GAM[k]={m:gaModel(GA4.d[k]),at:
   CLIENTS.ga={name:"GA4",ga:true};fillSites()}
 function watchGa(){
   const k=S3.site,cfg=GA4&&GA4.cfg[k];if(!cfg||!mcpNS)return;const got={};
-  ["cube","lp","ev","ct"].forEach(q=>{const req=JSON.parse(JSON.stringify(GA4.q[q]));req.property="properties/"+cfg.prop;req.dateRanges=[{startDate:"2026-01-01",endDate:"yesterday"}];
+  ["cube","lp","ev","utm","ct"].forEach(q=>{const req=JSON.parse(JSON.stringify(GA4.q[q]));req.property="properties/"+cfg.prop;req.dateRanges=[{startDate:"2026-01-01",endDate:"yesterday"}];
     if(q==="ct")req.dimensionFilter={filter:{fieldName:"eventName",stringFilter:{matchType:"FULL_REGEXP",value:cfg.ct}}};
     unwatch.push(mcpNS.watchTool("Google Analytics","run_report",req,ev=>{
-      if(ev.type==="data"){try{got[q]=gaTable(ev.result.payload);if(Object.keys(got).length===4){const when=ev.result.cache?.storedAt?new Date(ev.result.cache.storedAt):new Date();
+      if(ev.type==="data"){try{got[q]=gaTable(ev.result.payload);if(Object.keys(got).length===5){const when=ev.result.cache?.storedAt?new Date(ev.result.cache.storedAt):new Date();
           GAM[k]={m:gaModel(got),at:when.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}),live:true}}else return}catch(e){GAM[k].err="GA4 em formato inesperado"}}
       else{const code=ev.error&&ev.error.code;GAM[k].err={needs_reauth:"Reconecte o Google Analytics em Configurações → Conectores",server_not_connected:"Conecte o Google Analytics para ver ao vivo",not_in_manifest:"Leitura do GA4 não autorizada nesta página",approval_required:"Leitura do GA4 aguardando aprovação",server_unavailable:"GA4 indisponível agora",tool_error:"O GA4 recusou a leitura"}[code]||"Não foi possível ler o GA4"}
       if(CL==="ga"&&S3.site===k){GS=GAM[k].m;if(GS){$("#d1").min=$("#d2").min=toISO(GS.first)}renderGa();statusGa()}

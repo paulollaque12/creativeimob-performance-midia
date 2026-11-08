@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """GA4 dos sites das imobiliárias → dados/ga4.json (lido por tools/montar.py, marcador /*__GA4__*/null).
 
-Fonte: conector Google Analytics (run_report). Para cada site, QUATRO consultas de 2026-01-01 até ONTEM,
+Fonte: conector Google Analytics (run_report). Para cada site, CINCO consultas de 2026-01-01 até ONTEM,
 cada resposta salva em <pasta>/<chave>_<consulta>.json (as respostas grandes o conector já grava em arquivo):
 
   cube  date × sessionDefaultChannelGroup × sessionSourceMedium × sessionCampaignName × deviceCategory
@@ -9,7 +9,9 @@ cada resposta salva em <pasta>/<chave>_<consulta>.json (as respostas grandes o c
   lp    date × landingPage → sessions, engagedSessions, newUsers   (só linhas com sessions ≥ 3 no dia;
         o resto entra no painel como "demais páginas" = cube − lp)
   ev    date × eventName → eventCount, keyEvents
-  ct    date × eventName × canal × origem/mídia × campanha × dispositivo × landingPage → eventCount,
+  utm   date × sessionSource × sessionMedium × sessionCampaignName × sessionManualAdContent (utm_source, utm_medium,
+        utm_campaign, utm_content) → sessions, engagedSessions, newUsers, userEngagementDuration
+  ct    date × eventName × canal × origem/mídia × campanha × dispositivo × landingPage × utm_content → eventCount,
         filtrado pelos eventos de contato do site (regex em SITES[k]["ct"])
 
 `python3 tools/ga4.py --consultas` imprime os pedidos exatos (JSON) para copiar nas chamadas do conector.
@@ -36,7 +38,9 @@ QUERIES = {
            "metricFilter": {"filter": {"fieldName": "sessions", "numericFilter": {"operation": "GREATER_THAN_OR_EQUAL", "value": {"int64Value": "3"}}}},
            "limit": "100000"},
     "ev": {"dimensions": D("date", "eventName"), "metrics": D("eventCount", "keyEvents"), "limit": "100000"},
-    "ct": {"dimensions": D("date", "eventName", "sessionDefaultChannelGroup", "sessionSourceMedium", "sessionCampaignName", "deviceCategory", "landingPage"),
+    "utm": {"dimensions": D("date", "sessionSource", "sessionMedium", "sessionCampaignName", "sessionManualAdContent"),
+            "metrics": D("sessions", "engagedSessions", "newUsers", "userEngagementDuration"), "limit": "100000"},
+    "ct": {"dimensions": D("date", "eventName", "sessionDefaultChannelGroup", "sessionSourceMedium", "sessionCampaignName", "deviceCategory", "landingPage", "sessionManualAdContent"),
            "metrics": D("eventCount"), "limit": "100000"},
 }
 
