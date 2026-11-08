@@ -504,6 +504,34 @@ td.dim{color:var(--muted)}
 .ustrip .ui .ut{grid-column:1/-1;grid-row:2;height:3px;border-radius:2px;background:var(--line-2);overflow:hidden}.ustrip .ui .ut i{display:block;height:100%;background:var(--brass,var(--gold))}
 .ustrip .ui .v{font-size:12px;font-weight:600}
 @media (max-width:760px){.gms{grid-template-columns:1fr 1fr}.gms>div:nth-child(3){border-left:0}.gms>div:nth-child(n+3){border-top:1px solid var(--line-2)}.ustrip{grid-template-columns:1fr 1fr}.ustrip .uh{grid-column:1/-1}.ustrip>div:nth-child(2),.ustrip>div:nth-child(4){border-left:0}.ustrip>div{border-top:1px solid var(--line-2)}.gl.gb{grid-template-columns:120px minmax(0,1fr) 34px 52px}}
+/* Visão geral (Taylor): big numbers somados + Meta | Google | Site */
+:root[data-plat="o"][data-client="ty"] .brand-txt h1::after{width:16px;height:16px;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.8%22%3E%3Crect%20x%3D%223.5%22%20y%3D%223.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%2213.5%22%20y%3D%223.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%223.5%22%20y%3D%2213.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%2213.5%22%20y%3D%2213.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.8%22%3E%3Crect%20x%3D%223.5%22%20y%3D%223.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%2213.5%22%20y%3D%223.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%223.5%22%20y%3D%2213.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3Crect%20x%3D%2213.5%22%20y%3D%2213.5%22%20width%3D%227%22%20height%3D%227%22%20rx%3D%221%22/%3E%3C/svg%3E") center/contain no-repeat}
+.pic{display:inline-block;flex:none;background:var(--brass,var(--gold));-webkit-mask:var(--pm) center/contain no-repeat;mask:var(--pm) center/contain no-repeat}
+.pic.m{--pm:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.6%2012.2c0-3.4%201.7-5.9%204-5.9%203.4%200%205.9%205.6%208.3%209.1%201.1%201.5%202.2%202.4%203.4%202.4%202%200%203.3-2.2%203.3-5.6%200-3.5-1.4-5.9-3.6-5.9-3%200-5.3%204.6-8.1%208.7-1.1%201.6-2.2%202.8-3.5%202.8-2.3%200-3.8-2.3-3.8-5.6z%22/%3E%3C/svg%3E");width:26px;height:17px}.pic.g{--pm:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M20.3%2011.2H12.4M20.3%2011.2c.1.4.1.8.1%201.2a8.4%208.4%200%201%201-2.5-6%22/%3E%3C/svg%3E");width:17px;height:17px}.pic.a{--pm:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M5%2020v-6M12%2020V9M19%2020V4%22/%3E%3C/svg%3E");width:17px;height:17px}
+.ovg{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:18px}
+.ovc{display:flex;flex-direction:column;padding:0}
+.ovh{display:flex;flex-direction:column;gap:6px;padding:22px 22px 18px;border-bottom:1px solid var(--line-2)}
+.ovh .t{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2)}
+.ovh .q{font-size:12.5px;color:var(--muted);margin-top:6px}
+.ovh .big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ovh .big .v{font-family:var(--f-display);font-weight:600;font-size:30px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.ovh .big .v small{font-size:.5em;margin-right:4px;color:var(--ink-2);font-weight:500}
+.ovs{padding:14px 22px 18px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line-2)}.ovs:last-child{border-bottom:0}
+.ovs .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass,var(--gold-ink));font-weight:600}
+.ovm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ovm>div{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:6px 0}
+.ovm .k{font-size:11.5px;color:var(--muted)}.ovm .v{font-family:var(--f-display);font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ovm .d{font-size:11px;font-weight:600}.ovm .d.good{color:var(--good)}.ovm .d.bad{color:var(--bad)}.ovm .d.flat{color:var(--muted)}
+.ovm.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ovt{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.ovt :is(th,td){height:44px;text-align:center;vertical-align:middle;border-bottom:1px solid var(--line-2);padding:0 8px;font-variant-numeric:tabular-nums}
+.ovt :is(th,td):first-child{text-align:left;width:220px;padding-left:20px}
+.ovt thead th{font-family:var(--f-display);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--surface-2)}
+.ovt tbody tr:last-child td{border-bottom:0}.ovt td .pic{margin-right:10px;vertical-align:-3px}
+.ovt td.grp{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass,var(--gold-ink));font-weight:600;background:var(--surface-2);height:32px}
+@media (max-width:980px){.ovg{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){:root[data-client="ty"] .plat button{padding:1px 6px 0;letter-spacing:.1em;font-size:9px}}
+@media (max-width:640px){.ovt :is(th,td):first-child{width:130px;padding-left:12px}.ovt{font-size:12px}}
 /* tabelas do GA4 (mesmo padrão da tabela de detalhes): dimensão travada em uma linha, métricas com largura padrão e centralizadas,
    cabeçalho e total fixos, rolagem fina */
 #mainGa .tw{overflow:auto;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--brass,var(--gold)) 45%,transparent) transparent}
@@ -538,7 +566,7 @@ td.dim{color:var(--muted)}
 #mainGa table.gev thead th{font-size:10px;letter-spacing:.12em}
 @media (max-width:640px){#mainGa table.gt{min-width:780px}#mainGa table.gt :is(th,td):first-child{width:170px;min-width:170px;max-width:170px}#mainGa table.gev :is(th,td):nth-child(4){display:none}}
 
-#mainGa .sh{flex-wrap:wrap}#mainGa .sh>div:first-child{flex:1 1 280px}#gacqv{max-width:100%}#gCmpLbl,#gInsCmp{overflow-wrap:anywhere;white-space:normal;min-width:0;max-width:100%}
+#mainGa .sh,#mainOv .sh{flex-wrap:wrap}#mainGa .sh>div:first-child,#mainOv .sh>div:first-child{flex:1 1 280px}#gacqv{max-width:100%}#gCmpLbl,#gInsCmp,#oCmpLbl{overflow-wrap:anywhere;white-space:normal;min-width:0;max-width:100%}
 @media (max-width:640px){#gacqv button{padding:6px 10px}}
 </style>
 
@@ -555,7 +583,7 @@ td.dim{color:var(--muted)}
       <div class="fld" id="fCamp"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l6 4V6L7 10H4z"/><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5M18.8 7.2a7 7 0 0 1 0 9.6"/></svg><label for="camp">Campanha</label><select id="camp"></select></div>
       <div class="fld" id="fCli" hidden><label for="cli">Imobiliária</label><select id="cli"><option value="-1">Todas</option><option value="0">SH Prime</option><option value="1">Nova SP</option><option value="2">Lopes Prime</option><option value="3">Taylor</option></select></div>
       <div class="fld" id="fGa" hidden><label for="gsite">Site</label><select id="gsite"></select></div>
-      <nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="m" aria-pressed="true">Meta Ads</button><button type="button" data-p="g" aria-pressed="false">Google Ads</button><button type="button" data-p="a" aria-pressed="false">GA4</button></nav><button class="icon-btn" id="theme" type="button" aria-label="Alternar tema claro e escuro" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="o" aria-pressed="true">Visão geral</button><button type="button" data-p="m" aria-pressed="false">Meta Ads</button><button type="button" data-p="g" aria-pressed="false">Google Ads</button><button type="button" data-p="a" aria-pressed="false">GA4</button></nav><button class="icon-btn" id="theme" type="button" aria-label="Alternar tema claro e escuro" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     </div>
   </div>
   <div class="presets" role="group" aria-label="Períodos rápidos">
@@ -693,6 +721,25 @@ td.dim{color:var(--muted)}
 
   <div class="foot"><span>Fonte: planilhas [BaseData] SH Prime, Nova São Paulo e Lopes Prime (aba Meta) e [TAYLOR] report semanal (aba [BASE] meta), somente 2026. A taxonomia é lida dos nomes de campanha, conjunto e anúncio. Custo por conversão = CPL.</span><span id="cFoot"></span></div>
 </main>
+<main id="mainOv" hidden>
+  <section id="o-big">
+    <div class="sh"><div><h2>Big numbers</h2><p class="bi">O período inteiro em um lugar: a verba somada de Meta Ads e Google Ads, os leads que as plataformas registraram e o que aconteceu no site. Cada variação compara com o mesmo intervalo do mês anterior; nos custos, queda aparece em verde.</p></div><span class="hint" id="oCmpLbl"></span></div>
+    <div class="card"><div class="tiles" id="oTiles"></div><div class="strip" id="oStrip"></div></div>
+  </section>
+  <section id="o-pla">
+    <div class="sh"><div><h2>Plataformas e site</h2><p class="bi">Cada canal com o mesmo recorte: quanto investiu, o volume que entregou, quanto custou e com que eficiência converteu. No site, as sessões e os contatos registrados pelo GA4.</p></div></div>
+    <div class="ovg" id="oCards"></div>
+  </section>
+  <section id="o-mes">
+    <div class="sh"><div><h2>Desempenho dos últimos meses</h2><p class="bi">Investimento por plataforma nas barras (eixo da esquerda) e leads somados na linha (eixo da direita). Não segue o filtro de datas.</p></div></div>
+    <div class="card pad"><div class="chart" id="oMonth"></div></div>
+  </section>
+  <section id="o-tri">
+    <div class="sh"><div><h2>Últimos três meses</h2><p class="bi">Mês a mês, lado a lado, com a variação do último mês contra o anterior. O mês corrente está incompleto (até ontem).</p></div></div>
+    <div class="card"><div class="tw"><table class="ovt" id="oTri"></table></div></div>
+  </section>
+  <div class="foot"><span>Fontes: Meta Ads e Google Ads (conectores oficiais) e Google Analytics 4 do site, somente 2026. Leads = leads da Meta + conversões do Google Ads. Contatos no site = WhatsApp, telefone e formulário registrados pelo GA4.</span><span id="oFoot"></span></div>
+</main>
 <main id="mainGa" hidden>
   <div class="galert" id="gAlert" role="alert" hidden></div>
   <div class="empty card" id="gNone" hidden>Este site não tem propriedade do GA4 conectada.</div>
@@ -749,7 +796,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="08/11/2026 12:22";
+const SNAP_AT="08/11/2026 12:31";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -1114,8 +1161,8 @@ $("#d1").addEventListener("change",e=>{const v=toIdx(e.target.value);if(!isFinit
 $("#d2").addEventListener("change",e=>{const v=toIdx(e.target.value);if(!isFinite(v))return;S.d2=v;if(S.d1>v)S.d1=v;S.preset="";syncInputs();rerender()});
 $("#camp").addEventListener("change",e=>{S.camp=+e.target.value;renderAll()});
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{applyPreset(b.dataset.p);rerender()}));
-function rerender(){if(CL==="ga")renderGa();else if(CL==="cer")renderCer();else{fillCamps();renderAll()}}
-function redraw(){if(CL==="ga"){if(GS){gMonth();gDay()}}else if(CL==="cer")cerCharts();else if(M){renderMonth();renderDay()}}
+function rerender(){if(CL==="ov")renderOv();else if(CL==="ga")renderGa();else if(CL==="cer")renderCer();else{fillCamps();renderAll()}}
+function redraw(){if(CL==="ov"){if(typeof renderOv==="function")ovMonth()}else if(CL==="ga"){if(GS){gMonth();gDay()}}else if(CL==="cer")cerCharts();else if(M){renderMonth();renderDay()}}
 document.querySelectorAll(".tbar .seg button").forEach(b=>b.addEventListener("click",()=>{S.level=b.dataset.l;document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderTable(rowsIn(S.d1,S.d2,S.camp))}));
 document.querySelectorAll("#mline button").forEach(b=>b.addEventListener("click",()=>{monthLine=b.dataset.m;document.querySelectorAll("#mline button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderMonth()}));
 $("#q").addEventListener("input",e=>{S.q=e.target.value;renderTable(rowsIn(S.d1,S.d2,S.camp))});
@@ -1661,19 +1708,82 @@ function i18n(){if(!TXD)return;const map=TXD[PLAT]||[];i18nOn=true;
   for(let n=w.nextNode();n;n=w.nextNode()){let o=ORIG.get(n);if(o===undefined){o=n.nodeValue;ORIG.set(n,o)}let v=o;for(const [a,b] of map)if(v.includes(a))v=v.split(a).join(b);if(v!==n.nodeValue)n.nodeValue=v}
   i18nOn=false}
 if(TXD){new MutationObserver(()=>{if(i18nOn||i18nQ)return;i18nQ=true;queueMicrotask(()=>{i18nQ=false;i18n()})}).observe(document.body,{childList:true,subtree:true,characterData:true})}
+/* ---------- Visão geral (página da Taylor): Meta + Google + site ---------- */
+function ovMod(){return{m:MODELS.ty&&MODELS.ty.m,g:SNAP_G?fromSnap(SNAP_G):null,s:GA4&&GAM.ty?GAM.ty.m:null}}
+function ovSum(md,a,b){const t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0,has:false};if(!md||!md.r)return derive(t);
+  for(const x of md.r){if(x[0]<a||x[0]>b)continue;t.has=true;t.inv+=x[4];t.imp+=x[5];t.lclk+=x[6];t.clk+=x[7];t.form+=x[8];t.msg+=x[9];t.leads+=x[10]}t.inv/=100;return derive(t)}
+function ovSite(md,a,b){const keep=GS;GS=md;const r=md?gTot(a,b):null;GS=keep;return r}
+const ovD=(c,p,low,f)=>{const d=dlt(c,p,low);return`<span class="d ${d.cls}">${d.txt}</span>`};
+function renderOv(){
+  const O=ovMod(),[pa,pb,plbl]=prevRange(S.d1,S.d2);
+  $("#oCmpLbl").textContent=`Comparação: ${dmyy(pa)} a ${dmyy(pb)} (${plbl})`;
+  const m=ovSum(O.m,S.d1,S.d2),mp=ovSum(O.m,pa,pb),g=ovSum(O.g,S.d1,S.d2),gp=ovSum(O.g,pa,pb),s=ovSite(O.s,S.d1,S.d2),sp=ovSite(O.s,pa,pb);
+  const T=derive({inv:m.inv+g.inv,imp:m.imp+g.imp,lclk:m.lclk+g.lclk,leads:m.leads+g.leads}),Tp=derive({inv:mp.inv+gp.inv,imp:mp.imp+gp.imp,lclk:mp.lclk+gp.lclk,leads:mp.leads+gp.leads});
+  const sv=s||{ses:null,ct:null,ctR:null},spv=sp||{};
+  const tiles=[["Investimento",'<small>R$</small>'+nf2.format(T.inv),dlt(T.inv,Tp.inv),brl(Tp.inv),true,1],["Sessões no site",int(sv.ses),dlt(sv.ses,spv.ses),int(spv.ses)],["Cliques",int(T.lclk),dlt(T.lclk,Tp.lclk),int(Tp.lclk)],
+    ["Leads",int(T.leads),dlt(T.leads,Tp.leads),int(Tp.leads),true],["Custo por lead",T.cpl==null?"–":'<small>R$</small>'+nf2.format(T.cpl),dlt(T.cpl,Tp.cpl,true),brl(Tp.cpl)],["Contatos no site",int(sv.ct),dlt(sv.ct,spv.ct),int(spv.ct)]];
+  $("#oTiles").innerHTML=tiles.map(([k,v,d,pv,hero,neu])=>`<div class="tile${hero?" hero":""}"><div class="k">${k}</div><div class="v">${v}</div><span class="delta ${neu&&d.cls!=="flat"?"flat":d.cls}">${d.ar}${d.txt}</span><div class="prev">anterior ${pv}</div></div>`).join("");
+  const sh=T.inv?m.inv/T.inv:null,Sx=[["Impressões",int(T.imp),dlt(T.imp,Tp.imp)],["CPM",brl(T.cpm),dlt(T.cpm,Tp.cpm,true)],["CPC",brl(T.cpc),dlt(T.cpc,Tp.cpc,true)],["Verba Meta · Google",sh==null?"–":`${pc0(sh)} · ${pc0(1-sh)}`,{cls:"flat",txt:""}]];
+  $("#oStrip").innerHTML=Sx.map(([k,v,d])=>`<div><span class="k">${k}</span><span class="v">${v}<span class="d ${d.cls}">${d.txt}</span></span></div>`).join("");
+  const mc=(k,v,d)=>`<div><span class="k">${k}</span><span class="v">${v}</span>${d}</div>`;
+  const plat=(ic,nm,q,c,p)=>`<div class="card ovc"><div class="ovh"><span class="t"><i class="pic ${ic}"></i>${nm}</span><span class="q">${q}</span><div class="big"><span class="v num"><small>R$</small>${nf2.format(c.inv)}</span>${ovD(c.inv,p.inv)}</div></div>
+    <div class="ovs"><span class="lbl">Volume</span><div class="ovm">${mc("Impressões",int(c.imp),ovD(c.imp,p.imp))}${mc("Cliques",int(c.lclk),ovD(c.lclk,p.lclk))}${mc("Leads",int(c.leads),ovD(c.leads,p.leads))}</div></div>
+    <div class="ovs"><span class="lbl">Custo</span><div class="ovm">${mc("CPM",brl(c.cpm),ovD(c.cpm,p.cpm,true))}${mc("CPC",brl(c.cpc),ovD(c.cpc,p.cpc,true))}${mc("CPL",brl(c.cpl),ovD(c.cpl,p.cpl,true))}</div></div>
+    <div class="ovs"><span class="lbl">Taxas</span><div class="ovm two">${mc("CTR",pct(c.ctr),ovD(c.ctr,p.ctr))}${mc("Tx. conv.",pct(c.conv),ovD(c.conv,p.conv))}</div></div></div>`;
+  let h="";
+  if(O.m)h+=plat("m","Meta Ads","Na Meta, o investimento foi de",m,mp);
+  if(O.g)h+=plat("g","Google Ads","No Google, o investimento foi de",g,gp);
+  if(s)h+=`<div class="card ovc"><div class="ovh"><span class="t"><i class="pic a"></i>Site · GA4</span><span class="q">No site, as sessões foram</span><div class="big"><span class="v num">${int(s.ses)}</span>${ovD(s.ses,sp.ses)}</div></div>
+    <div class="ovs"><span class="lbl">Volume</span><div class="ovm">${mc("Novos usuários",int(s.new),ovD(s.new,sp.new))}${mc("Engajadas",int(s.eng),ovD(s.eng,sp.eng))}${mc("Contatos",int(s.ct),ovD(s.ct,sp.ct))}</div></div>
+    <div class="ovs"><span class="lbl">Qualidade</span><div class="ovm">${mc("Engajamento",pct(s.engR,1),ovD(s.engR,sp.engR))}${mc("Tempo médio",secs(s.tmed),ovD(s.tmed,sp.tmed))}${mc("Páginas/sessão",s.pps==null?"–":nf1.format(s.pps),ovD(s.pps,sp.pps))}</div></div>
+    <div class="ovs"><span class="lbl">Taxas</span><div class="ovm two">${mc("Taxa de contato",pct(s.ctR),ovD(s.ctR,sp.ctR))}${mc("Engajada → contato",pct(s.e2c),ovD(s.e2c,sp.e2c))}</div></div></div>`;
+  $("#oCards").innerHTML=h;$("#oCards").style.setProperty("--n",[O.m,O.g,s].filter(Boolean).length);
+  ovMonth();ovTri();
+  const last=[O.m,O.g].filter(Boolean).map(md=>Math.max(...md.r.map(x=>x[0])));
+  $("#oFoot").textContent=`Dados até ${dmyy(Math.min(...last,O.s?O.s.last:Infinity))} · atualizado em ${SNAP_AT}`;
+}
+function ovMonths(){const O=ovMod(),mk=i=>{const d=dObj(i);return d.getUTCFullYear()*12+d.getUTCMonth()},M=new Map(),g=k=>{let t=M.get(k);if(!t){t={mi:0,gi:0,ml:0,gl:0,ses:0,ct:0,s:false};M.set(k,t)}return t};
+  if(O.m)for(const x of O.m.r){const t=g(mk(x[0]));t.mi+=x[4]/100;t.ml+=x[10]}
+  if(O.g)for(const x of O.g.r){const t=g(mk(x[0]));t.gi+=x[4]/100;t.gl+=x[10]}
+  if(O.s){for(const x of O.s.s){const t=g(mk(x[0]));t.ses+=x[5];t.s=true}for(const x of O.s.c)g(mk(x[0])).ct+=x[x.length-1]}
+  const ks=[...M.keys()].filter(k=>{const t=M.get(k);return t.mi||t.gi}).sort((a,b)=>a-b);return{ks,rows:ks.map(k=>M.get(k)),all:M}}
+function ovMonth(){const {ks,rows}=ovMonths(),el=$("#oMonth");if(!ks.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
+  const lab=ks.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2)),O=ovMod(),bars=[];
+  if(O.m)bars.push({name:"Meta Ads",values:rows.map(r=>r.mi),color:col("--gold"),tick:v=>"R$ "+short(v),fmt:brl});
+  if(O.g)bars.push({name:"Google Ads",values:rows.map(r=>r.gi),color:col("--brass-2")||col("--gold-soft"),tick:v=>"R$ "+short(v),fmt:brl});
+  combo(el,{labels:lab,bars,line:{name:"Leads",values:rows.map(r=>r.ml+r.gl),color:col("--s2"),tick:short,fmt:int},aria:"Investimento por plataforma e leads por mês",
+    tipExtra:i=>{const r=rows[i],inv=r.mi+r.gi,l=r.ml+r.gl;return`<div class="r"><span>Custo por lead</span><span>${brl(div(inv,l))}</span></div>`+(r.s?`<div class="r"><span>Sessões no site</span><span>${int(r.ses)}</span></div>`:"")}});
+}
+function ovTri(){const {ks,all}=ovMonths(),O=ovMod(),k3=ks.slice(-3);if(!k3.length){$("#oTri").innerHTML="";return}
+  const R=k3.map(k=>all.get(k)),lab=k3.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2));
+  const row=(n,f,vals,low)=>{const a=vals[vals.length-1],b=vals[vals.length-2];const d=vals.length>1?dlt(a,b,low):{cls:"flat",txt:"–",ar:""};return`<tr><td>${n}</td>${vals.map(v=>`<td>${f(v)}</td>`).join("")}<td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td></tr>`};
+  const grp=(n,ic)=>`<tr><td class="grp" colspan="${k3.length+2}">${ic?`<i class="pic ${ic}"></i>`:""}${n}</td></tr>`;
+  let h=`<thead><tr><th>Indicador</th>${lab.map(l=>`<th>${l}</th>`).join("")}<th>${dObj(yesterday).getUTCFullYear()*12+dObj(yesterday).getUTCMonth()===k3[k3.length-1]&&dObj(yesterday+1).getUTCDate()!==1?"Últ. × ant. · parcial":"Últ. × ant."}</th></tr></thead><tbody>`;
+  h+=grp("Total das plataformas")+row("Investimento",brl,R.map(r=>r.mi+r.gi))+row("Leads",int,R.map(r=>r.ml+r.gl))+row("Custo por lead",brl,R.map(r=>div(r.mi+r.gi,r.ml+r.gl)),true);
+  if(O.m)h+=grp("Meta Ads","m")+row("Investimento",brl,R.map(r=>r.mi))+row("Leads",int,R.map(r=>r.ml))+row("Custo por lead",brl,R.map(r=>div(r.mi,r.ml)),true);
+  if(O.g)h+=grp("Google Ads","g")+row("Investimento",brl,R.map(r=>r.gi))+row("Leads",int,R.map(r=>r.gl))+row("Custo por lead",brl,R.map(r=>div(r.gi,r.gl)),true);
+  if(O.s)h+=grp("Site · GA4","a")+row("Sessões",int,R.map(r=>r.ses))+row("Contatos",int,R.map(r=>r.ct))+row("Taxa de contato",v=>pct(v),R.map(r=>div(r.ct,r.ses)));
+  $("#oTri").innerHTML=h+"</tbody>";
+}
+function showOv(){CL="ov";document.documentElement.dataset.client="ty";$("#brandMark").innerHTML=CLIENTS.ty.mark;
+  $("#mainClient").hidden=true;$("#mainCer").hidden=true;$("#mainGa").hidden=true;$("#mainOv").hidden=false;$("#fCamp").hidden=true;$("#fCli").hidden=true;$("#fGa").hidden=true;
+  $("#hTitle").textContent="Visão geral";$("#hSub").textContent="Meta Ads, Google Ads e site no mesmo período";
+  if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderOv();st("snap","Atualizado em "+SNAP_AT)}
 function setPlat(p){
-  if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mga]$/.test(p))p="m";PLAT=p;
+  if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mgao]$/.test(p))p="m";PLAT=p;
   if(p!=="m")document.documentElement.dataset.plat=p;else delete document.documentElement.dataset.plat;
   document.querySelectorAll(".plat button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===p)));
   try{localStorage.setItem("cimob-plat",p)}catch(e){}
-  document.title=document.title.replace(/Meta Ads|Google Ads|Google Analytics 4/,p==="g"?"Google Ads":p==="a"?"Google Analytics 4":"Meta Ads");
+  document.title=document.title.replace(/Meta Ads|Google Ads|Google Analytics 4|Visão geral/,p==="g"?"Google Ads":p==="a"?"Google Analytics 4":p==="o"?"Visão geral":"Meta Ads");
+  $("#mainOv").hidden=p!=="o";
+  if(p==="o"){showOv();i18n();return}
   if(p==="a"){S3.site=Object.keys(GA4.cfg)[0];showClient("ga",false);i18n();return}
-  if(CL==="ga")showClient(Object.keys(GA4.cfg)[0],false);
+  if(CL==="ga"||CL==="ov")showClient("ty",false);
   S.camp=-1;S.q="";$("#q").value="";if(S.level==="k"&&p!=="g"){S.level="c";document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.l==="c")))}
   setModel(p==="g"?fromSnap(SNAP_G):MODELS[CL].m,"atualizado em",SNAP_AT);
   i18n()}
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.p!==PLAT)setPlat(b.dataset.p)}));
-if(document.querySelector(".plat")){let sp="m";try{sp=localStorage.getItem("cimob-plat")||"m"}catch(e){}setPlat(sp)}else i18n();
+if(document.querySelector(".plat")){let sp=document.querySelector('.plat button[data-p="o"]')?"o":"m";try{sp=localStorage.getItem("cimob-plat")||sp}catch(e){}setPlat(sp)}else i18n();
 (async()=>{let m=null;try{m=await window.claude?.use?.("mcp")}catch(e){}if(!m)return;mcpNS=m;watchLive()})();
 </script>
 </body></html>
