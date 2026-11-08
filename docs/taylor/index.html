@@ -212,6 +212,18 @@
 :root[data-client="ty"] #tbl :is(th,td):nth-child(13){width:92px;min-width:92px}
 @media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat button{flex:1;justify-content:center}}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
+/* Taylor · cabeçalho com abas de plataforma (08/11): marca em uma linha, plataformas como abas sublinhadas, status à direita, períodos com a largura toda */
+@media (min-width:761px){
+  :root[data-client="ty"] .top{grid-template-areas:"brand brand brand theme" "rule rule rule rule" "plat plat status status" "dates camp camp camp" "chips chips chips chips"}
+  :root[data-client="ty"] .top:has(.plat){}
+  :root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .brand-txt p{white-space:nowrap}
+  :root[data-client="ty"] .plat{justify-self:start;align-self:end;margin:-8px 0 22px;border:0;border-radius:0;padding:0;height:auto;gap:34px}
+  :root[data-client="ty"] .plat button{position:relative;padding:8px 0 12px;font-size:11.5px;letter-spacing:.2em;background:transparent!important;border-radius:0}
+  :root[data-client="ty"] .plat button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#B5AC77;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+  :root[data-client="ty"] .plat button[aria-pressed=true]::after{transform:scaleX(1)}
+  :root[data-client="ty"] .top:has(.plat) .status{align-self:center;justify-self:end;margin:-8px 0 22px;padding:0;border-top:0}
+  :root[data-client="ty"] .top:not(:has(.plat)) .status{grid-area:chips;justify-self:end;align-self:center;margin-top:20px;border-top:0}
+}
 @media (max-width:760px){
   :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "plat plat" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
   :root[data-client="ty"] #fCamp,:root[data-client="ty"] #fCli{margin-top:10px}
@@ -796,7 +808,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="08/11/2026 12:35";
+const SNAP_AT="08/11/2026 12:37";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
