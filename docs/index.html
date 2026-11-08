@@ -482,15 +482,28 @@ td.dim{color:var(--muted)}
 #gPag tr.subr td{background:var(--surface-2);font-size:12.5px;padding-block:7px}
 .etag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.03em;padding:1px 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);margin-left:4px;white-space:nowrap}
 .etag.k{color:var(--gold-ink);border-color:var(--gold)}
-#mainGa .mini{grid-template-columns:1fr 1fr}
 #mainGa .gfl{display:flex;flex-direction:column;gap:22px}
-.gutm{border-top:1px solid var(--line-2);padding-top:20px;display:flex;flex-direction:column;gap:14px}
-.gutm h3{font-family:var(--f-display);font-weight:600;font-size:15px;margin:0}
-.gutm .bi code{font-size:11.5px;color:var(--ink-2)}.ub code{font-size:11px;letter-spacing:.04em;color:var(--ink-2);background:none;padding:0}
-.ubig{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.ubig .v{font-family:var(--f-display);font-weight:600;font-size:24px}.ubig .s{font-size:12px;color:var(--muted)}
-.ubars{display:grid;gap:8px}.ub{display:grid;grid-template-columns:120px 1fr 44px;align-items:center;gap:10px;font-size:12.5px}.ub b{text-align:right;font-variant-numeric:tabular-nums}
-.ut{height:3px;border-radius:2px;background:var(--line-2);overflow:hidden}.ut i{display:block;height:100%;background:var(--brass,var(--gold))}
-.utop{display:flex;flex-direction:column}.ur{display:grid;grid-template-columns:minmax(0,1fr) 64px 64px;gap:12px;font-size:12.5px;align-items:center;height:34px;border-bottom:1px solid var(--line-2)}.ur>span{text-align:center}.ur>span:first-child{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ur.h{height:28px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.gmeta{border-top:1px solid var(--line-2);padding-top:20px;display:flex;flex-direction:column;gap:14px}
+#mainGa h3{font-family:var(--f-display);font-weight:600;font-size:15px;margin:0}
+.gms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line-2);border-radius:var(--r,10px)}
+.gms>div{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border-left:1px solid var(--line-2)}.gms>div:first-child{border-left:0}
+.gms .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.gms .v{font-family:var(--f-display);font-weight:600;font-size:20px}.gms .s{font-size:11.5px;color:var(--muted);line-height:1.35}
+.glist{display:flex;flex-direction:column}
+.gl{display:grid;grid-template-columns:minmax(0,1fr) 56px 64px 64px;align-items:center;gap:10px;height:38px;border-bottom:1px solid var(--line-2);font-size:13px}
+.gl:last-child{border-bottom:0}.gl .n{display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.gl .n i{width:8px;height:8px;border-radius:2px;flex:none}.gl .v{text-align:center;font-weight:600}.gl .s,.gl .d{text-align:center;font-size:12px;color:var(--muted)}
+.gl .d.good{color:var(--good)}.gl .d.bad{color:var(--bad)}
+.gl.gb{grid-template-columns:150px minmax(0,1fr) 40px 56px}
+.bt{height:3px;border-radius:2px;background:var(--line-2);overflow:hidden}.bt i{display:block;height:100%;background:var(--brass,var(--gold))}
+.ustrip{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(4,minmax(0,1fr));align-items:center;gap:0;border-bottom:1px solid var(--line-2)}
+.ustrip>div{padding:12px 16px;border-left:1px solid var(--line-2);display:flex;flex-direction:column;gap:5px}.ustrip>div:first-child{border-left:0}
+.ustrip .uh{flex-direction:row;align-items:baseline;gap:10px;flex-wrap:wrap}.ustrip .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ustrip .uh .v{font-family:var(--f-display);font-weight:600;font-size:18px}.ustrip .s{font-size:11.5px;color:var(--muted)}
+.ustrip .ui{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:8px;row-gap:6px}.ustrip .ui .k{text-transform:none;letter-spacing:.02em;font-family:ui-monospace,monospace;font-size:11px}
+.ustrip .ui .ut{grid-column:1/-1;grid-row:2;height:3px;border-radius:2px;background:var(--line-2);overflow:hidden}.ustrip .ui .ut i{display:block;height:100%;background:var(--brass,var(--gold))}
+.ustrip .ui .v{font-size:12px;font-weight:600}
+@media (max-width:760px){.gms{grid-template-columns:1fr 1fr}.gms>div:nth-child(3){border-left:0}.gms>div:nth-child(n+3){border-top:1px solid var(--line-2)}.ustrip{grid-template-columns:1fr 1fr}.ustrip .uh{grid-column:1/-1}.ustrip>div:nth-child(2),.ustrip>div:nth-child(4){border-left:0}.ustrip>div{border-top:1px solid var(--line-2)}.gl.gb{grid-template-columns:120px minmax(0,1fr) 34px 52px}}
 /* tabelas do GA4 (mesmo padrão da tabela de detalhes): dimensão travada em uma linha, métricas com largura padrão e centralizadas,
    cabeçalho e total fixos, rolagem fina */
 #mainGa .tw{overflow:auto;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--brass,var(--gold)) 45%,transparent) transparent}
@@ -705,9 +718,9 @@ td.dim{color:var(--muted)}
   </section>
 
   <section id="g-fun">
-    <div class="sh"><div><h2>Funil do site</h2><p class="bi">Quantas sessões engajaram (mais de 10 segundos, 2 páginas ou uma conversão) e quantas viraram contato. Ao lado, o tipo de contato e o caminho do anúncio da Meta até o site.</p></div></div>
+    <div class="sh"><div><h2>Funil do site</h2><p class="bi">Quantas sessões engajaram (mais de 10 segundos, 2 páginas ou uma conversão) e quantas viraram contato. Embaixo, o caminho do anúncio da Meta até o site; ao lado, o tipo e a origem dos contatos.</p></div></div>
     <div class="fgrid">
-      <div class="card pad gfl"><div class="funnel" id="gFun"></div><div class="gutm" id="gUtm"></div></div>
+      <div class="card pad gfl"><div class="funnel" id="gFun"></div><div class="gmeta" id="gMeta"></div></div>
       <div class="card pad fside" id="gSide"></div>
     </div>
   </section>
@@ -725,7 +738,7 @@ td.dim{color:var(--muted)}
   <section id="g-acq">
     <div class="sh"><div><h2>De onde vêm as visitas</h2><p class="bi">Sessões e contatos por origem. A <b>origem consolidada</b> é a leitura da CreativeImob: junta origem, mídia e campanha para separar anúncio da Meta, perfis da Meta, Google Ads, busca orgânica e direto, mesmo quando a UTM vem fora do padrão. Clique no nome de uma coluna para ordenar.</p></div>
       <div class="seg wrapseg" role="group" aria-label="Leitura da origem" id="gacqv"><button type="button" data-a="oc" aria-pressed="true">Consolidada</button><button type="button" data-a="ch" aria-pressed="false">Canal GA4</button><button type="button" data-a="sm" aria-pressed="false">Origem / mídia</button><button type="button" data-a="cp" aria-pressed="false">Campanha</button><button type="button" data-a="ac" aria-pressed="false">Conteúdo</button><button type="button" data-a="dv" aria-pressed="false">Dispositivo</button></div></div>
-    <div class="card"><div class="tw"><table class="mon gt" id="gAcq"><thead></thead><tbody></tbody><tfoot></tfoot></table></div></div>
+    <div class="card"><div class="ustrip" id="gUtm"></div><div class="tw"><table class="mon gt" id="gAcq"><thead></thead><tbody></tbody><tfoot></tfoot></table></div></div>
   </section>
 
   <section id="g-pag">
@@ -743,7 +756,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="08/11/2026 12:18";
+const SNAP_AT="08/11/2026 12:22";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -1459,14 +1472,17 @@ function gFunnel(c,p){
     `<div class="fconv" style="padding-top:12px">Taxa de contato (contato ÷ sessão) <b>${pct(c.ctR)}</b></div>`;
   const ks=["f","w","t","p"].filter(k=>c.tp[k]||p.tp[k]),tot=c.ct;
   const mt=metaIn(S.d1,S.d2),mg=gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c).get("Meta Ads (anúncios)")||gz(),mo=gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c).get("Meta orgânico (perfis e links)")||gz();
-  $("#gSide").innerHTML=`<div><h3>Tipo de contato</h3><p class="bi">Cliques e envios que o site registra como contato: formulário, WhatsApp, telefone e captação de imóvel.</p></div>
+  const oc=[...gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c).entries()].map(([n,x])=>({n,...x})).filter(x=>x.ct).sort((a,b)=>b.ct-a.ct).slice(0,5),omx=Math.max(1,...oc.map(x=>x.ct));
+  $("#gSide").innerHTML=`<div><h3>Tipo de contato</h3><p class="bi">Como o visitante falou com a Taylor no período.</p></div>
    <div class="split" role="img" aria-label="${ks.map(k=>CTN[k]+" "+c.tp[k]).join(", ")}">${tot?ks.map(k=>`<i style="width:${c.tp[k]/tot*100}%;background:${CTC[k]}"></i>`).join(""):'<i style="width:100%;background:var(--line)"></i>'}</div>
-   <div class="lgd">${ks.map(k=>{const d=dlt(c.tp[k],p.tp[k]);return`<div><span class="k"><i style="background:${CTC[k]}"></i>${CTN[k]}</span><span class="v num">${int(c.tp[k])}</span><span class="s">${tot?pct(c.tp[k]/tot,1):"–"} · <span class="d ${d.cls}">${d.txt}</span></span></div>`}).join("")||'<div class="hint">Nenhum contato no período.</div>'}</div>
-   <div><h3>Do anúncio da Meta ao site</h3><p class="bi">Cliques no link pagos na Meta contra as sessões que o GA4 reconhece como anúncio da Meta.</p></div>
-   <div class="mini"><div><div class="k">Cliques no link (Meta)</div><div class="v num">${mt?int(mt.lclk):"–"}</div><div class="s">${mt?brl(mt.inv)+" investidos":"sem dados da Meta"}</div></div>
-   <div><div class="k">Sessões de anúncio Meta</div><div class="v num">${int(mg.ses)}</div><div class="s">${mt&&mt.lclk?pc0(mg.ses/mt.lclk)+" dos cliques · ":""}+ ${int(mo.ses)} de perfis</div></div>
-   <div><div class="k">Contatos dessas sessões</div><div class="v num">${int(mg.ct)}</div><div class="s">${mg.ses?pct(mg.ct/mg.ses)+" das sessões":"–"}</div></div>
-   <div><div class="k">Custo por contato no site</div><div class="v num">${mt&&mg.ct?brl(mt.inv/mg.ct):"–"}</div><div class="s">${mt?int(mt.leads)+" leads na própria Meta":"–"}</div></div></div>`;
+   <div class="glist">${ks.map(k=>{const d=dlt(c.tp[k],p.tp[k]);return`<div class="gl"><span class="n"><i style="background:${CTC[k]}"></i>${CTN[k]}</span><span class="v num">${int(c.tp[k])}</span><span class="s">${tot?pct(c.tp[k]/tot,1):"–"}</span><span class="d ${d.cls}">${d.txt}</span></div>`}).join("")||'<div class="hint">Nenhum contato no período.</div>'}</div>
+   <div><h3>De onde vêm os contatos</h3><p class="bi">Origem consolidada das sessões que viraram contato, com a taxa de contato de cada uma.</p></div>
+   <div class="glist">${oc.map(x=>`<div class="gl gb"><span class="n">${esc(x.n)}</span><span class="bt"><i style="width:${x.ct/omx*100}%"></i></span><span class="v num">${int(x.ct)}</span><span class="s">${pct(x.ctR)}</span></div>`).join("")||'<div class="hint">Nenhum contato no período.</div>'}</div>`;
+  $("#gMeta").innerHTML=`<div class="gmh"><h3>Do anúncio da Meta ao site</h3><p class="bi">Cliques no link pagos na Meta contra as sessões que o GA4 reconhece como anúncio da Meta.</p></div>
+   <div class="gms"><div><span class="k">Cliques Meta</span><span class="v num">${mt?int(mt.lclk):"–"}</span><span class="s">${mt?brl(mt.inv)+" investidos":"sem dados da Meta"}</span></div>
+   <div><span class="k">Sessões Meta</span><span class="v num">${int(mg.ses)}</span><span class="s">${mt&&mt.lclk?pc0(mg.ses/mt.lclk)+" dos cliques":"–"} · ${int(mo.ses)} de perfis</span></div>
+   <div><span class="k">Contatos</span><span class="v num">${int(mg.ct)}</span><span class="s">${mg.ses?pct(mg.ct/mg.ses)+" das sessões":"–"}</span></div>
+   <div><span class="k">Custo/contato</span><span class="v num">${mt&&mg.ct?brl(mt.inv/mg.ct):"–"}</span><span class="s">${mt?int(mt.leads)+" leads na própria Meta":"–"}</span></div></div>`;
 }
 /* links parametrizados: utm_source, utm_medium, utm_campaign, utm_content */
 const SYSV=/^\((direct|not set|none|organic|referral|cross-network|ai-assistant|data not available)\)$|^$/;
@@ -1478,10 +1494,8 @@ function gUtm(c){
   for(const x of GS.c){if(x[0]<S.d1||x[0]>S.d2)continue;const ac=GS.ac[x[7]];if(!SYSV.test(ac))ct.set(ac,(ct.get(ac)||0)+x[8])}
   const P=[["utm_source","so"],["utm_medium","me"],["utm_campaign","cp"],["utm_content","ac"]];
   const top=[...cs.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5);
-  $("#gUtm").innerHTML=`<div><h3>Links parametrizados (UTM)</h3><p class="bi">Sessões que chegaram por link com <code>utm_campaign</code> e quanto delas traz os outros parâmetros. Sem UTM, o GA4 não liga a visita ao anúncio.</p></div>
-   <div class="ubig"><span class="v num">${int(o.ses)}</span><span class="s">sessões com UTM · ${pct(div(o.ses,c.ses),1)} do site · ${pc0(div(o.all,o.ses))} com os quatro parâmetros</span></div>
-   <div class="ubars">${P.map(([n,k])=>{const r=div(o[k],o.ses);return`<div class="ub"><code>${n}</code><span class="ut"><i style="width:${(r||0)*100}%"></i></span><b>${o.ses?pc0(r):"–"}</b></div>`}).join("")}</div>
-   <div class="utop"><div class="ur h"><span>Conteúdos (utm_content) que mais trouxeram visitas</span><span>Sessões</span><span>Contatos</span></div>${top.length?top.map(([n,s])=>`<div class="ur"><span title="${esc(n)}">${esc(n)}</span><span class="num">${int(s)}</span><span class="num">${int(ct.get(n)||0)}</span></div>`).join(""):'<div class="hint">Nenhuma sessão com utm_content no período.</div>'}</div>`;
+  $("#gUtm").innerHTML=`<div class="uh"><span class="k">Links com UTM</span><span class="v num">${int(o.ses)}</span><span class="s">sessões · ${pct(div(o.ses,c.ses),1)} do site · ${pc0(div(o.all,o.ses))} com os 4 parâmetros</span></div>
+   ${P.map(([n,k])=>{const r=div(o[k],o.ses);return`<div class="ui"><span class="k">${n}</span><span class="ut"><i style="width:${(r||0)*100}%"></i></span><span class="v num">${o.ses?pc0(r):"–"}</span></div>`}).join("")}`;
 }
 function gMonth(){
   const {keys,rows}=gMonthly(),el=$("#gMonth");if(!keys.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
