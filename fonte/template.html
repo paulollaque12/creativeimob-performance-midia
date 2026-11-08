@@ -208,6 +208,7 @@
 :root[data-client="ty"] .plat button:hover{color:#F4F1E8}
 :root[data-client="ty"] .plat button[aria-pressed=true]{background:rgba(181,172,119,.2);color:#F4F1E8}
 :root[data-plat="g"][data-client="ty"] .brand-txt h1::after{width:18px;height:18px;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M20.3%2011.2H12.4M20.3%2011.2c.1.4.1.8.1%201.2a8.4%208.4%200%201%201-2.5-6%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M20.3%2011.2H12.4M20.3%2011.2c.1.4.1.8.1%201.2a8.4%208.4%200%201%201-2.5-6%22/%3E%3C/svg%3E") center/contain no-repeat}
+:root[data-plat="a"][data-client="ty"] .brand-txt h1::after{width:18px;height:18px;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M5%2020v-6M12%2020V9M19%2020V4%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M5%2020v-6M12%2020V9M19%2020V4%22/%3E%3C/svg%3E") center/contain no-repeat}
 :root[data-client="ty"] #tbl :is(th,td):nth-child(13){width:92px;min-width:92px}
 @media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat button{flex:1;justify-content:center}}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
@@ -473,6 +474,20 @@ td.dim{color:var(--muted)}
 @media (max-width:900px){.fgrid,.kgrid,.igrid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.page{padding-inline:14px;padding-block:22px 40px}.top{padding-inline:16px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{border-left:1px solid var(--line-2)!important;border-top:1px solid var(--line-2)}.tile:nth-child(odd){border-left:0!important}.tile:nth-child(-n+2){border-top:0}.brand-txt{display:none}.fld input[type=date]{width:110px}.status{margin-left:0}.pad{padding:16px}.fs2{width:84%}.fs3{width:66%}}
 @media (prefers-reduced-motion:reduce){.tip{transition:none}}
+.galert{border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);background:color-mix(in srgb,var(--bad) 9%,var(--surface));color:var(--ink);border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.5;margin-bottom:22px}
+.galert b{color:var(--bad)}
+#gPag .exp{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-weight:600;font-size:14px;line-height:1;cursor:pointer;vertical-align:1px}
+#gPag .exp:hover{border-color:var(--gold);color:var(--gold-ink)}
+#gPag tr.open .exp{background:var(--gold);border-color:var(--gold);color:var(--on-acc)}
+#gPag tr.subr td{background:var(--surface-2);font-size:12.5px;padding-block:7px}
+#gPag tr.subr td:first-child{padding-left:41px}
+table.gt .shr .bar{background:var(--gold);opacity:.8}
+table.gev th:first-child,table.gev td:first-child{min-width:200px}
+.etag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.03em;padding:1px 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);margin-left:4px;white-space:nowrap}
+.etag.k{color:var(--gold-ink);border-color:var(--gold)}
+#mainGa .mini{grid-template-columns:1fr 1fr}
+#mainGa .sh{flex-wrap:wrap}#mainGa .sh>div:first-child{flex:1 1 280px}#gacqv{max-width:100%}#gCmpLbl,#gInsCmp{overflow-wrap:anywhere;white-space:normal;min-width:0;max-width:100%}
+@media (max-width:640px){#gacqv button{padding:6px 10px}}
 </style>
 
 <div class="page">
@@ -494,6 +509,7 @@ td.dim{color:var(--muted)}
       <div class="fld fdate"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><label for="d1">De</label><input type="date" id="d1"><span class="sep">–</span><label for="d2">Até</label><input type="date" id="d2"></div>
       <div class="fld" id="fCamp"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l6 4V6L7 10H4z"/><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5M18.8 7.2a7 7 0 0 1 0 9.6"/></svg><label for="camp">Campanha</label><select id="camp"></select></div>
       <div class="fld" id="fCli" hidden><label for="cli">Imobiliária</label><select id="cli"><option value="-1">Todas</option><option value="0">SH Prime</option><option value="1">Nova SP</option><option value="2">Lopes Prime</option><option value="3">Taylor</option></select></div>
+      <div class="fld" id="fGa" hidden><label for="gsite">Site</label><select id="gsite"></select></div>
       <button class="icon-btn" id="theme" type="button" aria-label="Alternar tema claro e escuro" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     </div>
   </div>
@@ -631,6 +647,59 @@ td.dim{color:var(--muted)}
   </section>
 
   <div class="foot"><span>Fonte: planilhas [BaseData] SH Prime, Nova São Paulo e Lopes Prime (aba Meta) e [TAYLOR] report semanal (aba [BASE] meta), somente 2026. A taxonomia é lida dos nomes de campanha, conjunto e anúncio. Custo por conversão = CPL.</span><span id="cFoot"></span></div>
+</main>
+<main id="mainGa" hidden>
+  <div class="galert" id="gAlert" role="alert" hidden></div>
+  <div class="empty card" id="gNone" hidden>Este site não tem propriedade do GA4 conectada.</div>
+  <section id="g-ins">
+    <div class="sh"><div><h2>Leituras do site</h2><p class="bi">O que melhorou e o que pede atenção no site no período: tráfego, contatos, origens, páginas de entrada e saúde da coleta. Recalculado a cada mudança de data ou de site.</p></div><span class="hint" id="gInsNote"></span></div>
+    <div class="igrid">
+      <div class="card pad icol"><div class="ihd w"><span class="dotw"></span><h3>Wins</h3><span class="hint">o que melhorou</span></div><ul id="gInsW"></ul></div>
+      <div class="card pad icol"><div class="ihd l"><span class="dotl"></span><h3>Lows</h3><span class="hint">o que pede atenção</span></div><ul id="gInsL"></ul></div>
+    </div>
+    <p class="hint cmpl" id="gInsCmp"></p>
+  </section>
+
+  <section id="g-res">
+    <div class="sh"><div><h2>Resumo do site</h2><p class="bi">Visitas, engajamento e contatos registrados pelo Google Analytics 4. Contato = clique no WhatsApp ou telefone e envio de formulário do site. As variações comparam com o mesmo intervalo do mês anterior.</p></div><span class="hint" id="gCmpLbl"></span></div>
+    <div class="card"><div class="tiles" id="gTiles"></div><div class="strip" id="gStrip"></div></div>
+  </section>
+
+  <section id="g-fun">
+    <div class="sh"><div><h2>Funil do site</h2><p class="bi">Quantas sessões engajaram (mais de 10 segundos, 2 páginas ou uma conversão) e quantas viraram contato. Ao lado, o tipo de contato e o caminho do anúncio da Meta até o site.</p></div></div>
+    <div class="fgrid">
+      <div class="card pad"><div class="funnel" id="gFun"></div></div>
+      <div class="card pad fside" id="gSide"></div>
+    </div>
+  </section>
+
+  <section id="g-mes">
+    <div class="sh"><div><h2>Evolução mensal</h2><p class="bi">Todos os meses de 2026: as barras mostram as sessões (eixo da esquerda) e a linha, o indicador escolhido (eixo da direita). Não segue o filtro de datas.</p></div><div class="seg" role="group" aria-label="Linha do gráfico mensal" id="gmline"><button type="button" data-m="ct" aria-pressed="true">Contatos</button><button type="button" data-m="ctr" aria-pressed="false">Taxa de contato</button><button type="button" data-m="eng" aria-pressed="false">Engajamento</button></div></div>
+    <div class="card pad"><div class="chart" id="gMonth"></div></div>
+  </section>
+
+  <section id="g-dia">
+    <div class="sh"><div><h2>Evolução diária</h2><p class="bi">Sessões por dia em barras (eixo da esquerda) e contatos na linha (eixo da direita). Dias sem coleta do GA4 ficam vazios.</p></div></div>
+    <div class="card pad"><div class="chart" id="gDay"></div></div>
+  </section>
+
+  <section id="g-acq">
+    <div class="sh"><div><h2>De onde vêm as visitas</h2><p class="bi">Sessões e contatos por origem. A <b>origem consolidada</b> é a leitura da CreativeImob: junta origem, mídia e campanha para separar anúncio da Meta, perfis da Meta, Google Ads, busca orgânica e direto, mesmo quando a UTM vem fora do padrão. Clique no nome de uma coluna para ordenar.</p></div>
+      <div class="seg wrapseg" role="group" aria-label="Leitura da origem" id="gacqv"><button type="button" data-a="oc" aria-pressed="true">Consolidada</button><button type="button" data-a="ch" aria-pressed="false">Canal GA4</button><button type="button" data-a="sm" aria-pressed="false">Origem / mídia</button><button type="button" data-a="cp" aria-pressed="false">Campanha</button><button type="button" data-a="dv" aria-pressed="false">Dispositivo</button></div></div>
+    <div class="card"><div class="tw"><table class="mon gt" id="gAcq"><thead></thead><tbody></tbody><tfoot></tfoot></table></div></div>
+  </section>
+
+  <section id="g-pag">
+    <div class="sh"><div><h2>Páginas de destino</h2><p class="bi">Onde as visitas entram no site, agrupadas por tipo de página. Clique no "+" para ver as páginas de cada tipo. Páginas com menos de 3 sessões no dia entram em "demais páginas".</p></div></div>
+    <div class="card"><div class="tw"><table class="mon gt" id="gPag"><thead></thead><tbody></tbody><tfoot></tfoot></table></div></div>
+  </section>
+
+  <section id="g-ev">
+    <div class="sh"><div><h2>Eventos</h2><p class="bi">Tudo o que o site registra. À esquerda, os eventos que contam como contato (com o tipo); à direita, os 20 demais mais frequentes. "Parou" = disparava no período anterior e zerou agora.</p></div></div>
+    <div class="igrid"><div class="card"><div class="tw"><table class="mon gev" id="gEvC"></table></div></div><div class="card"><div class="tw"><table class="mon gev" id="gEvO"></table></div></div></div>
+  </section>
+
+  <div class="foot"><span>Fonte: Google Analytics 4 (conector), somente 2026. Contatos = eventos de WhatsApp, telefone e formulário de cada site. Origem consolidada = leitura da CreativeImob sobre origem, mídia e campanha.</span><span id="gFoot"></span></div>
 </main>
 </div>
 
@@ -1000,8 +1069,8 @@ $("#d1").addEventListener("change",e=>{const v=toIdx(e.target.value);if(!isFinit
 $("#d2").addEventListener("change",e=>{const v=toIdx(e.target.value);if(!isFinite(v))return;S.d2=v;if(S.d1>v)S.d1=v;S.preset="";syncInputs();rerender()});
 $("#camp").addEventListener("change",e=>{S.camp=+e.target.value;renderAll()});
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{applyPreset(b.dataset.p);rerender()}));
-function rerender(){if(CL==="cer")renderCer();else{fillCamps();renderAll()}}
-function redraw(){if(CL==="cer")cerCharts();else if(M){renderMonth();renderDay()}}
+function rerender(){if(CL==="ga")renderGa();else if(CL==="cer")renderCer();else{fillCamps();renderAll()}}
+function redraw(){if(CL==="ga"){if(GS){gMonth();gDay()}}else if(CL==="cer")cerCharts();else if(M){renderMonth();renderDay()}}
 document.querySelectorAll(".tbar .seg button").forEach(b=>b.addEventListener("click",()=>{S.level=b.dataset.l;document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderTable(rowsIn(S.d1,S.d2,S.camp))}));
 document.querySelectorAll("#mline button").forEach(b=>b.addEventListener("click",()=>{monthLine=b.dataset.m;document.querySelectorAll("#mline button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderMonth()}));
 $("#q").addEventListener("input",e=>{S.q=e.target.value;renderTable(rowsIn(S.d1,S.d2,S.camp))});
@@ -1222,28 +1291,281 @@ $("#cMon tbody").addEventListener("click",e=>{const b=e.target.closest("button.e
 $("#cMon thead").addEventListener("click",e=>{const th=e.target.closest("th");if(!th)return;const k=th.dataset.k;if(S2.sortK===k)S2.sortD*=-1;else{S2.sortK=k;S2.sortD=k==="name"?1:-1}const cur=crows(S.d1,S.d2,S2.cli);cMonitor(cur,csum(cur))});
 $("#cli").addEventListener("change",e=>{S2.cli=+e.target.value;renderCer()});
 
+/* ================= GA4: o que acontece no site ================= */
+const GA4=/*__GA4__*/null;
+const GSITES=["nsp","lp","ty","sh"];
+const GAM={};let GS=null;
+const S3={site:"nsp",mline:"ct",acq:"oc",open:new Set(),sortK:"ses",sortD:-1,psortK:"ses",psortD:-1};
+const GDN={ch:"sessionDefaultChannelGroup",sm:"sessionSourceMedium",cp:"sessionCampaignName",dv:"deviceCategory",lp:"landingPage",ev:"eventName"};
+function gaTable(raw){
+  const dims=(raw.dimensionHeaders||[]).map(h=>h.name);if(dims[0]!=="date")throw new Error("GA4: sem date");
+  const vals=dims.slice(1).map(()=>new Map()),r=[];
+  for(const x of raw.rows||[]){const dv=x.dimensionValues.map(d=>d.value);const day=toIdx(dv[0].slice(0,4)+"-"+dv[0].slice(4,6)+"-"+dv[0].slice(6,8));
+    const ix=dv.slice(1).map((v,j)=>{const m=vals[j];if(!m.has(v))m.set(v,m.size);return m.get(v)});
+    r.push([day,...ix,...x.metricValues.map(m=>Math.round(+m.value||0))])}
+  return{k:dims,v:vals.map(m=>[...m.keys()]),r};
+}
+function gaModel(T){
+  const D={};const id=(n,v)=>{const d=D[n]||(D[n]={a:[],m:new Map()});let i=d.m.get(v);if(i==null){i=d.a.length;d.a.push(v);d.m.set(v,i)}return i};
+  const map=(t,want)=>{const pos=want.map(w=>t.k.indexOf(GDN[w]));if(pos.some(p=>p<1))throw new Error("GA4: dimensão ausente");
+    const tr=want.map((w,j)=>t.v[pos[j]-1].map(v=>id(w,v))),nd=t.k.length;
+    return t.r.map(r=>[r[0],...want.map((w,j)=>tr[j][r[pos[j]]]),...r.slice(nd)])};
+  const g={s:map(T.cube,["ch","sm","cp","dv"]),l:map(T.lp,["lp"]),e:map(T.ev,["ev"]),c:map(T.ct,["ev","ch","sm","cp","dv","lp"])};
+  for(const n of ["ch","sm","cp","dv","lp","ev"])g[n]=(D[n]||{a:[]}).a;
+  if(!g.s.length)throw new Error("GA4 sem sessões");
+  let lo=Infinity,hi=-Infinity;for(const x of g.s){if(x[0]<lo)lo=x[0];if(x[0]>hi)hi=x[0]}g.first=lo;g.last=hi;
+  g.ctype=g.ev.map(ctype);
+  const oc=new Map();g.oc=(ch,sm,cp)=>{const k=ch+"|"+sm+"|"+cp;let v=oc.get(k);if(v==null){v=origem(g.ch[ch],g.sm[sm],g.cp[cp]);oc.set(k,v)}return v};
+  g.ptype=g.lp.map(pageType);
+  return g;
+}
+function ctype(n){n=String(n);if(/whats|zap/i.test(n))return"w";if(/phone|telefone|ligamos|ligacao/i.test(n))return"t";if(/avalie|anuncie|cadastre/i.test(n))return"p";return"f"}
+const CTN={f:"Formulário",w:"WhatsApp",t:"Telefone",p:"Captação de imóvel"};
+const CTC={f:"var(--gold)",w:"var(--s2)",t:"var(--muted)",p:"var(--gold-soft)"};
+/* origem consolidada: lê origem/mídia e campanha (o canal padrão do GA4 erra a Meta quando a UTM vem fora do padrão) */
+function origem(ch,sm,cp){
+  const [src0,med0]=String(sm||"").split(" / "),src=(src0||"").toLowerCase(),med=(med0||"").toLowerCase(),c=String(cp||"").toLowerCase();
+  const meta=/(^|[._])(facebook|instagram|fb|ig|meta|threads|messenger)|meta_?ads|^an$/.test(src)||/^120\d{12,}$/.test(c);
+  const paid=/cpc|cpm|paid|ads|ppc|cpa|cpv/.test(med)||ch==="Paid Social"||/_meta_|meta_social|catalogo/.test(c)||/^120\d{12,}$/.test(c);
+  if(meta)return paid?"Meta Ads (anúncios)":"Meta orgânico (perfis e links)";
+  if(/google|youtube/.test(src)&&/cpc|ppc|paid|cpm|cpv/.test(med)||/^(Paid Search|Cross-network|Paid Video)$/.test(ch)&&/google|youtube|\(data not available\)/.test(src))return"Google Ads";
+  if(ch==="Organic Search")return"Busca orgânica";
+  if(ch==="Direct")return"Direto";
+  if(ch==="AI Assistant"||med==="ai-assistant")return"Assistentes de IA";
+  if(/wa\.me|whatsapp|l\.wl\.co/.test(src))return"Links de WhatsApp";
+  if(ch==="Referral")return"Sites e portais";
+  if(/Organic Social|Organic Video/.test(ch))return"Outras redes";
+  if(ch==="Unassigned"||src==="(not set)"||!src)return"Sem origem identificada";
+  if(ch==="Email"||/mail/.test(med))return"E-mail";
+  return"Outras pagas";
+}
+function pageType(p){
+  p=String(p||"");if(p==="(not set)"||!p)return"Sem página registrada";if(p==="/")return"Home";
+  const l=p.toLowerCase();
+  if(/^\/imovel\/|^\/(apartamento|casa|cobertura|studio|sobrado|terreno|sala|salas|loja|flat|duplex|garden|penthouse|kitnet|conjunto|predio|galpao)[-…]/.test(l))return"Página de imóvel";
+  if(/^\/(lancamento|lancamentos|empreendimento|empreendimentos|condominio|condominios)(\/|$| |…)/.test(l))return"Lançamentos e condomínios";
+  if(/^\/(venda|locacao|aluguel|imoveis|apartamentos|casas|coberturas|comercial|comprar|alugar|busca|mapa|properties|favoritos)(\/|$| |…)/.test(l))return"Busca e listagem";
+  if(/contato|fale|avalie|anuncie|cadastre|proposta|corretor|trabalhe|ouvidoria/.test(l))return"Contato e captação";
+  if(/empresa|sobre|about|quem-somos|institucional|equipe|historia/.test(l))return"Institucional";
+  if(/blog|noticia|artigo|guia/.test(l))return"Conteúdo e blog";
+  if(/linkanuncio|^\/lp[-\/]|landing/.test(l))return"Landing page de anúncio";
+  return"Outras páginas";
+}
+function gTot(a,b){
+  const t={ses:0,eng:0,new:0,pv:0,dur:0,ct:0,tp:{f:0,w:0,t:0,p:0}};if(!GS)return gDer(t);
+  for(const x of GS.s){if(x[0]<a||x[0]>b)continue;t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.pv+=x[8];t.dur+=x[9]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;t.ct+=x[7];t.tp[GS.ctype[x[1]]]+=x[7]}
+  t.days=Math.max(0,Math.min(b,GS.last)-a+1);return gDer(t)}
+function gDer(t){t.engR=div(t.eng,t.ses);t.ctR=div(t.ct,t.ses);t.tmed=div(t.dur,t.ses);t.pps=div(t.pv,t.ses);t.e2c=div(t.ct,t.eng);return t}
+const gz=()=>({ses:0,eng:0,new:0,pv:0,dur:0,ct:0});
+/* agrupamentos de aquisição: s = linha de sessão, c = linha de contato */
+const ACQ={
+  oc:{n:"Origem consolidada",s:x=>GS.oc(x[1],x[2],x[3]),c:x=>GS.oc(x[2],x[3],x[4])},
+  ch:{n:"Canal do GA4",s:x=>GS.ch[x[1]],c:x=>GS.ch[x[2]]},
+  sm:{n:"Origem / mídia",s:x=>GS.sm[x[2]],c:x=>GS.sm[x[3]]},
+  cp:{n:"Campanha (UTM)",s:x=>GS.cp[x[3]],c:x=>GS.cp[x[4]]},
+  dv:{n:"Dispositivo",s:x=>({desktop:"Computador",mobile:"Celular",tablet:"Tablet",smarttv:"TV"}[GS.dv[x[4]]]||GS.dv[x[4]]),c:x=>({desktop:"Computador",mobile:"Celular",tablet:"Tablet",smarttv:"TV"}[GS.dv[x[5]]]||GS.dv[x[5]])},
+};
+function gBy(a,b,fs,fc){const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t};
+  for(const x of GS.s){if(x[0]<a||x[0]>b)continue;const t=g(fs(x));t.ses+=x[5];t.eng+=x[6];t.new+=x[7];t.pv+=x[8];t.dur+=x[9]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(fc(x)).ct+=x[7]}
+  for(const t of m.values())gDer(t);return m}
+function gPages(a,b){ // por página: sessões do recorte ≥3/dia + contatos; resto do dia vira "demais páginas"
+  const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t},day=new Map();
+  for(const x of GS.l){if(x[0]<a||x[0]>b)continue;const t=g(x[1]);t.ses+=x[2];t.eng+=x[3];t.new+=x[4];const d=day.get(x[0])||[0,0,0];d[0]+=x[2];d[1]+=x[3];d[2]+=x[4];day.set(x[0],d)}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;g(x[6]).ct+=x[7]}
+  const rest=gz();const sd=new Map();for(const x of GS.s){if(x[0]<a||x[0]>b)continue;const d=sd.get(x[0])||[0,0,0];d[0]+=x[5];d[1]+=x[6];d[2]+=x[7];sd.set(x[0],d)}
+  for(const [d,v] of sd){const l=day.get(d)||[0,0,0];rest.ses+=Math.max(0,v[0]-l[0]);rest.eng+=Math.max(0,v[1]-l[1]);rest.new+=Math.max(0,v[2]-l[2])}
+  for(const t of m.values())gDer(t);gDer(rest);return{m,rest}}
+function gDaily(a,b){const n=b-a+1,z=()=>Array(n).fill(0),o={ses:z(),eng:z(),ct:z()};
+  for(const x of GS.s){if(x[0]<a||x[0]>b)continue;o.ses[x[0]-a]+=x[5];o.eng[x[0]-a]+=x[6]}
+  for(const x of GS.c){if(x[0]<a||x[0]>b)continue;o.ct[x[0]-a]+=x[7]}
+  for(const k in o)for(let i=0;i<n;i++)if(a+i>GS.last||a+i<GS.first)o[k][i]=null;return o}
+function gMonthly(){const m=new Map(),g=k=>{let t=m.get(k);if(!t){t=gz();m.set(k,t)}return t},mk=i=>{const d=dObj(i);return d.getUTCFullYear()*12+d.getUTCMonth()};
+  for(const x of GS.s){const t=g(mk(x[0]));t.ses+=x[5];t.eng+=x[6]}for(const x of GS.c)g(mk(x[0])).ct+=x[7];
+  const keys=[...m.keys()].sort((a,b)=>a-b);return{keys,rows:keys.map(k=>gDer(m.get(k)))}}
+function metaIn(a,b){const L=MODELS[S3.site];if(!L||!L.m||!L.m.r)return null;const t={inv:0,lclk:0,leads:0};let any=false;
+  for(const x of L.m.r){if(x[0]<a||x[0]>b)continue;any=true;t.inv+=x[4]/100;t.lclk+=x[6];t.leads+=x[10]}return any?t:null}
+const pc0=v=>v==null||!isFinite(v)?"–":nf0.format(v*100)+"%";
+const secs=v=>v==null||!isFinite(v)?"–":(v>=60?Math.floor(v/60)+"min "+String(Math.round(v%60)).padStart(2,"0")+"s":Math.round(v)+"s");
+const wbr=s=>esc(s).replace(/([_\/,+-])/g,"$1<wbr>");
+
+function renderGa(){
+  if(!GS){$("#mainGa").querySelectorAll("section").forEach(s=>s.hidden=true);$("#gNone").hidden=false;return}
+  $("#mainGa").querySelectorAll("section").forEach(s=>s.hidden=false);$("#gNone").hidden=true;
+  const [pa,pb,plbl]=prevRange(S.d1,S.d2),c=gTot(S.d1,S.d2),p=gTot(pa,pb);
+  $("#gCmpLbl").textContent=`Comparação: ${dmyy(pa)} a ${dmyy(pb)} (${plbl})`;$("#gInsCmp").textContent=$("#gCmpLbl").textContent;
+  const stale=GS.last<yesterday-1;
+  $("#gAlert").hidden=!stale;
+  if(stale)$("#gAlert").innerHTML=`<b>Coleta parada.</b> O GA4 do site ${esc(CNAME[S3.site])} não registra sessões desde <b>${dmyy(GS.last)}</b>. Os números depois dessa data estão vazios, não zerados: verifique a tag do GA4 no site (gtag ou Gerenciador de Tags).`;
+  gInsights(c,p,pa,pb);gTiles(c,p);gFunnel(c,p);gMonth();gDay();gAcq(pa,pb);gPag(pa,pb);gEvents(pa,pb);
+  const L=GAM[S3.site];$("#gFoot").textContent=`Dados até ${dmyy(GS.last)} · ${L.live?"GA4 lido em "+L.at:"atualizado em "+L.at}`;
+}
+function gTiles(c,p){
+  const T=[["Sessões",int(c.ses),dlt(c.ses,p.ses),int(p.ses),true],["Novos usuários",int(c.new),dlt(c.new,p.new),int(p.new)],
+    ["Taxa de engajamento",pct(c.engR,1),dlt(c.engR,p.engR),pct(p.engR,1)],["Contatos no site",int(c.ct),dlt(c.ct,p.ct),int(p.ct),true],
+    ["Taxa de contato",pct(c.ctR),dlt(c.ctR,p.ctR),pct(p.ctR)],["Tempo médio engajado",secs(c.tmed),dlt(c.tmed,p.tmed),secs(p.tmed)]];
+  $("#gTiles").innerHTML=T.map(([k,v,d,pv,hero])=>`<div class="tile${hero?" hero":""}"><div class="k">${k}</div><div class="v">${v}</div><span class="delta ${d.cls}">${d.ar}${d.txt}</span><div class="prev">anterior ${pv}</div></div>`).join("");
+  const Sx=[["Sessões engajadas",int(c.eng),dlt(c.eng,p.eng)],["Visualizações de página",int(c.pv),dlt(c.pv,p.pv)],["Páginas por sessão",c.pps==null?"–":nf1.format(c.pps),dlt(c.pps,p.pps)],["Sessões por dia",c.days?int(c.ses/c.days):"–",{cls:"flat",txt:""}]];
+  $("#gStrip").innerHTML=Sx.map(([k,v,d])=>`<div><span class="k">${k}</span><span class="v">${v}<span class="d ${d.cls}">${d.txt}</span></span></div>`).join("");
+}
+function gFunnel(c,p){
+  const dd=(a,b)=>{const d=dlt(a,b);return`<span class="fd">${d.txt}</span>`};
+  const conv=(lbl,v)=>`<div class="fconv"><svg viewBox="0 0 12 12"><path d="M6 1v9M2.5 6.5 6 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>${lbl} <b>${v}</b></div>`;
+  $("#gFun").innerHTML=`<div class="fstep fs1"><span class="fk">Sessões</span><span class="fv num">${int(c.ses)}</span>${dd(c.ses,p.ses)}</div>`+conv("Taxa de engajamento",pct(c.engR,1))+
+    `<div class="fstep fs2"><span class="fk">Sessões engajadas</span><span class="fv num">${int(c.eng)}</span>${dd(c.eng,p.eng)}</div>`+conv("Engajada → contato",pct(c.e2c))+
+    `<div class="fstep fs3"><span class="fk">Contatos</span><span class="fv num">${int(c.ct)}</span>${dd(c.ct,p.ct)}</div>`+
+    `<div class="fconv" style="padding-top:12px">Taxa de contato (contato ÷ sessão) <b>${pct(c.ctR)}</b></div>`;
+  const ks=["f","w","t","p"].filter(k=>c.tp[k]||p.tp[k]),tot=c.ct;
+  const mt=metaIn(S.d1,S.d2),mg=gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c).get("Meta Ads (anúncios)")||gz(),mo=gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c).get("Meta orgânico (perfis e links)")||gz();
+  $("#gSide").innerHTML=`<div><h3>Tipo de contato</h3><p class="bi">Cliques e envios que o site registra como contato: formulário, WhatsApp, telefone e captação de imóvel.</p></div>
+   <div class="split" role="img" aria-label="${ks.map(k=>CTN[k]+" "+c.tp[k]).join(", ")}">${tot?ks.map(k=>`<i style="width:${c.tp[k]/tot*100}%;background:${CTC[k]}"></i>`).join(""):'<i style="width:100%;background:var(--line)"></i>'}</div>
+   <div class="lgd">${ks.map(k=>{const d=dlt(c.tp[k],p.tp[k]);return`<div><span class="k"><i style="background:${CTC[k]}"></i>${CTN[k]}</span><span class="v num">${int(c.tp[k])}</span><span class="s">${tot?pct(c.tp[k]/tot,1):"–"} · <span class="d ${d.cls}">${d.txt}</span></span></div>`}).join("")||'<div class="hint">Nenhum contato no período.</div>'}</div>
+   <div><h3>Do anúncio da Meta ao site</h3><p class="bi">Cliques no link pagos na Meta contra as sessões que o GA4 reconhece como anúncio da Meta.</p></div>
+   <div class="mini"><div><div class="k">Cliques no link (Meta)</div><div class="v num">${mt?int(mt.lclk):"–"}</div><div class="s">${mt?brl(mt.inv)+" investidos":"sem dados da Meta"}</div></div>
+   <div><div class="k">Sessões de anúncio Meta</div><div class="v num">${int(mg.ses)}</div><div class="s">${mt&&mt.lclk?pc0(mg.ses/mt.lclk)+" dos cliques · ":""}+ ${int(mo.ses)} de perfis</div></div>
+   <div><div class="k">Contatos dessas sessões</div><div class="v num">${int(mg.ct)}</div><div class="s">${mg.ses?pct(mg.ct/mg.ses)+" das sessões":"–"}</div></div>
+   <div><div class="k">Custo por contato no site</div><div class="v num">${mt&&mg.ct?brl(mt.inv/mg.ct):"–"}</div><div class="s">${mt?int(mt.leads)+" leads na própria Meta":"–"}</div></div></div>`;
+}
+function gMonth(){
+  const {keys,rows}=gMonthly(),el=$("#gMonth");if(!keys.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
+  const lab=keys.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2));
+  const LN={ct:{name:"Contatos",values:rows.map(r=>r.ct),tick:short,fmt:int},
+    ctr:{name:"Taxa de contato",values:rows.map(r=>r.ctR),tick:v=>nf1.format(v*100)+"%",fmt:v=>pct(v),lab:v=>nf2.format(v*100)+"%"},
+    eng:{name:"Taxa de engajamento",values:rows.map(r=>r.engR),tick:v=>nf0.format(v*100)+"%",fmt:v=>pct(v,1),lab:v=>nf0.format(v*100)+"%"}}[S3.mline];
+  combo(el,{labels:lab,bars:[{name:"Sessões",values:rows.map(r=>r.ses),color:col("--gold"),tick:short,fmt:int,lab:short}],line:{...LN,color:col("--s2")},barLabels:true,aria:"Sessões e "+LN.name+" por mês",
+    tipExtra:i=>`<div class="r"><span>Engajamento</span><span>${pct(rows[i].engR,1)}</span></div>`});
+}
+function gDay(){
+  const a=S.d1,b=S.d2,o=gDaily(a,b),lab=[];for(let i=a;i<=b;i++)lab.push(dmy(i));
+  combo($("#gDay"),{labels:lab,bars:[{name:"Sessões",values:o.ses,color:col("--gold"),tick:short,fmt:int}],line:{name:"Contatos",values:o.ct,color:col("--s2"),tick:short,fmt:int},aria:"Sessões e contatos por dia",
+    tipTitle:i=>dmyy(a+i),tipExtra:i=>o.ses[i]==null?'<div class="r"><span>GA4 sem coleta</span><span></span></div>':`<div class="r"><span>Taxa de contato</span><span>${pct(div(o.ct[i],o.ses[i]))}</span></div><div class="r"><span>Engajamento</span><span>${pct(div(o.eng[i],o.ses[i]),1)}</span></div>`});
+}
+function gSortRows(L,k,d){return L.sort((x,y)=>{if(k==="name")return d*String(x.name).localeCompare(String(y.name));const a=x[k],b=y[k];return d*((a??-1)-(b??-1))})}
+function gHead(cols,k,d){return"<tr>"+cols.map(([key,lbl])=>`<th data-k="${key}">${lbl}${key===k?`<span class="ar">${d<0?"↓":"↑"}</span>`:""}</th>`).join("")+"</tr>"}
+const GCOLS=[["name","Nome"],["ses","Sessões"],["dses","Var. sessões"],["new","Novos usuários"],["engR","Engajamento"],["tmed","Tempo médio"],["ct","Contatos"],["ctR","Taxa de contato"]];
+function gRow(t,tot,name,extra=""){const d=dlt(t.ses,t.pses);return`<td>${name}${extra}</td><td><div class="shr">${int(t.ses)}<span class="bar" style="width:${Math.max(2,div(t.ses,tot)*100||0)}%"></span><span class="hint">${pct(div(t.ses,tot),1)}</span></div></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${secs(t.tmed)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`}
+function gAcq(pa,pb){
+  const A=ACQ[S3.acq],cur=gBy(S.d1,S.d2,A.s,A.c),prv=gBy(pa,pb,A.s,A.c),tot=gTot(S.d1,S.d2);
+  let L=[...cur.entries()].map(([name,t])=>({name,...t,pses:(prv.get(name)||{}).ses||0})).filter(t=>t.ses>0||t.ct>0);
+  L.forEach(t=>t.dses=t.pses?(t.ses-t.pses)/t.pses:null);gSortRows(L,S3.sortK,S3.sortD);
+  const more=L.length>40?L.length-40:0;L=L.slice(0,40);
+  $("#gAcq thead").innerHTML=gHead(GCOLS.map(c=>c[0]==="name"?["name",A.n]:c),S3.sortK,S3.sortD);
+  $("#gAcq tbody").innerHTML=L.map(t=>`<tr>${gRow(t,tot.ses,wbr(t.name))}</tr>`).join("")+(more?`<tr><td colspan="8" class="dim">e mais ${more} itens com menos sessões</td></tr>`:"");
+  $("#gAcq tfoot").innerHTML=`<tr><td>Total</td><td>${int(tot.ses)}</td><td></td><td>${int(tot.new)}</td><td>${pct(tot.engR,1)}</td><td>${secs(tot.tmed)}</td><td>${int(tot.ct)}</td><td>${pct(tot.ctR)}</td></tr>`;
+}
+function gPag(pa,pb){
+  const {m,rest}=gPages(S.d1,S.d2),P=gPages(pa,pb).m,tot=gTot(S.d1,S.d2),T=new Map();
+  const tg=k=>{let t=T.get(k);if(!t){t={...gz(),pses:0,pages:[]};T.set(k,t)}return t};
+  for(const [i,t] of m){const ty=GS.ptype[i],g=tg(ty),pv=(P.get(i)||{}).ses||0;g.ses+=t.ses;g.eng+=t.eng;g.new+=t.new;g.ct+=t.ct;g.pses+=pv;g.pages.push({name:GS.lp[i],...t,pses:pv})}
+  for(const [i,t] of P)if(!m.has(i))tg(GS.ptype[i]).pses+=t.ses;
+  let L=[...T.entries()].map(([name,t])=>{gDer(t);t.name=name;t.dses=t.pses?(t.ses-t.pses)/t.pses:null;return t}).filter(t=>t.ses||t.ct);
+  gSortRows(L,S3.psortK,S3.psortD);
+  $("#gPag thead").innerHTML=gHead(GCOLS.map(c=>c[0]==="name"?["name","Tipo de página"]:c).filter(c=>c[0]!=="tmed"),S3.psortK,S3.psortD);
+  const row=(t,name,extra)=>{const d=dlt(t.ses,t.pses);return`<td>${name}${extra||""}</td><td><div class="shr">${int(t.ses)}<span class="bar" style="width:${Math.max(2,div(t.ses,tot.ses)*100||0)}%"></span><span class="hint">${pct(div(t.ses,tot.ses),1)}</span></div></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`};
+  $("#gPag tbody").innerHTML=L.map(t=>{const op=S3.open.has(t.name);const n=t.pages.length;
+    let h=`<tr class="${op?"open":""}">${row(t,`<button class="exp" type="button" data-v="${esc(t.name)}" aria-expanded="${op}" aria-label="${op?"Fechar":"Abrir"} páginas de ${esc(t.name)}">${op?"−":"+"}</button><b>${esc(t.name)}</b><span class="hint"> · ${n} página${n>1?"s":""}</span>`)}</tr>`;
+    if(op){const ps=gSortRows(t.pages.map(x=>{gDer(x);x.dses=x.pses?(x.ses-x.pses)/x.pses:null;return x}),S3.psortK,S3.psortD).slice(0,30);
+      h+=ps.map(x=>`<tr class="subr">${row(x,`<span class="snm">${wbr(x.name)}</span>`)}</tr>`).join("")+(n>30?`<tr class="subr"><td colspan="7" class="dim">e mais ${n-30} páginas</td></tr>`:"")}
+    return h}).join("")+(rest.ses?`<tr>${row({...rest,pses:0},'<span class="dim">Demais páginas (menos de 3 sessões no dia)</span>')}</tr>`:"");
+  $("#gPag tfoot").innerHTML=`<tr><td>Total</td><td>${int(tot.ses)}</td><td></td><td>${int(tot.new)}</td><td>${pct(tot.engR,1)}</td><td>${int(tot.ct)}</td><td>${pct(tot.ctR)}</td></tr>`;
+}
+function gEvents(pa,pb){
+  const re=new RegExp("^(?:"+GA4.cfg[S3.site].ct+")$"),cur=new Map(),prv=new Map(),key=new Map(),tot=gTot(S.d1,S.d2);
+  for(const x of GS.e){const inC=x[0]>=S.d1&&x[0]<=S.d2,inP=x[0]>=pa&&x[0]<=pb;if(inC){cur.set(x[1],(cur.get(x[1])||0)+x[2]);if(x[3])key.set(x[1],1)}if(inP)prv.set(x[1],(prv.get(x[1])||0)+x[2])}
+  const ids=new Set([...cur.keys(),...prv.keys()]);const L=[...ids].map(i=>({i,name:GS.ev[i],n:cur.get(i)||0,p:prv.get(i)||0,ct:re.test(GS.ev[i]),key:key.has(i)})).sort((a,b)=>b.n-a.n||b.p-a.p);
+  const tb=(arr,lbl)=>`<thead><tr><th>${lbl}</th><th>Eventos</th><th>Var.</th><th>Por 100 sessões</th></tr></thead><tbody>${arr.map(t=>{const d=t.p&&!t.n?{cls:"bad",txt:"parou",ar:""}:dlt(t.n,t.p);
+    return`<tr><td>${wbr(t.name)}${t.ct?` <span class="etag">${CTN[ctype(t.name)]}</span>`:""}${t.key?' <span class="etag k">evento-chave</span>':""}</td><td>${int(t.n)}</td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${tot.ses?nf1.format(t.n/tot.ses*100):"–"}</td></tr>`}).join("")||'<tr><td colspan="4" class="dim">Nenhum evento.</td></tr>'}</tbody>`;
+  $("#gEvC").innerHTML=tb(L.filter(t=>t.ct),"Evento de contato");$("#gEvO").innerHTML=tb(L.filter(t=>!t.ct).slice(0,20),"Demais eventos");
+}
+/* ---------- Leituras do GA4 ---------- */
+function gInsights(c,p,pa,pb){
+  const W=[],Lw=[],add=(arr,s,t,h)=>arr.push({s,t,h});const P=v=>nf1.format(Math.abs(v)*100)+"%";
+  const rel=(a,b)=>b?(a-b)/b:null;
+  if(GS.last<S.d2&&GS.last<yesterday-1)add(Lw,99,"stop",`<b>GA4 sem coleta desde ${dmyy(GS.last)}.</b> O site parou de enviar dados: sessões e contatos depois dessa data não existem no GA4.`);
+  const has=p.ses>0;
+  if(has){
+    const tot=[["ses","Sessões",2,false,30],["ct","Contatos no site",5,false,3],["ctR","Taxa de contato",4,false,null],["engR","Taxa de engajamento",2.6,false,null],["tmed","Tempo médio engajado",1.6,false,null]];
+    for(const [k,n,w,low,minAbs] of tot){const r=rel(c[k],p[k]);if(r==null||Math.abs(r)<.08)continue;if(minAbs&&Math.abs(c[k]-p[k])<minAbs)continue;
+      const f=k==="ctR"?pct:k==="engR"?v=>pct(v,1):k==="tmed"?secs:int;
+      add(r>0?W:Lw,w*Math.min(2,Math.abs(r)),"t:"+k,`<b>${n} ${r>0?"subiu":"caiu"} ${P(r)}</b>: ${f(c[k])} contra ${f(p[k])} no período anterior.`)}
+  }
+  const cur=gBy(S.d1,S.d2,ACQ.oc.s,ACQ.oc.c),prv=gBy(pa,pb,ACQ.oc.s,ACQ.oc.c);
+  const O=[...cur.entries()].map(([n,t])=>({n,...t,p:prv.get(n)}));
+  const best=O.filter(t=>t.ses>=100&&t.ct>=3&&t.ctR>=1.3*(c.ctR||0)).sort((a,b)=>b.ctR-a.ctR)[0];
+  if(best)add(W,3.4,"o:best",`<b>${esc(best.n)} é a origem que mais vira contato</b>: ${pct(best.ctR)} das sessões (média do site ${pct(c.ctR)}), ${int(best.ct)} contatos.`);
+  if(has){const g=O.filter(t=>t.p&&t.p.ses>=100).map(t=>({...t,r:rel(t.ses,t.p.ses)}));
+    const up=g.filter(t=>t.r>=.25&&t.ses-t.p.ses>=50).sort((a,b)=>b.ses-b.p.ses-(a.ses-a.p.ses))[0];if(up&&up.n!=="Sem origem identificada")add(W,2.6,"o:up",`<b>${esc(up.n)} cresceu ${P(up.r)}</b> em sessões (${int(up.ses)} contra ${int(up.p.ses)}).`);
+    const dn=g.filter(t=>t.r<=-.25&&t.p.ses-t.ses>=50).sort((a,b)=>a.ses-a.p.ses-(b.ses-b.p.ses))[0];if(dn)add(Lw,2.8,"o:dn",`<b>${esc(dn.n)} caiu ${P(dn.r)}</b> em sessões (${int(dn.ses)} contra ${int(dn.p.ses)}).`)}
+  const un=cur.get("Sem origem identificada");if(un&&c.ses&&un.ses/c.ses>=.15)add(Lw,3.6,"o:un",`<b>${pc0(un.ses/c.ses)} das sessões chegam sem origem</b> (canal "Unassigned"): UTMs fora do padrão ou tag disparando sem sessão. Revisar links e GTM.`);
+  const mt=metaIn(S.d1,S.d2),mg=cur.get("Meta Ads (anúncios)")||gz(),mo=cur.get("Meta orgânico (perfis e links)")||gz();
+  if(mt&&mt.lclk>=100){const r=mg.ses/mt.lclk;if(r<.4)add(Lw,4.2,"m:tag",`<b>Só ${int(mg.ses)} sessões identificadas como anúncio da Meta</b> para ${int(mt.lclk)} cliques no link pagos (${pc0(r)}).${mo.ses>mg.ses?` Outras ${int(mo.ses)} chegam como facebook/instagram sem mídia paga: falta UTM nos anúncios.`:""}`);
+    else if(mg.ct>=3)add(W,3,"m:ct",`<b>Anúncios da Meta trouxeram ${int(mg.ct)} contatos no site</b>, a ${brl(mt.inv/mg.ct)} por contato, além dos ${int(mt.leads)} leads na própria Meta.`)}
+  const {m}=gPages(S.d1,S.d2);const T=new Map();for(const [i,t] of m){const k=GS.ptype[i];const g=T.get(k)||gz();g.ses+=t.ses;g.eng+=t.eng;g.ct+=t.ct;T.set(k,g)}
+  const tb=[...T.entries()].map(([n,t])=>({n,...gDer(t)})).filter(t=>t.ses>=100&&t.ct>=3).sort((a,b)=>b.ctR-a.ctR)[0];
+  if(tb&&tb.ctR>(c.ctR||0))add(W,2.4,"p:best",`<b>${esc(tb.n)} é a entrada que mais converte</b>: ${pct(tb.ctR)} das sessões viram contato (${int(tb.ct)}).`);
+  const weak=[...m.entries()].map(([i,t])=>({n:GS.lp[i],...t})).filter(t=>c.ses&&t.ses/c.ses>=.05&&t.engR!=null&&t.engR<.35&&!/demais|not set/.test(t.n)).sort((a,b)=>b.ses-a.ses)[0];
+  if(weak)add(Lw,2.6,"p:weak",`<b>Página com muita entrada e pouco engajamento</b>: ${esc(weak.n)} recebe ${pc0(weak.ses/c.ses)} das sessões e só ${pc0(weak.engR)} engajam.`);
+  if(has){const re=new RegExp("^(?:"+GA4.cfg[S3.site].ct+")$"),ec=new Map(),ep=new Map();
+    for(const x of GS.e){if(!re.test(GS.ev[x[1]]))continue;if(x[0]>=S.d1&&x[0]<=Math.min(S.d2,GS.last))ec.set(x[1],(ec.get(x[1])||0)+x[2]);else if(x[0]>=pa&&x[0]<=pb)ep.set(x[1],(ep.get(x[1])||0)+x[2])}
+    const stop=[...ep.entries()].filter(([i,n])=>n>=5&&!ec.get(i)&&GS.last>=S.d1).sort((a,b)=>b[1]-a[1]);
+    if(stop.length)add(Lw,4.5,"e:stop",`<b>${stop.length>1?stop.length+" eventos de contato pararam":"Evento de contato parou"}</b>: ${stop.slice(0,3).map(([i,n])=>esc(GS.ev[i])+" ("+int(n)+" antes)").join(", ")}. Pode ser mudança no site ou na tag.`)}
+  const o=gDaily(S.d1,S.d2),vs=o.ses.filter(v=>v!=null).sort((a,b)=>a-b),med=vs.length?vs[Math.floor(vs.length/2)]:0;
+  let sp=-1;o.ses.forEach((v,i)=>{if(v!=null&&v>=200&&v>=3*med&&(sp<0||v>o.ses[sp]))sp=i});
+  if(sp>=0&&div(o.eng[sp],o.ses[sp])<(c.engR||0)*.6)add(Lw,3.2,"d:spike",`<b>Pico atípico em ${dmyy(S.d1+sp)}</b>: ${int(o.ses[sp])} sessões (mediana ${int(med)}/dia) com só ${pc0(div(o.eng[sp],o.ses[sp]))} de engajamento. Provável robô ou disparo; distorce as médias.`);
+  const pick=a=>{const s=new Set(),r=[];for(const x of a.sort((x,y)=>y.s-x.s)){if(s.has(x.t))continue;s.add(x.t);r.push(x);if(r.length===3)break}return r};
+  const li=a=>a.length?a.map(x=>`<li>${x.h}</li>`).join(""):'<li class="dim">Nada relevante neste período.</li>';
+  $("#gInsW").innerHTML=li(pick(W));$("#gInsL").innerHTML=li(pick(Lw));
+  $("#gInsNote").textContent=has?"":"Sem período anterior com dados: só leituras do período.";
+}
+function statusGa(){const L=GAM[S3.site];if(!L||!L.m){st("snap","Sem propriedade GA4");return}if(L.live)st("live","Ao vivo · GA4 lido em "+L.at);else if(L.err)st("snap",L.err+" · usando cópia de "+L.at);else if(mcpNS)st("load","Lendo o GA4…");else st("snap","Atualizado em "+L.at)}
+function fillSites(){$("#gsite").innerHTML=GSITES.map(k=>`<option value="${k}"${GA4&&GA4.cfg[k]?"":" disabled"}>${CNAME[k]}${GA4&&GA4.cfg[k]?"":" (sem GA4)"}</option>`).join("");$("#gsite").value=S3.site}
+if(GA4){for(const k of Object.keys(GA4.cfg)){try{GAM[k]={m:gaModel(GA4.d[k]),at:GA4.at,live:false}}catch(e){GAM[k]={m:null,at:GA4.at,live:false,err:"Cópia do GA4 inválida"}}}
+  try{const s=localStorage.getItem("cimob-ga");if(s&&GA4.cfg[s])S3.site=s}catch(e){}
+  CLIENTS.ga={name:"GA4",ga:true};fillSites()}
+function watchGa(){
+  const k=S3.site,cfg=GA4&&GA4.cfg[k];if(!cfg||!mcpNS)return;const got={};
+  ["cube","lp","ev","ct"].forEach(q=>{const req=JSON.parse(JSON.stringify(GA4.q[q]));req.property="properties/"+cfg.prop;req.dateRanges=[{startDate:"2026-01-01",endDate:"yesterday"}];
+    if(q==="ct")req.dimensionFilter={filter:{fieldName:"eventName",stringFilter:{matchType:"FULL_REGEXP",value:cfg.ct}}};
+    unwatch.push(mcpNS.watchTool("Google Analytics","run_report",req,ev=>{
+      if(ev.type==="data"){try{got[q]=gaTable(ev.result.payload);if(Object.keys(got).length===4){const when=ev.result.cache?.storedAt?new Date(ev.result.cache.storedAt):new Date();
+          GAM[k]={m:gaModel(got),at:when.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}),live:true}}else return}catch(e){GAM[k].err="GA4 em formato inesperado"}}
+      else{const code=ev.error&&ev.error.code;GAM[k].err={needs_reauth:"Reconecte o Google Analytics em Configurações → Conectores",server_not_connected:"Conecte o Google Analytics para ver ao vivo",not_in_manifest:"Leitura do GA4 não autorizada nesta página",approval_required:"Leitura do GA4 aguardando aprovação",server_unavailable:"GA4 indisponível agora",tool_error:"O GA4 recusou a leitura"}[code]||"Não foi possível ler o GA4"}
+      if(CL==="ga"&&S3.site===k){GS=GAM[k].m;if(GS){$("#d1").min=$("#d2").min=toISO(GS.first)}renderGa();statusGa()}
+    },{cache:{staleTime:600000,gcTime:3600000}}))});
+}
+$("#gsite").addEventListener("change",e=>{S3.site=e.target.value;S3.open.clear();try{localStorage.setItem("cimob-ga",S3.site)}catch(_){}showClient("ga",true)});
+document.querySelectorAll("#gmline button").forEach(b=>b.addEventListener("click",()=>{S3.mline=b.dataset.m;document.querySelectorAll("#gmline button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));gMonth()}));
+document.querySelectorAll("#gacqv button").forEach(b=>b.addEventListener("click",()=>{S3.acq=b.dataset.a;document.querySelectorAll("#gacqv button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));gAcq(...prevRange(S.d1,S.d2))}));
+$("#gAcq thead").addEventListener("click",e=>{const th=e.target.closest("th");if(!th)return;const k=th.dataset.k;if(S3.sortK===k)S3.sortD*=-1;else{S3.sortK=k;S3.sortD=k==="name"?1:-1}gAcq(...prevRange(S.d1,S.d2))});
+$("#gPag thead").addEventListener("click",e=>{const th=e.target.closest("th");if(!th)return;const k=th.dataset.k;if(S3.psortK===k)S3.psortD*=-1;else{S3.psortK=k;S3.psortD=k==="name"?1:-1}gPag(...prevRange(S.d1,S.d2))});
+$("#gPag tbody").addEventListener("click",e=>{const b=e.target.closest("button.exp");if(!b)return;const v=b.dataset.v;if(S3.open.has(v))S3.open.delete(v);else S3.open.add(v);gPag(...prevRange(S.d1,S.d2))});
+
+
 /* ---------- boot: cópia embutida primeiro, planilha ao vivo quando disponível ---------- */
 const st=(s,x)=>{$("#status").dataset.s=s;$("#statusTxt").textContent=x};
 let mcpNS=null,unwatch=[];
 CKEYS.forEach(k=>{MODELS[k]={m:fromSnap(CLIENTS[k].snap),at:SNAP_AT,live:false}});
 function statusFor(keys){const ls=keys.map(k=>MODELS[k]);if(ls.every(x=>x.live))st("live","Ao vivo · planilha lida em "+ls.map(x=>x.at).join(" / "));else if(ls.some(x=>x.err))st("snap",ls.find(x=>x.err).err+" · usando cópia de "+SNAP_AT);else if(mcpNS)st("load","Lendo a planilha…");else st("snap","Atualizado em "+SNAP_AT)}
 function showClient(c,push){
-  if(!CLIENTS[c])c="cer";CL=c;const K=CLIENTS[c];
-  document.documentElement.dataset.client=c;{let st=null;try{st=localStorage.getItem("shp-theme")}catch(e){}if(!st){if(c==="ty")document.documentElement.dataset.theme="dark";else delete document.documentElement.dataset.theme}}
+  if(!CLIENTS[c])c="cer";CL=c;const ga=c==="ga",tc=ga?S3.site:c,K=CLIENTS[tc];
+  document.documentElement.dataset.client=tc;{let st=null;try{st=localStorage.getItem("shp-theme")}catch(e){}if(!st){if(tc==="ty")document.documentElement.dataset.theme="dark";else delete document.documentElement.dataset.theme}}
   document.querySelectorAll(".ctab").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.c===c)));
   $("#brandMark").innerHTML=K.mark;
   try{localStorage.setItem("cimob-client",c)}catch(e){}
   if(push){try{history.replaceState(null,"","#"+c)}catch(e){}}
-  const cer=c==="cer";$("#mainClient").hidden=cer;$("#mainCer").hidden=!cer;$("#fCamp").hidden=cer;$("#fCli").hidden=!cer;
-  $("#hTitle").textContent=cer?"Cérebro · Inteligência de mídia":"Performance de mídia · Meta Ads";
-  $("#hSub").textContent=cer?"Compilado das imobiliárias: custos, formatos, públicos e bairros":"Resultados de tráfego pago para monitoramento e otimização";
-  if(cer){MC=null;buildMC();$("#d1").min=$("#d2").min=toISO(MC.first);if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderCer();statusFor(CKEYS)}
+  const cer=c==="cer";$("#mainClient").hidden=cer||ga;$("#mainCer").hidden=!cer;$("#mainGa").hidden=!ga;$("#fCamp").hidden=cer||ga;$("#fCli").hidden=!cer;$("#fGa").hidden=!ga||!GA4||Object.keys(GA4.cfg).length<2;
+  $("#hTitle").textContent=ga?"Site · Google Analytics 4":cer?"Cérebro · Inteligência de mídia":"Performance de mídia · Meta Ads";
+  $("#hSub").textContent=ga?"De onde vêm as visitas, onde entram e quem vira contato":cer?"Compilado das imobiliárias: custos, formatos, públicos e bairros":"Resultados de tráfego pago para monitoramento e otimização";
+  if(ga){$("#gsite").value=S3.site;const L=GAM[S3.site];GS=L?L.m:null;if(GS){$("#d1").min=$("#d2").min=toISO(GS.first)}if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderGa();statusGa()}
+  else if(cer){MC=null;buildMC();$("#d1").min=$("#d2").min=toISO(MC.first);if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderCer();statusFor(CKEYS)}
   else{$("#footSrc").textContent=K.src;S.camp=-1;S.q="";$("#q").value="";const L=MODELS[c];setModel(L.m,L.live?"planilha lida em":"atualizado em",L.at);statusFor([c])}
   watchLive();
 }
 function watchLive(){
   unwatch.forEach(u=>{try{u()}catch(e){}});unwatch=[];
   if(!mcpNS)return;
+  if(CL==="ga"){watchGa();return}
   const keys=CL==="cer"?CKEYS:[CL];
   keys.forEach(k=>{unwatch.push(mcpNS.watchTool("Google Sheets","get_values",CLIENTS[k].sheet,ev=>{
     if(ev.type==="data"){
@@ -1275,14 +1597,17 @@ function i18n(){if(!TXD)return;const map=TXD[PLAT]||[];i18nOn=true;
   i18nOn=false}
 if(TXD){new MutationObserver(()=>{if(i18nOn||i18nQ)return;i18nQ=true;queueMicrotask(()=>{i18nQ=false;i18n()})}).observe(document.body,{childList:true,subtree:true,characterData:true})}
 function setPlat(p){
-  if(!SNAP_G)p="m";PLAT=p;
-  if(p==="g")document.documentElement.dataset.plat="g";else delete document.documentElement.dataset.plat;
+  if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mga]$/.test(p))p="m";PLAT=p;
+  if(p!=="m")document.documentElement.dataset.plat=p;else delete document.documentElement.dataset.plat;
   document.querySelectorAll(".plat button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===p)));
   try{localStorage.setItem("cimob-plat",p)}catch(e){}
+  document.title=document.title.replace(/Meta Ads|Google Ads|Google Analytics 4/,p==="g"?"Google Ads":p==="a"?"Google Analytics 4":"Meta Ads");
+  if(p==="a"){S3.site=Object.keys(GA4.cfg)[0];showClient("ga",false);i18n();return}
+  if(CL==="ga")showClient(Object.keys(GA4.cfg)[0],false);
   S.camp=-1;S.q="";$("#q").value="";if(S.level==="k"&&p!=="g"){S.level="c";document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.l==="c")))}
   setModel(p==="g"?fromSnap(SNAP_G):MODELS[CL].m,"atualizado em",SNAP_AT);
-  document.title=document.title.replace(/Meta Ads|Google Ads/,p==="g"?"Google Ads":"Meta Ads");i18n()}
+  i18n()}
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.p!==PLAT)setPlat(b.dataset.p)}));
-if(SNAP_G){let sp="m";try{sp=localStorage.getItem("cimob-plat")||"m"}catch(e){}setPlat(sp==="g"?"g":"m")}else i18n();
+if(document.querySelector(".plat")){let sp="m";try{sp=localStorage.getItem("cimob-plat")||"m"}catch(e){}setPlat(sp)}else i18n();
 (async()=>{let m=null;try{m=await window.claude?.use?.("mcp")}catch(e){}if(!m)return;mcpNS=m;watchLive()})();
 </script>

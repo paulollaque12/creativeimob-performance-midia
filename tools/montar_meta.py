@@ -86,16 +86,29 @@ def main():
     elif os.path.exists(cache):
         snap_g = json.load(open(cache, encoding="utf-8"))
         print("Google Ads: usando a última cópia em dados/taylor_gads.json")
+    # GA4 do site da Taylor: dados/ga4.json (gerado por tools/ga4.py); sem o arquivo, sem o botão GA4
+    ga = None
+    pga = os.path.join(montar.RAIZ, "dados", "ga4.json")
+    if os.path.exists(pga):
+        ga = json.load(open(pga, encoding="utf-8"))
+        ug = montar.BASE + dt.timedelta(days=max(z[0] for z in ga["d"]["ty"]["cube"]["r"]))
+        print(f"GA4 Taylor: dados até {ug} (cópia de {ga['at']})")
+        if a.ate and str(ug) < a.ate:
+            print(f"AVISO: GA4 só até {ug} (esperado {a.ate})")
+    nav = None
+    if snap_g or ga:
+        nav = NAV_I + (NAV_G if snap_g else "") + (NAV_A if ga else "") + "</nav>"
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     montar.solo(agora, dados, "ty", "taylor", "Taylor Imóveis · Performance Meta Ads",
-                fonte=FONTE_META, nav=NAV if snap_g else None, snap_g=snap_g, tx=TX,
+                fonte=FONTE_META, nav=nav, snap_g=snap_g, tx=TX, ga=ga,
                 trocas=[(PLANILHA_TY, "")])
 
 
 FONTE_META = "Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)"
 FONTE_GADS = "Fonte: Google Ads, conta Taylor Imóveis 5451475929 (leitura direta do conector do Google Ads)"
-NAV = ('<nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="m" aria-pressed="true">Meta Ads</button>'
-       '<button type="button" data-p="g" aria-pressed="false">Google Ads</button></nav>')
+NAV_I = '<nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="m" aria-pressed="true">Meta Ads</button>'
+NAV_G = '<button type="button" data-p="g" aria-pressed="false">Google Ads</button>'
+NAV_A = '<button type="button" data-p="a" aria-pressed="false">GA4</button>'
 # textos trocados em tempo real conforme a plataforma (texto do template → texto exibido); o mais longo primeiro
 TX = {
     "m": [
