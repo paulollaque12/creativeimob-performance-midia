@@ -480,28 +480,50 @@ td.dim{color:var(--muted)}
 #gPag .exp:hover{border-color:var(--gold);color:var(--gold-ink)}
 #gPag tr.open .exp{background:var(--gold);border-color:var(--gold);color:var(--on-acc)}
 #gPag tr.subr td{background:var(--surface-2);font-size:12.5px;padding-block:7px}
-#gPag tr.subr td:first-child{padding-left:41px}
-table.gt .shr .bar{background:var(--gold);opacity:.8}
-table.gev th:first-child,table.gev td:first-child{min-width:200px}
 .etag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.03em;padding:1px 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);margin-left:4px;white-space:nowrap}
 .etag.k{color:var(--gold-ink);border-color:var(--gold)}
 #mainGa .mini{grid-template-columns:1fr 1fr}
 #mainGa .gfl{display:flex;flex-direction:column;gap:22px}
 .gutm{border-top:1px solid var(--line-2);padding-top:20px;display:flex;flex-direction:column;gap:14px}
 .gutm h3{font-family:var(--f-display);font-weight:600;font-size:15px;margin:0}
-.gutm code,.ub code{font-size:11.5px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:4px;padding:0 5px}
+.gutm .bi code{font-size:11.5px;color:var(--ink-2)}.ub code{font-size:11px;letter-spacing:.04em;color:var(--ink-2);background:none;padding:0}
 .ubig{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.ubig .v{font-family:var(--f-display);font-weight:600;font-size:24px}.ubig .s{font-size:12px;color:var(--muted)}
 .ubars{display:grid;gap:8px}.ub{display:grid;grid-template-columns:120px 1fr 44px;align-items:center;gap:10px;font-size:12.5px}.ub b{text-align:right;font-variant-numeric:tabular-nums}
-.ut{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line-2)}.ut i{display:block;height:100%;background:var(--gold)}
-.utop{display:flex;flex-direction:column;gap:6px}.utop .k{font-size:12px;color:var(--ink-2)}.ur{display:grid;grid-template-columns:1fr auto auto;gap:12px;font-size:12.5px;align-items:baseline}.ur>span:first-child{overflow-wrap:anywhere}
-/* tabelas do GA4: coluna da dimensão travada, cabeçalho e total fixos */
-#mainGa .tw{max-height:560px;overflow:auto}
-#mainGa table.mon thead th{position:sticky;top:0;z-index:2}
-#mainGa table.mon tfoot td{position:sticky;bottom:0;z-index:2}
-#mainGa table.mon :is(th,td):first-child{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:inset -1px 0 0 var(--line)}
-#mainGa table.mon thead th:first-child,#mainGa table.mon tfoot td:first-child{z-index:3;background:var(--surface-2)}
+.ut{height:3px;border-radius:2px;background:var(--line-2);overflow:hidden}.ut i{display:block;height:100%;background:var(--brass,var(--gold))}
+.utop{display:flex;flex-direction:column}.ur{display:grid;grid-template-columns:minmax(0,1fr) 64px 64px;gap:12px;font-size:12.5px;align-items:center;height:34px;border-bottom:1px solid var(--line-2)}.ur>span{text-align:center}.ur>span:first-child{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ur.h{height:28px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* tabelas do GA4 (mesmo padrão da tabela de detalhes): dimensão travada em uma linha, métricas com largura padrão e centralizadas,
+   cabeçalho e total fixos, rolagem fina */
+#mainGa .tw{overflow:auto;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--brass,var(--gold)) 45%,transparent) transparent}
+#mainGa .tw::-webkit-scrollbar{width:6px;height:6px}#mainGa .tw::-webkit-scrollbar-track{background:transparent}
+#mainGa .tw::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--brass,var(--gold)) 45%,transparent);border-radius:3px}
+#mainGa .tw::-webkit-scrollbar-corner{background:transparent}
+#mainGa .tw:has(>table.gt){max-height:460px}
+#mainGa table.mon{border-collapse:separate;border-spacing:0}
+#mainGa table.gt{table-layout:fixed;width:100%;min-width:940px}
+#mainGa table.mon :is(th,td){box-sizing:border-box}
+#mainGa table.mon thead th{white-space:normal;line-height:1.3;letter-spacing:.09em;padding-inline:4px}#mainGa table.mon thead th:first-child{padding-inline:12px}
+#mainGa table.gt#gPag{min-width:880px}
+#mainGa table.mon :is(th,td){text-align:center;height:46px;padding-block:0;vertical-align:middle}
+#mainGa table.gt :is(th,td):first-child{text-align:left;width:300px;min-width:300px;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+#mainGa table.gt :is(th,td):not(:first-child){width:96px;min-width:96px;padding-inline:6px}
+#mainGa table.gt td .num{display:block;font-variant-numeric:tabular-nums}
+#mainGa table.gt td .bar{display:block;height:2px;margin:5px auto 0;border-radius:1px;background:var(--brass,var(--gold));opacity:.8}
+#mainGa table.mon thead th{position:sticky;top:0;z-index:2;border-bottom:1px solid var(--line)}
+#mainGa table.mon tfoot td{position:sticky;bottom:0;z-index:2;border-top:1px solid var(--line)}
+#mainGa table.mon :is(th,td):first-child{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:inset -1px 0 0 var(--line-2)}
+#mainGa table.mon thead th:first-child,#mainGa table.mon tfoot td:first-child{z-index:4;background:var(--surface-2)}
 #mainGa table.mon tr.subr td:first-child,#mainGa table.mon tbody tr:hover td:first-child{background:var(--surface-2)}
-@media (max-width:640px){#mainGa table.mon :is(th,td):first-child{min-width:150px;max-width:190px}}
+#mainGa table.mon .delta{font-size:11px;padding:2px 7px}
+#gPag tr.subr td:first-child{padding-left:41px;color:var(--ink-2)}
+#gPag .exp{width:18px;height:18px;font-size:12px;margin-right:10px}
+#mainGa table.gev{table-layout:fixed;width:100%}#mainGa table.gev :is(th,td):first-child{min-width:0;max-width:none;width:auto}
+#mainGa table.gev :is(th,td):first-child{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:52px;position:static;box-shadow:none}
+#mainGa table.gev thead th:first-child{position:sticky}
+#mainGa table.gev .en{display:block;overflow:hidden;text-overflow:ellipsis}
+#mainGa table.gev .et{display:block;font-size:10.5px;letter-spacing:.06em;color:var(--brass,var(--gold-ink));margin-top:2px}
+#mainGa table.gev :is(th,td):not(:first-child){padding-inline:6px}
+#mainGa table.gev thead th{font-size:10px;letter-spacing:.12em}
+@media (max-width:640px){#mainGa table.gt{min-width:780px}#mainGa table.gt :is(th,td):first-child{width:170px;min-width:170px;max-width:170px}#mainGa table.gev :is(th,td):nth-child(4){display:none}}
 
 #mainGa .sh{flex-wrap:wrap}#mainGa .sh>div:first-child{flex:1 1 280px}#gacqv{max-width:100%}#gCmpLbl,#gInsCmp{overflow-wrap:anywhere;white-space:normal;min-width:0;max-width:100%}
 @media (max-width:640px){#gacqv button{padding:6px 10px}}
@@ -712,7 +734,7 @@ table.gev th:first-child,table.gev td:first-child{min-width:200px}
   </section>
 
   <section id="g-ev">
-    <div class="sh"><div><h2>Eventos</h2><p class="bi">Tudo o que o site registra. À esquerda, os eventos que contam como contato (com o tipo); à direita, os 20 demais mais frequentes. "Parou" = disparava no período anterior e zerou agora.</p></div></div>
+    <div class="sh"><div><h2>Eventos</h2><p class="bi">Tudo o que o site registra. À esquerda, os eventos que contam como contato (com o tipo); à direita, os demais mais frequentes. "Parou" = disparava no período anterior e zerou agora.</p></div></div>
     <div class="igrid"><div class="card"><div class="tw"><table class="mon gev" id="gEvC"></table></div></div><div class="card"><div class="tw"><table class="mon gev" id="gEvO"></table></div></div></div>
   </section>
 
@@ -1459,7 +1481,7 @@ function gUtm(c){
   $("#gUtm").innerHTML=`<div><h3>Links parametrizados (UTM)</h3><p class="bi">Sessões que chegaram por link com <code>utm_campaign</code> e quanto delas traz os outros parâmetros. Sem UTM, o GA4 não liga a visita ao anúncio.</p></div>
    <div class="ubig"><span class="v num">${int(o.ses)}</span><span class="s">sessões com UTM · ${pct(div(o.ses,c.ses),1)} do site · ${pc0(div(o.all,o.ses))} com os quatro parâmetros</span></div>
    <div class="ubars">${P.map(([n,k])=>{const r=div(o[k],o.ses);return`<div class="ub"><code>${n}</code><span class="ut"><i style="width:${(r||0)*100}%"></i></span><b>${o.ses?pc0(r):"–"}</b></div>`}).join("")}</div>
-   <div class="utop"><div class="k">Conteúdos que mais trouxeram visitas</div>${top.length?top.map(([n,s])=>`<div class="ur"><span title="${esc(n)}">${wbr(n)}</span><span class="num">${int(s)}</span><span class="num dim">${int(ct.get(n)||0)} cont.</span></div>`).join(""):'<div class="hint">Nenhuma sessão com utm_content no período.</div>'}</div>`;
+   <div class="utop"><div class="ur h"><span>Conteúdos (utm_content) que mais trouxeram visitas</span><span>Sessões</span><span>Contatos</span></div>${top.length?top.map(([n,s])=>`<div class="ur"><span title="${esc(n)}">${esc(n)}</span><span class="num">${int(s)}</span><span class="num">${int(ct.get(n)||0)}</span></div>`).join(""):'<div class="hint">Nenhuma sessão com utm_content no período.</div>'}</div>`;
 }
 function gMonth(){
   const {keys,rows}=gMonthly(),el=$("#gMonth");if(!keys.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
@@ -1478,14 +1500,14 @@ function gDay(){
 function gSortRows(L,k,d){return L.sort((x,y)=>{if(k==="name")return d*String(x.name).localeCompare(String(y.name));const a=x[k],b=y[k];return d*((a??-1)-(b??-1))})}
 function gHead(cols,k,d){return"<tr>"+cols.map(([key,lbl])=>`<th data-k="${key}">${lbl}${key===k?`<span class="ar">${d<0?"↓":"↑"}</span>`:""}</th>`).join("")+"</tr>"}
 const GCOLS=[["name","Nome"],["ses","Sessões"],["dses","Var. sessões"],["new","Novos usuários"],["engR","Engajamento"],["tmed","Tempo médio"],["ct","Contatos"],["ctR","Taxa de contato"]];
-function gRow(t,tot,name,extra=""){const d=dlt(t.ses,t.pses);return`<td>${name}${extra}</td><td><div class="shr">${int(t.ses)}<span class="bar" style="width:${Math.max(2,div(t.ses,tot)*100||0)}%"></span><span class="hint">${pct(div(t.ses,tot),1)}</span></div></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${secs(t.tmed)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`}
+function gRow(t,tot,name,mx,title){const d=dlt(t.ses,t.pses);return`<td title="${esc(title||"")}">${name}</td><td title="${pct(div(t.ses,tot),1)} das sessões"><span class="num">${int(t.ses)}</span><span class="bar" style="width:${Math.max(4,div(t.ses,mx)*64||0)}px"></span></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${secs(t.tmed)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`}
 function gAcq(pa,pb){
   const A=ACQ[S3.acq],cur=gBy(S.d1,S.d2,A.s,A.c,A.u),prv=gBy(pa,pb,A.s,A.c,A.u),tot=gTot(S.d1,S.d2);
   let L=[...cur.entries()].map(([name,t])=>({name,...t,pses:(prv.get(name)||{}).ses||0})).filter(t=>t.ses>0||t.ct>0);
   L.forEach(t=>t.dses=t.pses?(t.ses-t.pses)/t.pses:null);gSortRows(L,S3.sortK,S3.sortD);
   const more=L.length>40?L.length-40:0;L=L.slice(0,40);
   $("#gAcq thead").innerHTML=gHead(GCOLS.map(c=>c[0]==="name"?["name",A.n]:c),S3.sortK,S3.sortD);
-  $("#gAcq tbody").innerHTML=L.map(t=>`<tr>${gRow(t,tot.ses,wbr(t.name))}</tr>`).join("")+(more?`<tr><td colspan="8" class="dim">e mais ${more} itens com menos sessões</td></tr>`:"");
+  const mx=Math.max(1,...L.map(x=>x.ses));$("#gAcq tbody").innerHTML=L.map(t=>`<tr>${gRow(t,tot.ses,esc(t.name),mx,t.name)}</tr>`).join("")+(more?`<tr><td colspan="8" class="dim">e mais ${more} itens com menos sessões</td></tr>`:"");
   $("#gAcq tfoot").innerHTML=`<tr><td>Total</td><td>${int(tot.ses)}</td><td></td><td>${int(tot.new)}</td><td>${pct(tot.engR,1)}</td><td>${secs(tot.tmed)}</td><td>${int(tot.ct)}</td><td>${pct(tot.ctR)}</td></tr>`;
 }
 function gPag(pa,pb){
@@ -1496,21 +1518,23 @@ function gPag(pa,pb){
   let L=[...T.entries()].map(([name,t])=>{gDer(t);t.name=name;t.dses=t.pses?(t.ses-t.pses)/t.pses:null;return t}).filter(t=>t.ses||t.ct);
   gSortRows(L,S3.psortK,S3.psortD);
   $("#gPag thead").innerHTML=gHead(GCOLS.map(c=>c[0]==="name"?["name","Tipo de página"]:c).filter(c=>c[0]!=="tmed"),S3.psortK,S3.psortD);
-  const row=(t,name,extra)=>{const d=dlt(t.ses,t.pses);return`<td>${name}${extra||""}</td><td><div class="shr">${int(t.ses)}<span class="bar" style="width:${Math.max(2,div(t.ses,tot.ses)*100||0)}%"></span><span class="hint">${pct(div(t.ses,tot.ses),1)}</span></div></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`};
+  const mx=Math.max(1,...L.map(x=>x.ses),rest.ses),tt=tot.ses;
+  const row=(t,name,title)=>{const d=dlt(t.ses,t.pses),tot=tt;return`<td title="${esc(title||"")}">${name}</td><td title="${pct(div(t.ses,tot),1)} das sessões"><span class="num">${int(t.ses)}</span><span class="bar" style="width:${Math.max(4,div(t.ses,mx)*64||0)}px"></span></td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${int(t.new)}</td><td>${pct(t.engR,1)}</td><td>${t.ct?"<b>"+int(t.ct)+"</b>":'<span class="dim">0</span>'}</td><td>${t.ct?pct(t.ctR):'<span class="dim">–</span>'}</td>`};
   $("#gPag tbody").innerHTML=L.map(t=>{const op=S3.open.has(t.name);const n=t.pages.length;
-    let h=`<tr class="${op?"open":""}">${row(t,`<button class="exp" type="button" data-v="${esc(t.name)}" aria-expanded="${op}" aria-label="${op?"Fechar":"Abrir"} páginas de ${esc(t.name)}">${op?"−":"+"}</button><b>${esc(t.name)}</b><span class="hint"> · ${n} página${n>1?"s":""}</span>`)}</tr>`;
+    let h=`<tr class="${op?"open":""}">${row(t,`<button class="exp" type="button" data-v="${esc(t.name)}" aria-expanded="${op}" aria-label="${op?"Fechar":"Abrir"} páginas de ${esc(t.name)}">${op?"−":"+"}</button><b>${esc(t.name)}</b><span class="hint"> · ${n} página${n>1?"s":""}</span>`,t.name)}</tr>`;
     if(op){const ps=gSortRows(t.pages.map(x=>{gDer(x);x.dses=x.pses?(x.ses-x.pses)/x.pses:null;return x}),S3.psortK,S3.psortD).slice(0,30);
-      h+=ps.map(x=>`<tr class="subr">${row(x,`<span class="snm">${wbr(x.name)}</span>`)}</tr>`).join("")+(n>30?`<tr class="subr"><td colspan="7" class="dim">e mais ${n-30} páginas</td></tr>`:"")}
-    return h}).join("")+(rest.ses?`<tr>${row({...rest,pses:0},'<span class="dim">Demais páginas (menos de 3 sessões no dia)</span>')}</tr>`:"");
+      h+=ps.map(x=>`<tr class="subr">${row(x,esc(x.name),x.name)}</tr>`).join("")+(n>30?`<tr class="subr"><td colspan="7" class="dim">e mais ${n-30} páginas</td></tr>`:"")}
+    return h}).join("")+(rest.ses?`<tr>${row({...rest,pses:0},'<span class="dim">Demais páginas (menos de 3 sessões no dia)</span>','Demais páginas (menos de 3 sessões no dia)')}</tr>`:"");
   $("#gPag tfoot").innerHTML=`<tr><td>Total</td><td>${int(tot.ses)}</td><td></td><td>${int(tot.new)}</td><td>${pct(tot.engR,1)}</td><td>${int(tot.ct)}</td><td>${pct(tot.ctR)}</td></tr>`;
 }
 function gEvents(pa,pb){
   const re=new RegExp("^(?:"+GA4.cfg[S3.site].ct+")$"),cur=new Map(),prv=new Map(),key=new Map(),tot=gTot(S.d1,S.d2);
   for(const x of GS.e){const inC=x[0]>=S.d1&&x[0]<=S.d2,inP=x[0]>=pa&&x[0]<=pb;if(inC){cur.set(x[1],(cur.get(x[1])||0)+x[2]);if(x[3])key.set(x[1],1)}if(inP)prv.set(x[1],(prv.get(x[1])||0)+x[2])}
   const ids=new Set([...cur.keys(),...prv.keys()]);const L=[...ids].map(i=>({i,name:GS.ev[i],n:cur.get(i)||0,p:prv.get(i)||0,ct:re.test(GS.ev[i]),key:key.has(i)})).sort((a,b)=>b.n-a.n||b.p-a.p);
-  const tb=(arr,lbl)=>`<thead><tr><th>${lbl}</th><th>Eventos</th><th>Var.</th><th>Por 100 sessões</th></tr></thead><tbody>${arr.map(t=>{const d=t.p&&!t.n?{cls:"bad",txt:"parou",ar:""}:dlt(t.n,t.p);
-    return`<tr><td>${wbr(t.name)}${t.ct?` <span class="etag">${CTN[ctype(t.name)]}</span>`:""}${t.key?' <span class="etag k">evento-chave</span>':""}</td><td>${int(t.n)}</td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${tot.ses?nf1.format(t.n/tot.ses*100):"–"}</td></tr>`}).join("")||'<tr><td colspan="4" class="dim">Nenhum evento.</td></tr>'}</tbody>`;
-  $("#gEvC").innerHTML=tb(L.filter(t=>t.ct),"Evento de contato");$("#gEvO").innerHTML=tb(L.filter(t=>!t.ct).slice(0,20),"Demais eventos");
+  const tb=(arr,lbl)=>`<colgroup><col><col style="width:78px"><col style="width:84px"><col style="width:78px"></colgroup><thead><tr><th>${lbl}</th><th>Eventos</th><th>Var.</th><th>/100 sessões</th></tr></thead><tbody>${arr.map(t=>{const d=t.p&&!t.n?{cls:"bad",txt:"parou",ar:""}:dlt(t.n,t.p);
+    const tags=[t.ct?CTN[ctype(t.name)]:"",t.key?"evento-chave":""].filter(Boolean).join(" · ");
+    return`<tr><td title="${esc(t.name)}"><span class="en">${esc(t.name)}</span>${tags?`<span class="et">${tags}</span>`:""}</td><td>${int(t.n)}</td><td><span class="delta ${d.cls}">${d.ar}${d.txt}</span></td><td>${tot.ses?nf1.format(t.n/tot.ses*100):"–"}</td></tr>`}).join("")||'<tr><td colspan="4" class="dim">Nenhum evento.</td></tr>'}</tbody>`;
+  $("#gEvC").innerHTML=tb(L.filter(t=>t.ct),"Evento de contato");$("#gEvO").innerHTML=tb(L.filter(t=>!t.ct).slice(0,Math.max(8,L.filter(t=>t.ct).length)),"Demais eventos");
 }
 /* ---------- Leituras do GA4 ---------- */
 function gInsights(c,p,pa,pb){
