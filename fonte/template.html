@@ -212,17 +212,24 @@
 :root[data-client="ty"] #tbl :is(th,td):nth-child(13){width:92px;min-width:92px}
 @media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat button{flex:1;justify-content:center}}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
-/* Taylor · cabeçalho com abas de plataforma (08/11): marca em uma linha, plataformas como abas sublinhadas, status à direita, períodos com a largura toda */
+/* Taylor · cabeçalho com abas de plataforma (08/11): marca + atualização + tema; abas à esquerda e datas à direita; campanha; períodos */
+@media (min-width:1024px){:root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand status theme" "rule rule rule rule" "plat plat dates dates" "camp camp camp camp" "chips chips chips chips"}}
 @media (min-width:761px){
-  :root[data-client="ty"] .top{grid-template-areas:"brand brand brand theme" "rule rule rule rule" "plat plat status status" "dates camp camp camp" "chips chips chips chips"}
-  :root[data-client="ty"] .top:has(.plat){}
+  :root[data-client="ty"] .top:has(.plat){grid-template-columns:auto minmax(0,1fr) auto auto}
   :root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .brand-txt p{white-space:nowrap}
-  :root[data-client="ty"] .plat{justify-self:start;align-self:end;margin:-8px 0 22px;border:0;border-radius:0;padding:0;height:auto;gap:34px}
-  :root[data-client="ty"] .plat button{position:relative;padding:8px 0 12px;font-size:11.5px;letter-spacing:.2em;background:transparent!important;border-radius:0}
+  :root[data-client="ty"] .plat{justify-self:start;align-self:center;margin:0;border:0;border-radius:0;padding:0;height:auto;gap:34px}
+  :root[data-client="ty"] .plat button{position:relative;padding:14px 0 13px;font-size:11.5px;letter-spacing:.2em;background:transparent!important;border-radius:0}
   :root[data-client="ty"] .plat button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#B5AC77;transform:scaleX(0);transform-origin:left;transition:transform .25s}
   :root[data-client="ty"] .plat button[aria-pressed=true]::after{transform:scaleX(1)}
-  :root[data-client="ty"] .top:has(.plat) .status{align-self:center;justify-self:end;margin:-8px 0 22px;padding:0;border-top:0}
-  :root[data-client="ty"] .top:not(:has(.plat)) .status{grid-area:chips;justify-self:end;align-self:center;margin-top:20px;border-top:0}
+  :root[data-client="ty"] .top:has(.plat) .status{align-self:center;justify-self:end;margin:0 18px 0 0;padding:0;border-top:0}
+  :root[data-client="ty"] .top:has(.plat) .fdate{justify-self:end;width:430px}
+  :root[data-client="ty"] .top:has(.plat) #fCamp{margin-top:12px}
+}
+@media (min-width:761px) and (max-width:1023px){
+  :root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand brand theme" "rule rule rule rule" "plat plat status status" "dates camp camp camp" "chips chips chips chips"}
+  :root[data-client="ty"] .top:has(.plat) .fdate{justify-self:stretch;width:auto;margin-top:12px}
+  :root[data-client="ty"] .top:has(.plat) #fCamp{margin-top:12px}
+  :root[data-client="ty"] .top:has(.plat) .status{margin:0}
 }
 @media (max-width:760px){
   :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "plat plat" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
