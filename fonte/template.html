@@ -738,7 +738,7 @@ td.dim{color:var(--muted)}
     <div class="ovg" id="oCards"></div>
   </section>
   <section id="o-mes">
-    <div class="sh"><div><h2>Desempenho dos últimos meses</h2><p class="bi">Investimento por plataforma nas barras (eixo da esquerda) e leads somados na linha (eixo da direita). Não segue o filtro de datas.</p></div></div>
+    <div class="sh"><div><h2>Desempenho dos últimos três meses</h2><p class="bi">Os três últimos meses: investimento por plataforma nas barras (eixo da esquerda) e leads somados na linha (eixo da direita). O mês corrente vai até ontem. Não segue o filtro de datas.</p></div></div>
     <div class="card pad"><div class="chart" id="oMonth"></div></div>
   </section>
   <section id="o-tri">
@@ -936,7 +936,7 @@ function combo(el,opt){
   const LS=(opt.lines||(opt.line?[opt.line]:[])).filter(Boolean);
   const L=opt.left??62,R=LS.length?(opt.right??62):14,top=16,H=opt.h??300,xh=28,ph=H-top-xh;
   const iw=W-L-R,step=iw/Math.max(n,1),nb=opt.bars.length;
-  const gw=Math.min(step*.72,nb*(opt.barLabels?68:46)),bw=Math.max(2,(gw-(nb-1)*3)/nb);
+  const gw=Math.min(step*.72,nb*(opt.barW||(opt.barLabels?68:46))),bw=Math.max(2,(gw-(nb-1)*3)/nb);
   const cx=i=>L+step*i+step/2;
   const clean=a=>a.map(v=>v==null||!isFinite(v)?null:v);
   const B=opt.bars.map(b=>({...b,v:clean(b.values)}));
@@ -952,6 +952,7 @@ function combo(el,opt){
   s+='</g>';
   B.forEach((b,bi)=>b.v.forEach((v,i)=>{if(!v)return;const y=sy1(v),h=top+ph-y,r=Math.min(4,bw/2,h);const x=cx(i)-gw/2+bi*(bw+3);
     s+=`<path class="bar" d="M${x},${top+ph}V${y+r}Q${x},${y} ${x+r},${y}H${x+bw-r}Q${x+bw},${y} ${x+bw},${y+r}V${top+ph}Z" fill="${b.color}"/>`}));
+  if(opt.barTop&&nb>1)B.forEach((b,bi)=>b.v.forEach((v,i)=>{if(!v)return;const x=cx(i)-gw/2+bi*(bw+3)+bw/2;const y=sy1(v),inn=top+ph-y>30;s+=`<text class="blab${inn?" in":""}" x="${x}" y="${inn?top+ph-12:y-8}" text-anchor="middle">${b.lab?b.lab(v):short(v)}</text>`}));
   if(opt.barLabels&&nb===1){const b=B[0];b.v.forEach((v,i)=>{if(!v)return;const y=sy1(v),inside=top+ph-y>26;s+=`<text class="blab${inside?" in":""}" x="${cx(i)}" y="${inside?top+ph-10:y-7}" text-anchor="middle">${b.lab?b.lab(v):short(v)}</text>`})}
   Ls.forEach((Ln,li)=>{let d="",open=false;Ln.v.forEach((v,i)=>{if(v==null){open=false;return}d+=(open?"L":"M")+`${cx(i)},${sy2(v)}`;open=true});
     s+=`<path d="${d}" fill="none" stroke="var(--surface)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${Ln.color}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"${Ln.dash?' stroke-dasharray="5 4"':""}/>`;
@@ -1754,11 +1755,11 @@ function ovMonths(){const O=ovMod(),mk=i=>{const d=dObj(i);return d.getUTCFullYe
   if(O.g)for(const x of O.g.r){const t=g(mk(x[0]));t.gi+=x[4]/100;t.gl+=x[10]}
   if(O.s){for(const x of O.s.s){const t=g(mk(x[0]));t.ses+=x[5];t.s=true}for(const x of O.s.c)g(mk(x[0])).ct+=x[x.length-1]}
   const ks=[...M.keys()].filter(k=>{const t=M.get(k);return t.mi||t.gi}).sort((a,b)=>a-b);return{ks,rows:ks.map(k=>M.get(k)),all:M}}
-function ovMonth(){const {ks,rows}=ovMonths(),el=$("#oMonth");if(!ks.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
+function ovMonth(){let {ks,rows}=ovMonths();ks=ks.slice(-3);rows=rows.slice(-3);const el=$("#oMonth");if(!ks.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
   const lab=ks.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2)),O=ovMod(),bars=[];
   if(O.m)bars.push({name:"Meta Ads",values:rows.map(r=>r.mi),color:col("--gold"),tick:v=>"R$ "+short(v),fmt:brl});
   if(O.g)bars.push({name:"Google Ads",values:rows.map(r=>r.gi),color:col("--brass-2")||col("--gold-soft"),tick:v=>"R$ "+short(v),fmt:brl});
-  combo(el,{labels:lab,bars,line:{name:"Leads",values:rows.map(r=>r.ml+r.gl),color:col("--s2"),tick:short,fmt:int},aria:"Investimento por plataforma e leads por mês",
+  bars.forEach(b=>b.lab=v=>"R$ "+short(v));combo(el,{labels:lab,bars,barTop:true,barW:120,line:{name:"Leads",values:rows.map(r=>r.ml+r.gl),color:col("--s2"),tick:short,fmt:int},aria:"Investimento por plataforma e leads por mês",
     tipExtra:i=>{const r=rows[i],inv=r.mi+r.gi,l=r.ml+r.gl;return`<div class="r"><span>Custo por lead</span><span>${brl(div(inv,l))}</span></div>`+(r.s?`<div class="r"><span>Sessões no site</span><span>${int(r.ses)}</span></div>`:"")}});
 }
 function ovTri(){const {ks,all}=ovMonths(),O=ovMod(),k3=ks.slice(-3);if(!k3.length){$("#oTri").innerHTML="";return}
