@@ -1,5 +1,5 @@
 <title>Cérebro CreativeImob</title>
-<!-- v2026-11-08a · Taylor Google Ads -->
+<!-- v2026-11-08b · Meta | Google no mesmo endereço -->
 <link rel="icon" href="favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
@@ -204,12 +204,12 @@
 /* Taylor · seletor Meta | Google e página Google Ads */
 .plat{display:none}
 :root[data-client="ty"] .plat{grid-area:plat;display:flex;align-self:center;justify-self:end;margin-right:10px;border:1px solid rgba(181,172,119,.45);border-radius:3px;padding:2px;height:40px}
-:root[data-client="ty"] .plat a{display:flex;align-items:center;padding:1px 14px 0;border-radius:2px;font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.55);text-decoration:none;white-space:nowrap;transition:color .2s,background .2s}
-:root[data-client="ty"] .plat a:hover{color:#F4F1E8}
-:root[data-client="ty"] .plat a[aria-current]{background:rgba(181,172,119,.2);color:#F4F1E8}
+:root[data-client="ty"] .plat button{border:0;background:transparent;cursor:pointer;display:flex;align-items:center;padding:1px 14px 0;border-radius:2px;font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.55);text-decoration:none;white-space:nowrap;transition:color .2s,background .2s}
+:root[data-client="ty"] .plat button:hover{color:#F4F1E8}
+:root[data-client="ty"] .plat button[aria-pressed=true]{background:rgba(181,172,119,.2);color:#F4F1E8}
 :root[data-plat="g"][data-client="ty"] .brand-txt h1::after{width:18px;height:18px;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M20.3%2011.2H12.4M20.3%2011.2c.1.4.1.8.1%201.2a8.4%208.4%200%201%201-2.5-6%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M20.3%2011.2H12.4M20.3%2011.2c.1.4.1.8.1%201.2a8.4%208.4%200%201%201-2.5-6%22/%3E%3C/svg%3E") center/contain no-repeat}
 :root[data-client="ty"] #tbl :is(th,td):nth-child(13){width:92px;min-width:92px}
-@media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat a{flex:1;justify-content:center}}
+@media (max-width:760px){:root[data-client="ty"] .plat{justify-self:stretch;margin:16px 0 0}:root[data-client="ty"] .plat button{flex:1;justify-content:center}}
 :root[data-client="ty"] #tbl tbody td{padding-top:3px}
 @media (max-width:760px){
   :root[data-client="ty"] .top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand theme" "plat plat" "rule rule" "dates dates" "camp camp" "chips chips" "status status";row-gap:0;padding:22px 20px 0}
@@ -1265,5 +1265,24 @@ document.querySelectorAll(".ctab").forEach(b=>b.addEventListener("click",()=>{if
 $(".ctabs").addEventListener("keydown",e=>{if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;const ks=["cer",...CKEYS],i=ks.indexOf(CL),n=ks[(i+(e.key==="ArrowRight"?1:ks.length-1))%ks.length];showClient(n,true);$("#tab-"+n).focus()});
 let first=(location.hash||"").slice(1);if(!CLIENTS[first]){try{first=localStorage.getItem("cimob-client")||"cer"}catch(e){first="cer"}}
 showClient(first,false);
+/* ---------- plataforma (páginas de cliente: Meta Ads | Google Ads no mesmo endereço) ---------- */
+const SNAP_G=/*__SNAP_G__*/null, TXD=/*__TX__*/null;
+let PLAT="m";
+const ORIG=new WeakMap();let i18nOn=false,i18nQ=false;
+function i18n(){if(!TXD)return;const map=TXD[PLAT]||[];i18nOn=true;
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const e=n.parentNode;return !e||/^(SCRIPT|STYLE)$/.test(e.nodeName)||(e.closest&&e.closest(".plat"))?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
+  for(let n=w.nextNode();n;n=w.nextNode()){let o=ORIG.get(n);if(o===undefined){o=n.nodeValue;ORIG.set(n,o)}let v=o;for(const [a,b] of map)if(v.includes(a))v=v.split(a).join(b);if(v!==n.nodeValue)n.nodeValue=v}
+  i18nOn=false}
+if(TXD){new MutationObserver(()=>{if(i18nOn||i18nQ)return;i18nQ=true;queueMicrotask(()=>{i18nQ=false;i18n()})}).observe(document.body,{childList:true,subtree:true,characterData:true})}
+function setPlat(p){
+  if(!SNAP_G)p="m";PLAT=p;
+  if(p==="g")document.documentElement.dataset.plat="g";else delete document.documentElement.dataset.plat;
+  document.querySelectorAll(".plat button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===p)));
+  try{localStorage.setItem("cimob-plat",p)}catch(e){}
+  S.camp=-1;S.q="";$("#q").value="";if(S.level==="k"&&p!=="g"){S.level="c";document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.l==="c")))}
+  setModel(p==="g"?fromSnap(SNAP_G):MODELS[CL].m,"atualizado em",SNAP_AT);
+  document.title=document.title.replace(/Meta Ads|Google Ads/,p==="g"?"Google Ads":"Meta Ads");i18n()}
+document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.p!==PLAT)setPlat(b.dataset.p)}));
+if(SNAP_G){let sp="m";try{sp=localStorage.getItem("cimob-plat")||"m"}catch(e){}setPlat(sp==="g"?"g":"m")}else i18n();
 (async()=>{let m=null;try{m=await window.claude?.use?.("mcp")}catch(e){}if(!m)return;mcpNS=m;watchLive()})();
 </script>

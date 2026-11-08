@@ -106,7 +106,7 @@ def main():
     print(f"docs/index.html gerado ({len(pagina)/1024:.0f} KB) · atualizado em {agora}")
 
 
-def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=(), plat=None, raiz="../", nav=None):
+def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=(), plat=None, raiz="../", nav=None, snap_g=None, tx=None):
     """Página de um cliente só (ex.: docs/taylor/ → performance.creativeimob.app/taylor/):
     só os dados dele no código, sem abas e sem Cérebro. Usada por tools/montar_meta.py."""
     js = lambda d: json.dumps(d, separators=(",", ":"), ensure_ascii=False)
@@ -115,6 +115,10 @@ def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=(), plat=None, raiz=
     for kk, _ in CLIENTES:
         t = t.replace(f"/*__DATA_{kk.upper()}__*/null", js(dados.get(kk) if kk == k else vazio))
     t = t.replace("/*__AT__*/", agora)
+    if snap_g is not None:
+        t = t.replace("/*__SNAP_G__*/null", js(snap_g))
+    if tx is not None:
+        t = t.replace("/*__TX__*/null", js(tx))
     # planilhas dos outros clientes fora do código
     for kk, _ in CLIENTES:
         if kk != k:

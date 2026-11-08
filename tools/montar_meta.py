@@ -39,6 +39,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("arquivos", nargs="+")
     ap.add_argument("--ate", help="último dia esperado (AAAA-MM-DD); falha se a Meta não chegar até ele")
+    ap.add_argument("--gads", help="pasta com as respostas do Google Ads (ver tools/montar_gads.py); sem ela, usa dados/taylor_gads.json")
     a = ap.parse_args()
     vistos, linhas = set(), []
     for f in a.arquivos:
@@ -72,15 +73,53 @@ def main():
     dados = {"ty": {"c": ordem(idx[0]), "g": ordem(idx[1]), "a": ordem(idx[2]), "r": r}}
     print(f"[Taylor · Meta] {len(r)} linhas · {linhas[0][0]} a {ult} · {len(idx[0])} campanhas · "
           f"R$ {sum(z[4] for z in r)/100:,.2f} · leads {sum(z[10] for z in r)} (form. {sum(z[8] for z in r)}, site {sum(z[9] for z in r)})")
+    # Google Ads: dados novos se --gads veio; senão reaproveita a última cópia do repositório
+    cache = os.path.join(montar.RAIZ, "dados", "taylor_gads.json")
+    snap_g = None
+    if a.gads:
+        snap_g, ult_g, resumo = montar_gads.construir(a.gads)
+        print(resumo)
+        if a.ate and ult_g < a.ate:
+            print(f"AVISO: Google Ads só até {ult_g} (esperado {a.ate})")
+        os.makedirs(os.path.dirname(cache), exist_ok=True)
+        json.dump(snap_g, open(cache, "w", encoding="utf-8"), separators=(",", ":"), ensure_ascii=False)
+    elif os.path.exists(cache):
+        snap_g = json.load(open(cache, encoding="utf-8"))
+        print("Google Ads: usando a última cópia em dados/taylor_gads.json")
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     montar.solo(agora, dados, "ty", "taylor", "Taylor Imóveis · Performance Meta Ads",
-                fonte="Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)",
-                nav=montar_gads.PLAT_NAV.format(meta="./", am=' aria-current="page"', gads="google/", ag=""),
-                trocas=[(PLANILHA_TY, ""), ("formulário e WhatsApp", "formulário e site"),
-                        ("as conversas por WhatsApp.", "os leads do site (pixel), como a Meta atribui."),
-                        ("Leads por WhatsApp</h3><p class=\"bi\">Conversas iniciadas pelo botão de mensagem.",
-                         "Leads do site</h3><p class=\"bi\">Cadastros no site atribuídos aos anúncios pelo pixel da Meta."),
-                        ("WhatsApp", "Site"), ('["Tx. conv. (lead ÷ impressão)"', '["Tx. de conversão"')])
+                fonte=FONTE_META, nav=NAV if snap_g else None, snap_g=snap_g, tx=TX,
+                trocas=[(PLANILHA_TY, "")])
+
+
+FONTE_META = "Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)"
+FONTE_GADS = "Fonte: Google Ads, conta Taylor Imóveis 5451475929 (leitura direta do conector do Google Ads)"
+NAV = ('<nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="m" aria-pressed="true">Meta Ads</button>'
+       '<button type="button" data-p="g" aria-pressed="false">Google Ads</button></nav>')
+# textos trocados em tempo real conforme a plataforma (texto do template → texto exibido); o mais longo primeiro
+TX = {
+    "m": [
+        ["Divisão entre o formulário nativo e as conversas por WhatsApp.", "Divisão entre o formulário nativo e os leads do site (pixel), como a Meta atribui."],
+        ["Conversas iniciadas pelo botão de mensagem.", "Cadastros no site atribuídos aos anúncios pelo pixel da Meta."],
+        ["Leads por WhatsApp", "Leads do site"],
+        ["formulário e WhatsApp", "formulário e site"],
+        ["Tx. conv. (lead ÷ impressão)", "Tx. de conversão"],
+        ["WhatsApp", "Site"],
+    ],
+    "g": [
+        [FONTE_META, FONTE_GADS],
+        ["Cliques = cliques no link. Tx. conv. = leads ÷ impressões.", "Cliques = cliques nos anúncios. Leads = conversões do Google Ads (todas as ações; a origem separa formulário e WhatsApp). IS sup. = parcela de impressões no topo da pesquisa. Tx. conv. = leads ÷ impressões."],
+        ["Divisão entre o formulário nativo e as conversas por WhatsApp.", "Conversões de formulário e de WhatsApp. Outras ações (como pedido de rota) entram só no total de leads."],
+        ["Cadastros feitos no formulário nativo do Meta.", "Formulários enviados no site, registrados como conversão no Google Ads."],
+        ["Conversas iniciadas pelo botão de mensagem.", "Contatos por WhatsApp registrados como conversão no Google Ads."],
+        ["Detalhes por campanha, conjunto e anúncio", "Detalhes por campanha, grupo, anúncio e palavra-chave"],
+        ["da veiculação no Meta.", "da veiculação no Google Ads."],
+        ["Tx. conv. (lead ÷ impressão)", "Tx. de conversão"],
+        ["Cliques no link", "Cliques"],
+        ["Meta Ads", "Google Ads"],
+        ["Conjunto", "Grupo"],
+    ],
+}
 
 
 if __name__ == "__main__":
