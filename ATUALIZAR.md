@@ -29,3 +29,10 @@ Criada em 06/11/2026. Não usa a planilha: lê o conector **Meta Ads** (conta [C
 2. `python3 tools/montar_meta.py --ate <ontem> /tmp/meta/*.json` → gera `docs/taylor/index.html`.
 3. Commit de `docs/taylor/index.html`.
 Regras: Leads = `lead` da Meta (formulário + site/pixel); Formulário = `onsite_conversion_lead_grouped`; Site = diferença (rótulo "Site" no lugar de "WhatsApp"). O conector não traz conversas de WhatsApp, então os leads de WhatsApp da planilha não entram nessa página.
+
+## Página da Taylor · Google Ads (performance.creativeimob.app/taylor/google/)
+Criada em 08/11/2026. Fonte: conector **Google Ads** (conta Taylor `5451475929`, `login_customer_id=4498709696`). Mesmo formato da página da Meta + nível **Palavra-chave** e coluna **IS sup.** na tabela; seletor Meta Ads | Google Ads no topo das duas páginas.
+1. Sete consultas `mcp__Google_Ads__search_search` de `2026-01-01` até ONTEM (`limit` 10000), cada resposta salva em `/tmp/gads/<nome>.json` (as grandes vêm em arquivo; as de conversão costumam vir inline: gravar o JSON da resposta no arquivo). Campos exatos no cabeçalho de `tools/montar_gads.py`: `ads`, `camp`, `adinfo`, `kw`, `conv_ad`, `conv_camp`, `conv_kw`.
+2. `python3 tools/montar_gads.py --dir /tmp/gads --ate ONTEM` → `docs/taylor/google/index.html`.
+Regras: Cliques = clicks (CTR = cliques ÷ impressões, como no Looker); Leads = conversões de Formulário + WhatsApp (ação com "whats"/"zap" = WhatsApp; "Rota" = pedido de rota, não conta; o resto = Formulário); linhas de campanha sem anúncio (Performance Max) entram como "(Performance Max · sem detalhe por anúncio)"; IS sup. = Σ impressões no topo ÷ Σ elegíveis (das palavras-chave).
+Conferência na criação (01–07/11/2026): R$ 1.287,49, 3.764 impressões (−65,6%), 511 cliques (+114,7%), CTR 13,58% (+523,6%), 0 leads = PDF do Looker. 2026 até 07/11: R$ 46.152,45, 31.392 cliques, 59 leads (19 formulário, 40 WhatsApp; 48 pedidos de rota da PMax em jan fora).

@@ -97,7 +97,7 @@ def main():
         print(f"artefato gravado em {a.artefato}")
     cabeca = "".join(re.findall(r"<title>.*?</title>\n?|<link [^>]*>\n?", t[:4000]))
     corpo = re.sub(r"<title>.*?</title>\n?|<link [^>]*>\n?", "", t[:4000]) + t[4000:]
-    pagina = ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+    pagina = ('<!doctype html><html lang="pt-BR"''><head><meta charset="utf-8">'
               '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
               '<meta name="robots" content="noindex,nofollow">' + cabeca +
               '<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>'
@@ -106,7 +106,7 @@ def main():
     print(f"docs/index.html gerado ({len(pagina)/1024:.0f} KB) · atualizado em {agora}")
 
 
-def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=()):
+def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=(), plat=None, raiz="../", nav=None):
     """Página de um cliente só (ex.: docs/taylor/ → performance.creativeimob.app/taylor/):
     só os dados dele no código, sem abas e sem Cérebro. Usada por tools/montar_meta.py."""
     js = lambda d: json.dumps(d, separators=(",", ":"), ensure_ascii=False)
@@ -124,16 +124,21 @@ def solo(agora, dados, k, pasta, titulo, fonte=None, trocas=()):
     t, n3 = re.subn(r"<title>.*?</title>", f"<title>{titulo}</title>", t, count=1)
     if not (n1 and n2 and n3):
         sys.exit(f"[solo {k}] template mudou: abas/boot/título não encontrados")
-    t = re.sub(r'href="(favicon|apple-touch)', r'href="../\1', t)
+    t = re.sub(r'href="(favicon|apple-touch)', lambda m: 'href="' + raiz + m.group(1), t)
     if fonte:
         t, n4 = re.subn(r'(\n  ' + k + r':\{.*?src:")[^"]*(")', lambda m: m.group(1) + fonte + m.group(2), t, count=1, flags=re.S)
         if not n4:
             sys.exit(f"[solo {k}] src do cliente não encontrado")
     for a_, b_ in trocas:
         t = t.replace(a_, b_)
+    if nav:
+        alvo = '<button class="icon-btn" id="theme"'
+        if t.count(alvo) != 1:
+            sys.exit(f"[solo {k}] botão de tema não encontrado para o seletor de plataforma")
+        t = t.replace(alvo, nav + alvo)
     cabeca = "".join(re.findall(r"<title>.*?</title>\n?|<link [^>]*>\n?", t[:4000]))
     corpo = re.sub(r"<title>.*?</title>\n?|<link [^>]*>\n?", "", t[:4000]) + t[4000:]
-    pagina = ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+    pagina = ('<!doctype html><html lang="pt-BR"' + (f' data-plat="{plat}"' if plat else '') + '><head><meta charset="utf-8">'
               '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
               '<meta name="robots" content="noindex,nofollow">' + cabeca +
               '<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>'

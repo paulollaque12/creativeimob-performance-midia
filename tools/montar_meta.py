@@ -21,6 +21,7 @@ import argparse, datetime as dt, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import montar  # noqa: E402
+import montar_gads  # noqa: E402
 
 CONTA = "3063928683998040"
 PLANILHA_TY = "1iNZ5W8qUInPaw87_hG-nLwlB1pNubzW32PsfUi0qnTM"
@@ -74,6 +75,7 @@ def main():
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     montar.solo(agora, dados, "ty", "taylor", "Taylor Imóveis · Performance Meta Ads",
                 fonte="Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)",
+                nav=montar_gads.PLAT_NAV.format(meta="./", am=' aria-current="page"', gads="google/", ag=""),
                 trocas=[(PLANILHA_TY, ""), ("formulário e WhatsApp", "formulário e site"),
                         ("as conversas por WhatsApp.", "os leads do site (pixel), como a Meta atribui."),
                         ("Leads por WhatsApp</h3><p class=\"bi\">Conversas iniciadas pelo botão de mensagem.",
