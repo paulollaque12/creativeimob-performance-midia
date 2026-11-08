@@ -815,7 +815,7 @@ td.dim{color:var(--muted)}
 </div>
 
 <script>
-const SNAP_AT="08/11/2026 12:37";
+const SNAP_AT="08/11/2026 12:39";
 const PIN='<svg viewBox="0 0 16 22" aria-hidden="true"><path d="M8 0.8C3.9 0.8 0.8 3.9 0.8 7.9c0 5.2 7.2 13.3 7.2 13.3s7.2-8.1 7.2-13.3C15.2 3.9 12.1 0.8 8 0.8z" fill="#E3A400"/><circle cx="8" cy="7.8" r="2.7" fill="#2A2926"/></svg>';
 const HOUSE='<svg viewBox="84 210 170 156" aria-hidden="true"><path d="M86 213H110V251L169 212L251 266V292L167 238L86 292Z" fill="#E9ECF8"/><path d="M86 306L110 293V341H230V293L251 306V363H86Z" fill="#009ADA"/></svg>';
 /* clientes: cada um com planilha, cópia embutida, marca e cores (as cores vivem no CSS, em :root[data-client]) */
@@ -1789,6 +1789,8 @@ function showOv(){CL="ov";document.documentElement.dataset.client="ty";$("#brand
   $("#mainClient").hidden=true;$("#mainCer").hidden=true;$("#mainGa").hidden=true;$("#mainOv").hidden=false;$("#fCamp").hidden=true;$("#fCli").hidden=true;$("#fGa").hidden=true;
   $("#hTitle").textContent="Visão geral";$("#hSub").textContent="Meta Ads, Google Ads e site no mesmo período";
   if(!S.d1){const D=dObj(yesterday+1);applyPreset(D.getUTCDate()===1?"lm":"mtd")}renderOv();st("snap","Atualizado em "+SNAP_AT)}
+const PLT={o:["Visão geral","Meta Ads, Google Ads e site no mesmo período"],m:["Meta Ads","Entrega, custo e leads dos anúncios na Meta"],g:["Google Ads","Entrega, custo e conversões dos anúncios no Google"],a:["Google Analytics 4","De onde vêm as visitas e quem vira contato no site"]};
+function platTitle(){if(!document.querySelector(".plat")||!PLT[PLAT])return;$("#hTitle").textContent=PLT[PLAT][0];$("#hSub").textContent=PLT[PLAT][1]}
 function setPlat(p){
   if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mgao]$/.test(p))p="m";PLAT=p;
   if(p!=="m")document.documentElement.dataset.plat=p;else delete document.documentElement.dataset.plat;
@@ -1796,11 +1798,12 @@ function setPlat(p){
   try{localStorage.setItem("cimob-plat",p)}catch(e){}
   document.title=document.title.replace(/Meta Ads|Google Ads|Google Analytics 4|Visão geral/,p==="g"?"Google Ads":p==="a"?"Google Analytics 4":p==="o"?"Visão geral":"Meta Ads");
   $("#mainOv").hidden=p!=="o";
-  if(p==="o"){showOv();i18n();return}
-  if(p==="a"){S3.site=Object.keys(GA4.cfg)[0];showClient("ga",false);i18n();return}
+  if(p==="o"){showOv();platTitle();i18n();return}
+  if(p==="a"){S3.site=Object.keys(GA4.cfg)[0];showClient("ga",false);platTitle();i18n();return}
   if(CL==="ga"||CL==="ov")showClient("ty",false);
   S.camp=-1;S.q="";$("#q").value="";if(S.level==="k"&&p!=="g"){S.level="c";document.querySelectorAll(".tbar .seg button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.l==="c")))}
   setModel(p==="g"?fromSnap(SNAP_G):MODELS[CL].m,"atualizado em",SNAP_AT);
+  platTitle();
   i18n()}
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.p!==PLAT)setPlat(b.dataset.p)}));
 if(document.querySelector(".plat")){let sp=document.querySelector('.plat button[data-p="o"]')?"o":"m";try{sp=localStorage.getItem("cimob-plat")||sp}catch(e){}setPlat(sp)}else i18n();
