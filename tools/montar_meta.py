@@ -97,7 +97,7 @@ def main():
             print(f"AVISO: GA4 só até {ug} (esperado {a.ate})")
     nav = None
     if snap_g or ga:
-        nav = NAV_O + NAV_I.replace(' aria-pressed="true"', ' aria-pressed="false"') + (NAV_G if snap_g else "") + (NAV_A if ga else "") + "</nav>"
+        nav = NAV_O + (NAV_G if snap_g else "") + NAV_I.replace(' aria-pressed="true"', ' aria-pressed="false"') + (NAV_A if ga else "") + "</nav>"  # ordem pedida em 08/11: Overview, Google Ads, Meta Ads, GA4
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     montar.solo(agora, dados, "ty", "taylor", "Taylor Imóveis · Performance Meta Ads",
                 fonte=FONTE_META, nav=nav, snap_g=snap_g, tx=TX, ga=ga,
@@ -106,7 +106,7 @@ def main():
 
 FONTE_META = "Fonte: Meta Ads, conta [CI] taylor imóveis 2.0 (leitura direta do conector oficial da Meta)"
 FONTE_GADS = "Fonte: Google Ads, conta Taylor Imóveis 5451475929 (leitura direta do conector do Google Ads)"
-NAV_O = '<nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="o" aria-pressed="true">Visão geral</button>'
+NAV_O = '<nav class="plat" role="group" aria-label="Plataforma"><button type="button" data-p="o" aria-pressed="true">Overview</button>'
 NAV_I = '<button type="button" data-p="m" aria-pressed="true">Meta Ads</button>'
 NAV_G = '<button type="button" data-p="g" aria-pressed="false">Google Ads</button>'
 NAV_A = '<button type="button" data-p="a" aria-pressed="false">GA4</button>'
