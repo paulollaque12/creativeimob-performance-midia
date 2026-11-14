@@ -1,13 +1,13 @@
 ---
 name: "creativeimob-dashboard-performance"
-description: "Painel de mídia paga da CreativeImob: Cérebro interno (todos os clientes, Meta) e ramificações por cliente entregues ao cliente (Taylor: Visão geral | Meta Ads | Google Ads | GA4 num link só). Use ao criar, ajustar, validar, atualizar ou publicar o painel, uma ramificação, os Insights, ou ao adicionar um cliente."
+description: "Painel de mídia paga da CreativeImob: Cérebro interno (todos os clientes, Meta) e ramificações por cliente entregues ao cliente (Taylor e Montreal: Overview | Google Ads | Meta Ads | GA4 num link só). Use ao criar, ajustar, validar, atualizar ou publicar o painel, uma ramificação, os Insights, ou ao adicionar um cliente."
 ---
 
 # Painel de Performance de Mídia · CreativeImob (Cérebro + clientes)
 
 ## Duas camadas (estrutura decidida em 06/11/2026)
 1. **Cérebro · painel interno** (`performance.creativeimob.app/`): uso da CreativeImob, todas as imobiliárias juntas (abas Cérebro, SH Prime, Nova SP, Lopes Prime, Taylor), fonte = planilhas BaseData via Google Sheets. Visual "da casa".
-2. **Ramificações por cliente** (`performance.creativeimob.app/<cliente>/`): página entregue AO CLIENTE, então tem que ser especial: só os dados dele, identidade visual dele, acabamento de alto padrão, fonte = **conectores oficiais** (Meta Ads, Google Ads e GA4; não a planilha). **Um link só**: botões no topo **Visão geral | Meta Ads | Google Ads | GA4** trocam os dados na hora (pedido do Paulo em 08/11: "não tem que mudar de link, tem que ser um filtro só"). Primeira: **Taylor** (06/11/2026). Outras virão uma a uma (ver "Ramificações por cliente" abaixo, com a receita).
+2. **Ramificações por cliente** (`performance.creativeimob.app/<cliente>/`): página entregue AO CLIENTE, então tem que ser especial: só os dados dele, identidade visual dele, acabamento de alto padrão, fonte = **conectores oficiais** (Meta Ads, Google Ads e GA4; não a planilha). **Um link só**: botões no topo **Visão geral | Meta Ads | Google Ads | GA4** trocam os dados na hora (pedido do Paulo em 08/11: "não tem que mudar de link, tem que ser um filtro só"). Primeira: **Taylor** (06/11/2026, skill `taylor-dashboard-performance`); segunda: **Montreal Business** (14/11/2026, skill `montreal-dashboard-performance`). Outras virão uma a uma (ver "Ramificações por cliente" abaixo, com a receita).
 
 ## Quem é quem
 - **CreativeImob**: assessoria de growth marketing para o mercado imobiliário (Vila Leopoldina, SP). Usuário: **Paulo** (paulo@creativeimob.com), equipe **Data & BI**. Escreve em português do Brasil (às vezes em espanhol: responder no idioma da mensagem). Frases curtas e diretas.
@@ -88,6 +88,16 @@ description: "Painel de mídia paga da CreativeImob: Cérebro interno (todos os 
 - **Padrão das tabelas do GA4 (pedido: "elegante"; "colunas de dimensões estáticas"; "métricas com largura padrão e centralizadas"; "rolagem sutil")**: `table-layout:fixed`, largura 100% (mín. 940px; Páginas 880px), `box-sizing:border-box`, dimensão travada à esquerda com 300px numa linha só com "…" e nome no `title`; métricas 96px centralizadas; linhas 46px; cabeçalho e total fixos; Sessões = número + barrinha dourada de 2px (fatia no `title`); rolagem fina dourada translúcida (`scrollbar-width:thin` + `::-webkit-scrollbar` 6px); máx. 460px de altura. Eventos: `table-layout:fixed`, 100%, colunas 78/84/78px, sem rolagem lateral.
 - Achados (01–07/11): 2.293 sessões, 16 contatos (0,70%), 15 por WhatsApp; busca orgânica 7 contatos (2,98%); 40% das sessões sem origem (Unassigned); **0 sessões de anúncio Meta para 111 cliques no link: nenhuma visita da Meta chega com UTM desde 01/10**; só 37 sessões com UTM (todas do Google Ads, 92% com os 4 parâmetros); pico de ~38 mil sessões em mar/26 (provável robô). Recomendado ao Paulo: UTM nos anúncios da Meta (`utm_campaign`, `utm_source`, `utm_medium`, `utm_content` com o nome do anúncio). Outros sites (não usados): Nova SP `300839307` parou de coletar em 16/10/2026; Lopes `349413276` trocou os eventos de contato em out/26 (detalhes no doc do projeto `claude/mcp_ga4.md`).
 - Armadilhas: segmentos novos NÃO podem ficar dentro de `.tbar .seg` (o listener do nível da tabela pega todos); ao inserir um `<main>` novo, conferir que o `</main>` anterior não foi engolido (o GA4 ficou escondido dentro do `mainCer`); `pct(v,0)` não existe (só 1 ou 2 casas): usar `pc0`; no celular `#mainGa .sh>div:first-child{flex:1 1 280px}` e `#gCmpLbl` com `white-space:normal`.
+
+### Montreal Business (14/11/2026) · performance.creativeimob.app/montreal/
+- Detalhes na skill `montreal-dashboard-performance` (cópia em `skill/montreal-dashboard-performance.md`).
+- `tools/montar_montreal.py --gads /tmp/mt/gads --ate ONTEM /tmp/mt/meta/*.json` → `docs/montreal/index.html` + `dados/montreal_gads.json`. **Reaproveita a chave `ty` do template** (Overview, Meta, Google, acabamento) e troca a identidade só no arquivo gerado: tokens, cores fixas do acabamento, cantos, fonte Plus Jakarta Sans, marca (`fonte/montreal_logo.json`), textos; limpa restos do painel interno e comentários com "Taylor". Mudanças no template para a Taylor chegam também à Montreal: regerar as duas.
+- Identidade do site montrealbusiness.com.br: turquesa `#13D1D1`, grafite `#374151`/`#1F2937`/`#111827`; abre no escuro.
+- Meta `1210410723539965` (só leads de formulário; set/26 sem veiculação). Google `6154519094` (1 campanha search Tatuapé, sem gasto desde 09/11/2026); `view_item`/`page view`/`Maps` são classe "R" em `montar_gads.classe` (só no total), mas `view_item` é conversão principal e conta como lead (10 das 16 de out/26).
+- GA4 sem acesso (290629683, 258046319, 508560208). Sem `dados/montreal_ga4.json`: sem botão GA4, Overview troca Sessões/Contatos por Impressões/CTR (guardado por `O.s` no template).
+- Respostas pequenas do Google vêm inline e não ficam em disco: acrescentar campos extras às consultas `ads`/`camp` para irem para arquivo.
+- Ainda NÃO está na tarefa diária (o prompt não pode ser lido daqui; `update_trigger` substitui o prompt inteiro).
+- Template (vale para a Taylor também, 14/11): rodapé da Overview usa o último dia mais recente das plataformas; 761–1023px período e campanha em linhas separadas (antes se sobrepunham).
 
 ### Receita para a próxima ramificação (cliente X)
 1. Conta Meta liberada no MCP (skill `mcp-meta`: SH Prime ainda **não liberada**; Nova SP `1377575289121874` e Lopes `334885670511698` liberadas). Conferir campos e um mês contra a planilha.
@@ -228,4 +238,4 @@ description: "Painel de mídia paga da CreativeImob: Cérebro interno (todos os 
 - Site público por decisão do usuário: qualquer pessoa com o link vê investimento e resultados.
 - Separar o verificado do suposto. Não pedir senha nem pedir ao usuário que rode o que Claude pode fazer.
 - Pedidos de design do usuário prevalecem sobre regras genéricas de visualização (eixo duplo, rótulos nas linhas).
-- Ao salvar contexto: atualizar ESTA skill (não criar outra) e a cópia `skill/SKILL.md` do repositório.
+- Ao salvar contexto: atualizar ESTA skill (não criar outra) e a cópia `skill/SKILL.md` do repositório. Casos de um cliente vão na skill dele (`taylor-dashboard-performance`, `montreal-dashboard-performance`), com cópia em `skill/`.
