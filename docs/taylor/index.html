@@ -222,7 +222,8 @@
 /* Taylor · título só com o nome da ferramenta, sempre em uma linha (seletor de plataforma em caixa, à direita) */
 @media (min-width:761px) and (max-width:1279px){:root[data-client="ty"] .presets>.pchips{gap:22px}:root[data-client="ty"] .chip{letter-spacing:.14em}}
 @media (min-width:761px) and (max-width:1023px){
-  :root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand brand theme" "plat plat plat plat" "rule rule rule rule" "dates dates camp camp" "chips chips chips chips" "status status status status"}
+  :root[data-client="ty"] .top:has(.plat){grid-template-areas:"brand brand brand theme" "plat plat plat plat" "rule rule rule rule" "dates dates dates dates" "camp camp camp camp" "chips chips chips chips" "status status status status"}
+  :root[data-client="ty"] .top:has(.plat) #fCamp{margin-top:10px}
   :root[data-client="ty"] .top:has(.plat) .plat{justify-self:start;margin:18px 0 0}
   :root[data-client="ty"] .top:has(.plat) .status{justify-self:start;margin:0;padding:12px 0 16px;border-top:1px solid rgba(244,241,232,.1)}
 }
@@ -1739,10 +1740,11 @@ function renderOv(){
   const m=ovSum(O.m,S.d1,S.d2),mp=ovSum(O.m,pa,pb),g=ovSum(O.g,S.d1,S.d2),gp=ovSum(O.g,pa,pb),s=ovSite(O.s,S.d1,S.d2),sp=ovSite(O.s,pa,pb);
   const T=derive({inv:m.inv+g.inv,imp:m.imp+g.imp,lclk:m.lclk+g.lclk,leads:m.leads+g.leads}),Tp=derive({inv:mp.inv+gp.inv,imp:mp.imp+gp.imp,lclk:mp.lclk+gp.lclk,leads:mp.leads+gp.leads});
   const sv=s||{ses:null,ct:null,ctR:null},spv=sp||{};
-  const tiles=[["Investimento",'<small>R$</small>'+nf2.format(T.inv),dlt(T.inv,Tp.inv),brl(Tp.inv),true,1],["Sessões no site",int(sv.ses),dlt(sv.ses,spv.ses),int(spv.ses)],["Cliques",int(T.lclk),dlt(T.lclk,Tp.lclk),int(Tp.lclk)],
+  const tiles=!O.s?[["Investimento",'<small>R$</small>'+nf2.format(T.inv),dlt(T.inv,Tp.inv),brl(Tp.inv),true,1],["Impressões",int(T.imp),dlt(T.imp,Tp.imp),int(Tp.imp)],["Cliques",int(T.lclk),dlt(T.lclk,Tp.lclk),int(Tp.lclk)],
+    ["Leads",int(T.leads),dlt(T.leads,Tp.leads),int(Tp.leads),true],["Custo por lead",T.cpl==null?"–":'<small>R$</small>'+nf2.format(T.cpl),dlt(T.cpl,Tp.cpl,true),brl(Tp.cpl)],["CTR",pct(T.ctr),dlt(T.ctr,Tp.ctr),pct(Tp.ctr)]]:[["Investimento",'<small>R$</small>'+nf2.format(T.inv),dlt(T.inv,Tp.inv),brl(Tp.inv),true,1],["Sessões no site",int(sv.ses),dlt(sv.ses,spv.ses),int(spv.ses)],["Cliques",int(T.lclk),dlt(T.lclk,Tp.lclk),int(Tp.lclk)],
     ["Leads",int(T.leads),dlt(T.leads,Tp.leads),int(Tp.leads),true],["Custo por lead",T.cpl==null?"–":'<small>R$</small>'+nf2.format(T.cpl),dlt(T.cpl,Tp.cpl,true),brl(Tp.cpl)],["Contatos no site",int(sv.ct),dlt(sv.ct,spv.ct),int(spv.ct)]];
   $("#oTiles").innerHTML=tiles.map(([k,v,d,pv,hero,neu])=>`<div class="tile${hero?" hero":""}"><div class="k">${k}</div><div class="v">${v}</div><span class="delta ${neu&&d.cls!=="flat"?"flat":d.cls}">${d.ar}${d.txt}</span><div class="prev">anterior ${pv}</div></div>`).join("");
-  const sh=T.inv?m.inv/T.inv:null,Sx=[["Impressões",int(T.imp),dlt(T.imp,Tp.imp)],["CPM",brl(T.cpm),dlt(T.cpm,Tp.cpm,true)],["CPC",brl(T.cpc),dlt(T.cpc,Tp.cpc,true)],["Verba Meta · Google",sh==null?"–":`${pc0(sh)} · ${pc0(1-sh)}`,{cls:"flat",txt:""}]];
+  const sh=T.inv?m.inv/T.inv:null,Sx=[O.s?["Impressões",int(T.imp),dlt(T.imp,Tp.imp)]:["Clique → lead",pct(T.c2l),dlt(T.c2l,Tp.c2l)],["CPM",brl(T.cpm),dlt(T.cpm,Tp.cpm,true)],["CPC",brl(T.cpc),dlt(T.cpc,Tp.cpc,true)],["Verba Meta · Google",sh==null?"–":`${pc0(sh)} · ${pc0(1-sh)}`,{cls:"flat",txt:""}]];
   $("#oStrip").innerHTML=Sx.map(([k,v,d])=>`<div><span class="k">${k}</span><span class="v">${v}<span class="d ${d.cls}">${d.txt}</span></span></div>`).join("");
   const mc=(k,v,d)=>`<div><span class="k">${k}</span><span class="v">${v}</span>${d}</div>`;
   const plat=(ic,nm,q,c,p)=>`<div class="card ovc"><div class="ovh"><span class="t"><i class="pic ${ic}"></i>${nm}</span><span class="q">${q}</span><div class="big"><span class="v num"><small>R$</small>${nf2.format(c.inv)}</span>${ovD(c.inv,p.inv)}</div></div>
@@ -1759,7 +1761,7 @@ function renderOv(){
   $("#oCards").innerHTML=h;$("#oCards").style.setProperty("--n",[O.m,O.g,s].filter(Boolean).length);
   ovMonth();ovTri();
   const last=[O.m,O.g].filter(Boolean).map(md=>Math.max(...md.r.map(x=>x[0])));
-  $("#oFoot").textContent=`Dados até ${dmyy(Math.min(...last,O.s?O.s.last:Infinity))} · atualizado em ${SNAP_AT}`;
+  $("#oFoot").textContent=`Dados até ${dmyy(Math.min(Math.max(...last),O.s?O.s.last:Infinity))} · atualizado em ${SNAP_AT}`;
 }
 function ovMonths(){const O=ovMod(),mk=i=>{const d=dObj(i);return d.getUTCFullYear()*12+d.getUTCMonth()},M=new Map(),g=k=>{let t=M.get(k);if(!t){t={mi:0,gi:0,ml:0,gl:0,ses:0,ct:0,s:false};M.set(k,t)}return t};
   if(O.m)for(const x of O.m.r){const t=g(mk(x[0]));t.mi+=x[4]/100;t.ml+=x[10]}

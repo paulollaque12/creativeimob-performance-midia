@@ -46,7 +46,7 @@ def classe(nome):
     n = (nome or "").lower()
     if "whats" in n or "zap" in n:
         return "W"
-    if "rota" in n or "direction" in n:
+    if "rota" in n or "direction" in n or "view_item" in n or "page view" in n or "maps" in n:
         return "R"
     return "F"
 
