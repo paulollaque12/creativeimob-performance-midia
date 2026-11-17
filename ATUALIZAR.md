@@ -58,3 +58,11 @@ Primeiro botão do topo e aba padrão da página da Taylor: **Visão geral | Met
 - Conversões do Google: `[Site] Whatsapp Flutuante` → WhatsApp; `[Formulário] …` → Formulário; `view_item`, `PAGE VIEW`, `Maps` → só no total (classe "R" em `montar_gads.classe`). Atenção: `[Site] [/imoveis] view_item` está como conversão principal na conta e conta como lead (10 das 16 conversões de out/26).
 - GA4: **sem acesso** (propriedades vinculadas 290629683, 258046319, 508560208 respondem "sem permissão" para paulo@creativeimob.com). Sem `dados/montreal_ga4.json` a página sai sem o botão GA4 e a Overview troca Sessões/Contatos por Impressões/CTR. Quando o acesso vier: rodar as 5 consultas de `tools/ga4.py` para a propriedade certa, salvar `dados/montreal_ga4.json` (formato de `dados/ga4.json`, chave `ty`) e regerar.
 - Conferência (14/11/2026, dados até 13/11): Meta R$ 44.265,59 · 666.729 impressões · 9.857 cliques no link · 606 leads; Google R$ 5.617,73 · 47.259 impressões · 4.248 cliques · 33 conversões (20 WhatsApp, 3 formulário, 10 view_item).
+
+## Dupllex (performance.creativeimob.app/dupllex/, criada em 17/11/2026)
+- Gerador: `python3 tools/montar_dupllex.py --gads /tmp/dx/gads --ga /tmp/dx/ga --ate ONTEM` → `docs/dupllex/index.html` + `dados/dupllex_gads.json` + `dados/dupllex_ga4.json` (sem `--gads`/`--ga` reaproveita as cópias).
+- Botões: Overview | Google Ads | GA4. **Sem Meta**: a conta Meta "Dupllex" 1405527677145000 ainda não está liberada no conector oficial (rollout gradual da Meta).
+- Google Ads `1381273646` (login 4498709696): as 7 consultas de `tools/montar_gads.py`. Em 2026 só uma Performance Max (19/08–10/09/2026, R$ 1.085,86, 0 conversões); `ads`, `kw`, `conv_*` voltam vazias (gravar `[]`).
+- GA4 `529313528` (dupllex.com.br, coleta desde 24/09/2026): as 5 consultas de `tools/ga4.py` salvas como `/tmp/dx/ga/dx_<q>.json`; no `ct` usar filtro `eventName EXACT generate_lead` e 9ª dimensão `customEvent:lead_method` (o script transforma em `generate_lead_whatsapp`/`_formulario`). Contatos = generate_lead (54 até 16/11/2026: 29 formulário, 25 WhatsApp).
+- Identidade: monocromática do site (grafite #212121, branco, pedra #B5AC9E), Archivo expandida, cantos retos; logo em `fonte/dupllex_logo.json`. Abre no escuro.
+- Ainda não está na tarefa diária.

@@ -1168,8 +1168,8 @@ function syncInputs(){
   document.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===S.preset)));
 }
 function setModel(m,src,at){
-  M=m;lastDay=Math.max(...M.r.map(x=>x[0]));
-  const lo=Math.min(...M.r.map(x=>x[0]));$("#d1").min=$("#d2").min=toISO(lo);
+  M=m;const ds=M.r.length?M.r.map(x=>x[0]):[toIdx("2026-01-01"),yesterday];lastDay=Math.max(...ds);
+  const lo=Math.min(...ds);$("#d1").min=$("#d2").min=toISO(lo);
   if(!S.d1){
     // datas padrão: dia 1 do mês até ontem; no dia 1, o mês anterior inteiro
     const D=dObj(yesterday+1);
@@ -1736,7 +1736,7 @@ function i18n(){if(!TXD)return;const map=TXD[PLAT]||[];i18nOn=true;
   i18nOn=false}
 if(TXD){new MutationObserver(()=>{if(i18nOn||i18nQ)return;i18nQ=true;queueMicrotask(()=>{i18nQ=false;i18n()})}).observe(document.body,{childList:true,subtree:true,characterData:true})}
 /* ---------- Visão geral (página da Taylor): Meta + Google + site ---------- */
-function ovMod(){return{m:MODELS.ty&&MODELS.ty.m,g:SNAP_G?fromSnap(SNAP_G):null,s:GA4&&GAM.ty?GAM.ty.m:null}}
+function ovMod(){return{m:MODELS.ty&&MODELS.ty.m&&MODELS.ty.m.r&&MODELS.ty.m.r.length?MODELS.ty.m:null,g:SNAP_G?fromSnap(SNAP_G):null,s:GA4&&GAM.ty?GAM.ty.m:null}}
 function ovSum(md,a,b){const t={inv:0,imp:0,lclk:0,clk:0,form:0,msg:0,leads:0,has:false};if(!md||!md.r)return derive(t);
   for(const x of md.r){if(x[0]<a||x[0]>b)continue;t.has=true;t.inv+=x[4];t.imp+=x[5];t.lclk+=x[6];t.clk+=x[7];t.form+=x[8];t.msg+=x[9];t.leads+=x[10]}t.inv/=100;return derive(t)}
 function ovSite(md,a,b){const keep=GS;GS=md;const r=md?gTot(a,b):null;GS=keep;return r}
@@ -1751,7 +1751,7 @@ function renderOv(){
     ["Leads",int(T.leads),dlt(T.leads,Tp.leads),int(Tp.leads),true],["Custo por lead",T.cpl==null?"–":'<small>R$</small>'+nf2.format(T.cpl),dlt(T.cpl,Tp.cpl,true),brl(Tp.cpl)],["CTR",pct(T.ctr),dlt(T.ctr,Tp.ctr),pct(Tp.ctr)]]:[["Investimento",'<small>R$</small>'+nf2.format(T.inv),dlt(T.inv,Tp.inv),brl(Tp.inv),true,1],["Sessões no site",int(sv.ses),dlt(sv.ses,spv.ses),int(spv.ses)],["Cliques",int(T.lclk),dlt(T.lclk,Tp.lclk),int(Tp.lclk)],
     ["Leads",int(T.leads),dlt(T.leads,Tp.leads),int(Tp.leads),true],["Custo por lead",T.cpl==null?"–":'<small>R$</small>'+nf2.format(T.cpl),dlt(T.cpl,Tp.cpl,true),brl(Tp.cpl)],["Contatos no site",int(sv.ct),dlt(sv.ct,spv.ct),int(spv.ct)]];
   $("#oTiles").innerHTML=tiles.map(([k,v,d,pv,hero,neu])=>`<div class="tile${hero?" hero":""}"><div class="k">${k}</div><div class="v">${v}</div><span class="delta ${neu&&d.cls!=="flat"?"flat":d.cls}">${d.ar}${d.txt}</span><div class="prev">anterior ${pv}</div></div>`).join("");
-  const sh=T.inv?m.inv/T.inv:null,Sx=[O.s?["Impressões",int(T.imp),dlt(T.imp,Tp.imp)]:["Clique → lead",pct(T.c2l),dlt(T.c2l,Tp.c2l)],["CPM",brl(T.cpm),dlt(T.cpm,Tp.cpm,true)],["CPC",brl(T.cpc),dlt(T.cpc,Tp.cpc,true)],["Verba Meta · Google",sh==null?"–":`${pc0(sh)} · ${pc0(1-sh)}`,{cls:"flat",txt:""}]];
+  const sh=T.inv?m.inv/T.inv:null,Sx=[O.s?["Impressões",int(T.imp),dlt(T.imp,Tp.imp)]:["Clique → lead",pct(T.c2l),dlt(T.c2l,Tp.c2l)],["CPM",brl(T.cpm),dlt(T.cpm,Tp.cpm,true)],["CPC",brl(T.cpc),dlt(T.cpc,Tp.cpc,true)],(O.m&&O.g?["Verba Meta · Google",sh==null?"–":`${pc0(sh)} · ${pc0(1-sh)}`,{cls:"flat",txt:""}]:["Tx. conv.",pct(T.conv),dlt(T.conv,Tp.conv)])];
   $("#oStrip").innerHTML=Sx.map(([k,v,d])=>`<div><span class="k">${k}</span><span class="v">${v}<span class="d ${d.cls}">${d.txt}</span></span></div>`).join("");
   const mc=(k,v,d)=>`<div><span class="k">${k}</span><span class="v">${v}</span>${d}</div>`;
   const plat=(ic,nm,q,c,p)=>`<div class="card ovc"><div class="ovh"><span class="t"><i class="pic ${ic}"></i>${nm}</span><span class="q">${q}</span><div class="big"><span class="v num"><small>R$</small>${nf2.format(c.inv)}</span>${ovD(c.inv,p.inv)}</div></div>
@@ -1774,7 +1774,7 @@ function ovMonths(){const O=ovMod(),mk=i=>{const d=dObj(i);return d.getUTCFullYe
   if(O.m)for(const x of O.m.r){const t=g(mk(x[0]));t.mi+=x[4]/100;t.ml+=x[10]}
   if(O.g)for(const x of O.g.r){const t=g(mk(x[0]));t.gi+=x[4]/100;t.gl+=x[10]}
   if(O.s){for(const x of O.s.s){const t=g(mk(x[0]));t.ses+=x[5];t.s=true}for(const x of O.s.c)g(mk(x[0])).ct+=x[x.length-1]}
-  const ks=[...M.keys()].filter(k=>{const t=M.get(k);return t.mi||t.gi}).sort((a,b)=>a-b);return{ks,rows:ks.map(k=>M.get(k)),all:M}}
+  const ks=[...M.keys()].filter(k=>{const t=M.get(k);return t.mi||t.gi||(t.s&&t.ses)}).sort((a,b)=>a-b);return{ks,rows:ks.map(k=>M.get(k)),all:M}}
 function ovMonth(){let {ks,rows}=ovMonths();ks=ks.slice(-3);rows=rows.slice(-3);const el=$("#oMonth");if(!ks.length){el.innerHTML='<div class="empty">Sem dados.</div>';return}
   const lab=ks.map(k=>MES[k%12]+"/"+String(Math.floor(k/12)).slice(2)),O=ovMod(),bars=[];
   if(O.m)bars.push({name:"Meta Ads",values:rows.map(r=>r.mi),color:col("--gold"),tick:v=>"R$ "+short(v),fmt:brl});
@@ -1800,7 +1800,7 @@ function showOv(){CL="ov";document.documentElement.dataset.client="ty";$("#brand
 const PLT={o:["Overview","Meta, Google e site no mesmo período"],m:["Meta Ads","Entrega, custo e leads na Meta"],g:["Google Ads","Entrega, custo e conversões no Google"],a:["GA4","Visitas e contatos no site"]};
 function platTitle(){if(!document.querySelector(".plat")||!PLT[PLAT])return;$("#hTitle").textContent=PLT[PLAT][0];$("#hSub").textContent=PLT[PLAT][1]}
 function setPlat(p){
-  if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mgao]$/.test(p))p="m";PLAT=p;
+  if(p==="g"&&!SNAP_G||p==="a"&&!GA4||!/^[mgao]$/.test(p))p="m";if(p==="m"&&!document.querySelector('.plat button[data-p="m"]')&&document.querySelector('.plat button[data-p="o"]'))p="o";PLAT=p;
   if(p!=="m")document.documentElement.dataset.plat=p;else delete document.documentElement.dataset.plat;
   document.querySelectorAll(".plat button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===p)));
   try{localStorage.setItem("cimob-plat",p)}catch(e){}
