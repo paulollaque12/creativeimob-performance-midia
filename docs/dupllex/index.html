@@ -207,7 +207,8 @@
 :root[data-client="ty"] #tbl thead th:first-child{z-index:4}
 :root[data-client="ty"] #tbl tfoot td{position:sticky;bottom:0;z-index:2;border-top:1px solid var(--line)}
 :root[data-client="ty"] #tbl tfoot td:first-child{z-index:4}
-:root[data-client="ty"] #tbl td:first-child wbr{display:none}
+:root[data-client="ty"] #tbl :is(th,td):first-child{width:380px;min-width:380px;max-width:380px}
+:root[data-client="ty"] #tbl tbody td:first-child,:root[data-client="ty"] #tbl tfoot td:first-child{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4;font-size:12.5px;padding-block:9px 8px;word-break:normal;overflow-wrap:anywhere}
 
 .plat{display:none}
 :root[data-client="ty"] .plat{grid-area:plat;display:flex;align-self:center;justify-self:end;margin-right:10px;border:1px solid rgba(181,172,158,.45);border-radius:3px;padding:2px;height:40px}
