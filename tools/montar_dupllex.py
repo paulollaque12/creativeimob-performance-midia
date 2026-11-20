@@ -31,7 +31,9 @@ import ga4  # noqa: E402
 
 PASTA = "dupllex"
 TITULO = "Dupllex · Performance de mídia"
-FONTE_META = "Fonte: Meta Ads, conta Dupllex (leitura direta do conector oficial da Meta)"
+FONTE_META = "Fonte: planilha [BaseData] Dupllex · Meta (provisória até o conector oficial da Meta liberar a conta 1405527677145000)"
+PLANILHA_META = "1_eOdkIvt7JALyZeI5LBQ6HP9gqzQPKq8i1-WSQ-5Sg4"  # aba Meta, mesmo formato das BaseData do painel interno
+CACHE_M = os.path.join(montar.RAIZ, "dados", "dupllex_meta.json")
 FONTE_GADS = "Fonte: Google Ads, conta Dupllex 1381273646 (leitura direta do conector do Google Ads)"
 CACHE_G = os.path.join(montar.RAIZ, "dados", "dupllex_gads.json")
 CACHE_GA = os.path.join(montar.RAIZ, "dados", "dupllex_ga4.json")
@@ -73,6 +75,8 @@ MARCA_DX = '<div class="mk-dx" role="img" aria-label="Dupllex"><i></i></div>'
 
 def tx():
     t = json.loads(json.dumps(montar_meta.TX))
+    # Meta vinda da planilha: Leads = Formulario + Mensagem (WhatsApp), regra do painel interno; não vira "Site"
+    t["m"] = [par for par in t["m"] if "WhatsApp" not in par[0] and "Conversas iniciadas" not in par[0]]
     for k in t:
         for par in t[k]:
             for j in (0, 1):
@@ -135,8 +139,18 @@ def main():
     ap.add_argument("--ate")
     ap.add_argument("--gads")
     ap.add_argument("--ga")
+    ap.add_argument("--meta", help="get_values da aba Meta da planilha (JSON com cabeçalho na 1ª linha)")
     a = ap.parse_args()
-    dm = {"c": [], "g": [], "a": [], "r": []}  # Meta ainda não liberada no conector
+    if a.meta:  # provisório: planilha BaseData até o conector da Meta liberar a conta
+        dm, ult_m = montar.compactar(a.meta, "Dupllex · Meta (planilha)")
+        if a.ate and str(ult_m) < a.ate:
+            print(f"AVISO: planilha da Meta só até {ult_m} (esperado {a.ate})")
+        json.dump(dm, open(CACHE_M, "w", encoding="utf-8"), separators=(",", ":"), ensure_ascii=False)
+    elif os.path.exists(CACHE_M):
+        dm = json.load(open(CACHE_M, encoding="utf-8"))
+        print("Meta: usando a última cópia em dados/dupllex_meta.json")
+    else:
+        dm = {"c": [], "g": [], "a": [], "r": []}
     if a.gads:
         snap_g, ult_g, resumo = montar_gads.construir(a.gads)
         print(resumo.replace("Taylor", "Dupllex"))
@@ -149,7 +163,9 @@ def main():
     else:
         ga = json.load(open(CACHE_GA, encoding="utf-8"))
         print("GA4: usando a última cópia em dados/dupllex_ga4.json")
-    nav = montar_meta.NAV_O + montar_meta.NAV_G + montar_meta.NAV_A + "</nav>"
+    tem_m = bool(dm["r"])
+    nav = (montar_meta.NAV_O + montar_meta.NAV_G + (montar_meta.NAV_I.replace(' aria-pressed="true"', ' aria-pressed="false"') if tem_m else "")
+           + montar_meta.NAV_A + "</nav>")  # mesma ordem da Taylor: Overview, Google Ads, Meta Ads, GA4
     sem_meta = [
         ("Meta, Google e site no mesmo período", "Google Ads e site no mesmo período"),
         ("a verba somada de Meta Ads e Google Ads, os leads", "a verba do Google Ads, os leads"),
@@ -157,10 +173,14 @@ def main():
         ("Fontes: Meta Ads e Google Ads (conectores oficiais) e Google Analytics 4 do site, somente 2026. Leads = leads da Meta + conversões do Google Ads. Contatos no site = WhatsApp, telefone e formulário registrados pelo GA4.",
          "Fontes: Google Ads (conector oficial) e Google Analytics 4 do site, somente 2026. Leads = conversões do Google Ads. Contatos no site = leads do site (evento generate_lead do GA4: formulário e WhatsApp)."),
     ]
+    com_meta = [
+        ("Fontes: Meta Ads e Google Ads (conectores oficiais) e Google Analytics 4 do site, somente 2026. Leads = leads da Meta + conversões do Google Ads. Contatos no site = WhatsApp, telefone e formulário registrados pelo GA4.",
+         "Fontes: Meta Ads (planilha BaseData, provisória até o conector oficial liberar a conta), Google Ads (conector oficial) e Google Analytics 4 do site, somente 2026. Leads = leads da Meta (formulário + WhatsApp) + conversões do Google Ads. Contatos no site = leads do site (evento generate_lead do GA4: formulário e WhatsApp)."),
+    ]
     trocas = [(montar_meta.PLANILHA_TY, ""), (MARCA_TY, MARCA_DX), ('name:"Taylor"', 'name:"Dupllex"'), ('ty:"Taylor"', 'ty:"Dupllex"'),
-              ("com a Taylor", "com a Dupllex")] + sem_meta
+              ("com a Taylor", "com a Dupllex")] + (com_meta if tem_m else sem_meta)
     agora = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
-    montar.solo(agora, {"ty": dm}, "ty", PASTA, TITULO, fonte=FONTE_GADS, nav=nav, snap_g=snap_g, tx=tx(), ga=ga, trocas=trocas)
+    montar.solo(agora, {"ty": dm}, "ty", PASTA, TITULO, fonte=FONTE_META if tem_m else FONTE_GADS, nav=nav, snap_g=snap_g, tx=tx(), ga=ga, trocas=trocas)
     p = os.path.join(montar.RAIZ, "docs", PASTA, "index.html")
     html = identidade(open(p, encoding="utf-8").read())
     resto = [w for w in ("Taylor", "taylor", "TAYLOR") if w in re.sub(r"<style>.*?</style>", "", html, flags=re.S)]
