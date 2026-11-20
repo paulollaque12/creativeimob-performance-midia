@@ -30,6 +30,7 @@ Skill específica da Montreal. O que é comum a todos os clientes (painel intern
 - Consequência: **mudanças no template para a Taylor também chegam à Montreal** (bom para correções; cuidado com textos específicos da Taylor: se aparecerem, acrescentar em `trocas`). Ao mexer no template, regerar as duas páginas.
 
 ## Identidade visual (do site; não reverter sem pedido)
+- **Tabela de Detalhes (20/11/2026)**: nome da campanha/grupo/anúncio/palavra-chave aparece **inteiro** (taxonomia completa), quebrando em `_`/`-` via `<wbr>`, coluna 380px, 12,5px; não voltar a cortar com "…". Vem do CSS `ty` do template (vale para Taylor, Montreal e Dupllex).
 - Site montrealbusiness.com.br (variáveis CSS lidas no navegador do app): primária **turquesa `#13D1D1`**, secundária `#E0F2F7`, texto `#374151` / `#6B7280`, escuros `#1F2937` / `#111827`, fundo `#F9F9F9`, bordas `#E5E7EB`; fonte **Plus Jakarta Sans** (Roboto de reserva); cantos arredondados (6–16px). O logo do site é PNG dentro de SVG (não há vetor).
 - **Escuro (padrão da página, como a Taylor)**: fundo `#0B0F14`, cartões `#121821`, cabeçalho `#18212D`, barras turquesa `#13D1D1`, linha `#E5E7EB`, funil turquesa → `#0F3436` → `#0E8F8F`, Google nas barras da Overview `#8B95A3`.
 - **Claro**: fundo `#F4F6F8`, cartões brancos, cabeçalho grafite `#1F2937`, barras `#13C4C4`, linha grafite `#374151`, números de seção `#0B9A9A`.
