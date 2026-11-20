@@ -62,7 +62,8 @@ CSS_EXTRA = """
 .mk-dx{display:flex;align-items:center}
 .mk-dx i{display:block;width:104px;height:38px;background:#FAFAFA;-webkit-mask:url("data:image/png;base64,__WRD__") center/contain no-repeat;mask:url("data:image/png;base64,__WRD__") center/contain no-repeat}
 :root[data-client="ty"] .top{background:radial-gradient(120% 140% at 100% 0%,rgba(250,250,250,.06),transparent 46%),var(--graph)}
-:root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .sh h2,:root[data-client="ty"] .plat button,:root[data-client="ty"] .ovh .t{font-stretch:125%}
+:root[data-client="ty"] .brand-txt h1,:root[data-client="ty"] .sh h2,:root[data-client="ty"] .ovh .t{font-stretch:125%}
+:root[data-client="ty"] .plat button{font-stretch:100%;letter-spacing:.08em}
 :root[data-client="ty"] .brand-txt h1{font-weight:300;letter-spacing:.14em}
 :root[data-client="ty"] .sh h2{font-weight:300;letter-spacing:.02em;text-transform:uppercase}
 :root[data-client="ty"] .tile .v,:root[data-client="ty"] .num{font-variant-numeric:tabular-nums;font-weight:300}
