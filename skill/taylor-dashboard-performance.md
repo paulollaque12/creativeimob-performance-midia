@@ -34,7 +34,7 @@ Skill específica da Taylor. O que é comum a todos os clientes (painel interno,
 - Seções numeradas (fio dourado + "01", "02"…), títulos 22px peso 500, textos sem quebra (`.bi{max-width:none}`).
 - Big numbers com ícone dourado de traço fino por posição (`--ico` por `nth-child`: $, olho, cursor, pessoa, etiqueta, alvo), número Inter 400; "Comparação: …" abaixo dos big numbers.
 - Botões segmentados iguais (32px, 9,5px, caixa alta, ativo verde sólido).
-- **Tabelas**: dimensão travada à esquerda numa linha só com "…" (nome no `title`), métricas com **largura padrão e centralizadas**, linhas 46px, cabeçalho e total fixos, rolagem **fina dourada translúcida**. Detalhes: 440px de altura, nome 300px, volume 112px, custos/taxas 92px. GA4: largura 100% (mín. 940px), métricas 96px, máx. 460px; eventos sem rolagem lateral.
+- **Tabelas**: dimensão travada à esquerda; nos Detalhes (`#tbl`) o nome aparece **inteiro** (taxonomia completa, quebra em `_`/`-` via `<wbr>`, coluna 380px, 12,5px; pedido de 20/11); nas tabelas do GA4 segue uma linha só com "…" (nome no `title`), métricas com **largura padrão e centralizadas**, linhas 46px, cabeçalho e total fixos, rolagem **fina dourada translúcida**. Detalhes: 440px de altura, nome 380px, volume 112px, custos/taxas 92px. GA4: largura 100% (mín. 940px), métricas 96px, máx. 460px; eventos sem rolagem lateral.
 - Tooltip ao lado do cursor. Conferir com as fontes reais no navegador do app (o Playwright do sandbox bloqueia Google Fonts).
 
 ## Fonte 1 · Meta Ads (conector oficial)
