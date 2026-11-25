@@ -61,8 +61,8 @@ Skill específica da Montreal. O que é comum a todos os clientes (painel intern
 - Overview 01–13/11: R$ 1.431,56 (83% Meta), 26 leads, CPL R$ 55,06; Google 0 conversões em novembro.
 
 ## Rotina
-- **Ainda não está na tarefa diária** "Atualizar painel de mídia CreativeImob" (`trig_018dybxSCkNo5bxAbZ7F7Exq`, 07:51): o prompt não pode ser lido daqui e `update_trigger` substitui o prompt inteiro. Para incluir: o Paulo cola o prompt atual (ou o painel da tarefa) e acrescenta-se o passo "3c Montreal": Meta (um mês por chamada, só o mês corrente e o anterior se quiser poupar chamadas, mas o gerador precisa do ano inteiro em `/tmp/mt/meta/`) → Google (7 consultas) → `montar_montreal.py --gads /tmp/mt/gads --ate ONTEM` → commit de `docs/montreal/index.html` e `dados/montreal_gads.json`.
-- Atualização manual: refazer as consultas do ano inteiro até ONTEM e rodar o gerador; conferir os totais acima mês a mês com `level=account`/`segments.month`.
+- **Tarefa agendada própria** (25/11/2026): "Atualizar página Montreal" `trig_01L6RmDCyPpFDgjeaUYXPY1G`, todo dia 08:47 (America/Sao_Paulo), aprovação automática, push. Meta mês a mês (jan até ontem) → Google (7 consultas, campos extras em `ads`/`camp`) → `montar_montreal.py --ate ONTEM` → commit de `docs/montreal/index.html` e `dados/montreal_gads.json`; testa o GA4 nas 3 propriedades e só avisa se liberar. Ao mudar consultas ou passos, atualizar o prompt (`update_trigger`; o prompt aparece em `list_triggers`).
+- Google voltou a gastar em 16/11/2026 (0 conversões até 24/11).
 
 ## Como testar
 - `node --check` no `<script>` extraído; Playwright (bloquear `**/fonts.*/**`; `localStorage` `cimob-plat` = o/g/m e `shp-theme` = dark/light) em 1360 escuro e claro, 1100, 820 e 400; `scrollWidth` = janela; `pageerror` vazio; clicar Overview/Google/Meta e conferir o `main` visível; "Ano até ontem" com os totais de conferência.
